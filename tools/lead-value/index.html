@@ -20,15 +20,14 @@
 </div>
 <script>
 window.TOOL={
-  id:"lead-value", name:"حاسبة قيمة العميل المحتمل (Lead Value)", duration:"دقيقة واحدة تقريباً",
-  intro:'<h2 class="q">في دقيقة بتعرف:</h2><ul><li><b>قيمة كل Lead</b> بالدولار.</li><li><b>نسبة الإغلاق</b> والإيراد من كل Lead.</li><li><b>وين الفاقد:</b> التأهيل، المتابعة، ولا المصدر.</li><li><b>كم كان ممكن تكسب</b> لو رفعت الإغلاق شوية، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%.</p>',
+  id:"lead-value", name:"حاسبة قيمة العميل المحتمل (Lead Value)", duration:"دقيقتين تقريباً، أغلبها اختيارات", section:"الحسبة",
+  intro:'<h2 class="q">في دقيقة بتعرف:</h2><ul><li><b>قيمة كل Lead</b> بالدولار.</li><li><b>نسبة الإغلاق</b> والإيراد من كل Lead.</li><li><b>وين الفاقد:</b> التأهيل، المتابعة، ولا المصدر.</li><li><b>كم كان ممكن تكسب</b> لو رفعت الإغلاق شوية، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%. في الآخر بنسألك عن هدفكم عشان التوصية تكون على مقاسكم.</p>',
   questions:[
     {id:"period",t:"داير تحسب على أي فترة؟",type:"single",req:true,opts:["آخر شهر","آخر 3 شهور","آخر 6 شهور","آخر سنة"]},
     {id:"leads",t:"كم Lead (استفسار أو عميل محتمل) جاك في الفترة دي؟",d:"كل زول سأل، راسل، اتصل أو سجّل بياناته.",type:"number",req:true,ph:"مثلاً: 400",min:1,minMsg:"لازم يكون في Lead واحد على الأقل"},
     {id:"customers",t:"منهم كم اشترى فعلاً؟",type:"number",req:true,ph:"مثلاً: 40",check:function(A){return A.customers>A.leads?"عدد المشترين أكبر من عدد الـLeads، راجع الرقمين":"";}},
     {id:"revenue",t:"إجمالي الإيراد من المبيعات دي في نفس الفترة (بالدولار)؟",d:"لو حاسبها بالجنيه، حوّلها لدولار تقريبي.",type:"number",req:true,ph:"مثلاً: 30000"},
     {id:"deal",t:"متوسط قيمة الصفقة الواحدة (بالدولار)؟",d:"لو ما عارفه، خليه فاضي ونحسبه نحن.",type:"number",ph:"اختياري"},
-    {id:"one_source",t:"كل الـLeads جاية من نفس المصدر؟",type:"yesno",req:true},
     {id:"lead_source",t:"المصدر الأساسي للـLeads شنو؟",type:"single",req:true,opts:["فيسبوك","إنستغرام","لينكدإن","قوقل","توصيات ومعارف","واتساب","تيك توك","مصدر تاني"]},
     {id:"q_qualify",t:"بتعمل تأهيل لكل Lead قبل ما تعرض عليه؟",d:"يعني بتعرف هل عنده الحاجة والميزانية وصاحب القرار.",type:"yesno",req:true},
     {id:"q_scoring",t:"عندكم طريقة تقييم للـLeads (Lead Scoring)؟",d:"مثلاً: ساخن، دافي، بارد، أو درجة من 10.",type:"yesno",req:true},
@@ -52,7 +51,8 @@ window.TOOL={
     var monthly=A.revenue/months, tier=monthly>=5000?"Hot":monthly>=1000?"Warm":"Cold";
     var target=Math.min(cr+0.05,1), extra=(target-cr)*A.leads*deal;
     var constraint=rec==="revenue"?"Conversion – تحويل الـLeads لمبيعات":"Leads – جودة واستهداف الـLeads";
-    return {lv:lv,cr:cr,deal:deal,score:score,band:band,missing:missing,rec:rec,tags:tags,tier:tier,months:months,extra:extra,target:target,
+    var pain=Math.min(10,(score<=45?6:score<=70?4:2)+Math.min(4,missing.length));
+    return {pain:pain,lv:lv,cr:cr,deal:deal,score:score,band:band,missing:missing,rec:rec,tags:tags,tier:tier,months:months,extra:extra,target:target,
       constraint:constraint,sector:"مصدر: "+A.lead_source,stage:"إيراد شهري تقريبي $"+Math.round(monthly).toLocaleString("en-US"),
       summary:"Lead Value $"+lv.toFixed(1)+" | Close "+(cr*100).toFixed(1)+"% | Deal $"+Math.round(deal)+" | "+A.leads+" leads / "+A.period+" | ناقص: "+(missing.join("، ")||"لا شي"),
       store:{lead_value:+lv.toFixed(2),close_rate:+(cr*100).toFixed(2),avg_deal:Math.round(deal),revenue_per_lead:+lv.toFixed(2),monthly_revenue:Math.round(monthly),score:score}};
@@ -73,9 +73,7 @@ window.TOOL={
     var recName=R.rec==="revenue"?"Revenue Conversion System":"Client Acquisition System";
     var why=R.rec==="revenue"?"الـLeads بتجيك، لكن جزء كبير منهم بيضيع بين أول رسالة والدفع. المشكلة في التحويل والمتابعة، ما في العدد.":"المشكلة في نوع الـLeads الداخلة. محتاج تعرف منو العميل الصاح، من وين بيجي، وتصفّي قبل ما تصرف وقت فريقك.";
     h+='<div class="box"><h3>توصيتنا: '+recName+'</h3><p style="margin:0">'+why+'</p><p class="hint" style="margin:0">السؤال الصاح ما «كيف أجيب Leads أكتر؟». السؤال: «كيف أزيد قيمة كل Lead عندي؟»</p></div>';
-    h+='<a class="cta" href="../../" target="_blank" rel="noopener">أعمل التشخيص المجاني الكامل لبزنسك ←</a>';
-    h+='<div class="wa"><a href="'+M.wa("السلام عليكم، أنا "+A.name+" من "+A.business+". عملت حاسبة Lead Value وطلعت قيمة الـLead عندي "+M.money(R.lv)+" ونسبة الإغلاق "+M.pct(R.cr)+". عايز جلسة 20 دقيقة نراجع النتيجة.")+'" target="_blank" rel="noopener">راجع النتيجة معانا في جلسة 20 دقيقة<span>واتساب ←</span></a></div>';
-    h+='<p class="hint">الأرقام دي محسوبة من إجاباتك إنت. لو الزر ما فتح واتساب، راسلنا على <span class="num">0119744949</span>.</p></div>';
+    h+='</div>';
     return h;
   }
 };
