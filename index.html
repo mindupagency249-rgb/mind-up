@@ -1,22 +1,332 @@
-<!doctype html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>تشخيص Mind Up المجاني</title>
-<meta name="description" content="تشخيص مجاني لبزنسك من Mind Up Growth Systems: اعرف الاختناق الحقيقي وخذ خطة 30 يوم.">
+<!DOCTYPE html><html lang="ar" dir="rtl"><head>
 <meta property="og:title" content="تشخيص Mind Up المجاني">
 <meta property="og:description" content="5 دقائق أسئلة، وبيوصلك تقرير وخطة 30 يوم مجاناً.">
-<meta name="theme-color" content="#4251B0">
+<meta name="theme-color" content="#4251B0"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>تشخيص Mind Up المجاني</title>
+<meta name="claude:viewport-fit-sides" content="cover">
 <style>
-html,body{margin:0;height:100%;background:#4251B0;font-family:Tahoma,Arial,sans-serif}
-iframe{position:fixed;inset:0;width:100%;height:100%;border:0;background:#fff}
-.fb{position:fixed;bottom:10px;left:10px;font-size:12px;color:#fff;background:rgba(0,0,0,.35);padding:6px 10px;border-radius:14px;text-decoration:none;display:none}
+@font-face{font-family:"Thmanyah Sans";src:url(https://cdn.jsdelivr.net/gh/engdawood/thmanyah-font-web@4266a9d/fonts/thmanyah-sans/woff2/thmanyah-sans-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Thmanyah Sans";src:url(https://cdn.jsdelivr.net/gh/engdawood/thmanyah-font-web@4266a9d/fonts/thmanyah-sans/woff2/thmanyah-sans-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+/* Layout: one question per screen, brand header with 4-stage progress (بياناتك / التأهيل / التشخيص / الخطوة الجاية) */
+:root{
+  --blue:#4251B0; --green:#23B774; --ink:#323835; --bg:#F5F0E8; --card:#FFFFFF;
+  --muted:#6B6F6C; --line:#E2DCD0; --chip:#EEF0FA; --chip-on:#4251B0; --chip-on-fg:#FFFFFF; --err:#C0392B;
+  --font:"Thmanyah Sans","Segoe UI",Tahoma,Arial,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#1E2220;--card:#2A2F2C;--ink:#F2EEE6;--muted:#A9ADA9;--line:#3B413D;--chip:#323A4F;--chip-on:#6B79D6;--chip-on-fg:#FFFFFF;--err:#FF7A6B;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#1E2220;--card:#2A2F2C;--ink:#F2EEE6;--muted:#A9ADA9;--line:#3B413D;--chip:#323A4F;--chip-on:#6B79D6;--chip-on-fg:#FFFFFF;--err:#FF7A6B;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;direction:rtl;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:20px 40px}
+.wrap{max-width:620px;margin:0 auto;display:flex;flex-direction:column;gap:18px}
+.hero{background:linear-gradient(135deg,#4251B0 0%,#2b3480 55%,#1d6e4c 100%);color:#fff;border-radius:22px;padding:22px 22px 20px;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.hero::after{content:"";position:absolute;inset:auto -60px -80px auto;width:220px;height:220px;border-radius:50%;border:1px solid rgba(255,255,255,.18)}
+.brand{display:flex;align-items:center;gap:10px}
+.brand img{width:38px;height:38px}
+.brand b{letter-spacing:.12em;font-size:14px}
+.brand small{display:block;font-size:11px;opacity:.75;letter-spacing:.08em}
+.hero h1{margin:0;font-size:26px;line-height:1.3;text-wrap:balance}
+.hero p{margin:0;opacity:.9;font-size:15px}
+.stages{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;position:relative;z-index:1}
+.stage{font-size:12px;display:flex;flex-direction:column;gap:5px;opacity:.6}
+.stage i{display:block;height:5px;border-radius:5px;background:rgba(255,255,255,.25);overflow:hidden}
+.stage i span{display:block;height:100%;width:0;background:var(--green);transition:width .35s}
+.stage.on{opacity:1}
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:24px 22px;display:flex;flex-direction:column;gap:16px;min-height:300px}
+.qnum{font-size:13px;color:var(--muted)}
+.q{margin:0;font-size:21px;line-height:1.45;text-wrap:balance}
+.req{color:var(--green)}
+.opts{display:grid;gap:10px}
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:right;width:100%;padding:13px 16px;border-radius:14px;border:1.5px solid var(--line);background:var(--chip);color:var(--ink);font:inherit;font-size:16px;cursor:pointer;transition:transform .12s,background .12s}
+.opt:hover{transform:translateY(-1px);border-color:var(--chip-on)}
+.opt small{font-size:13px;color:var(--muted)}
+.opt[aria-pressed="true"]{background:var(--chip-on);color:var(--chip-on-fg);border-color:var(--chip-on)}
+.opt[aria-pressed="true"] small{color:var(--chip-on-fg);opacity:.85}
+.opt:focus-visible,.btn:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+input,textarea{width:100%;font:inherit;font-size:17px;padding:13px 15px;border-radius:14px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink)}
+textarea{min-height:110px;resize:vertical}
+.scale{display:grid;grid-template-columns:repeat(10,1fr);gap:6px}
+.scale .opt{align-items:center;padding:12px 0;font-variant-numeric:tabular-nums}
+.scale-l{display:flex;justify-content:space-between;font-size:13px;color:var(--muted)}
+.hint{font-size:13px;color:var(--muted)}
+.err{color:var(--err);font-size:14px;min-height:1.2em}
+.nav{display:flex;gap:10px;justify-content:space-between;align-items:center;margin-top:auto}
+.btn{font:inherit;font-size:16px;font-weight:700;border-radius:999px;padding:12px 26px;border:0;cursor:pointer}
+.btn.primary{background:var(--green);color:#fff}
+.btn.ghost{background:transparent;color:var(--muted);padding-inline:8px}
+.btn[disabled]{opacity:.5;cursor:wait}
+.done h2{margin:0;font-size:24px;text-wrap:balance}
+.done p{margin:0}
+.steps{display:grid;gap:10px;padding:0;margin:0;list-style:none}
+.steps li{display:flex;gap:12px;align-items:flex-start}
+.steps b.n{flex:none;width:28px;height:28px;border-radius:50%;background:var(--chip);color:var(--chip-on);display:grid;place-items:center;font-size:14px}
+.wa{display:flex;flex-direction:column;gap:10px}
+.wa a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:var(--green);color:#fff;border-radius:16px;padding:14px 18px;font-weight:700}
+.wa a.alt{background:var(--chip);color:var(--ink);border:1.5px solid var(--line)}
+.wa a span{font-weight:400;font-size:13px;opacity:.85}
+.num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;user-select:all}
+.foot{text-align:center;font-size:12px;color:var(--muted)}
+.preview{font-size:12px;background:var(--chip);border-radius:10px;padding:8px 12px;color:var(--muted)}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+@media (max-width:420px){.hero h1{font-size:22px}.q{font-size:19px}.scale{grid-template-columns:repeat(5,1fr)}}
 </style>
-</head>
-<body>
-<iframe id="f" src="https://script.google.com/macros/s/AKfycbypkmlijmb-NVYGN4fnwCGe4raME5Iu_gc4U8HcJE__iBk7ZvV_xZ0nd6Ke9_JVPDZ4/exec" allow="clipboard-write" title="تشخيص Mind Up"></iframe>
-<a class="fb" id="fb" href="https://script.google.com/macros/s/AKfycbypkmlijmb-NVYGN4fnwCGe4raME5Iu_gc4U8HcJE__iBk7ZvV_xZ0nd6Ke9_JVPDZ4/exec">الفورم ما فتح؟ اضغط هنا</a>
-<script>setTimeout(function(){document.getElementById('fb').style.display='block'},8000);</script>
-</body>
-</html>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABKCAYAAABEr1FoAAAWfmNhQlgAABZ+anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFlhqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjMzOTYxMTc0LTdlNDUtNDFmMy1iYmZmLTk5MDQwNDkzZWMwYgAAAAOTanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuGp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoh++n8mQ+I+g4JgyBdLm4ZgAAAGxjYm9yo2lkYzpmb3JtYXRpaW1hZ2UvcG5namluc3RhbmNlSUR4LHhtcDppaWQ6YmNmMzgyYWYtY2IxNi00ZGUxLTk4YTItZTQzYzQ3ZWE2N2MxbHJlbGF0aW9uc2hpcGhwYXJlbnRPZgAAAeJqdW1iAAAAQWp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuYWN0aW9ucy52MgAAAAAYYzJzaNemrMkgXZI3jRC1WTRh9aoAAAGZY2JvcqJnYWN0aW9uc4KiZmFjdGlvbmtjMnBhLm9wZW5lZGpwYXJhbWV0ZXJzoWtpbmdyZWRpZW50c4GiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIIEwf250M/SJHxOr+cnn7SC9l1wWDWPbGmXonTr/MmdypGZhY3Rpb254HWNvbS5hbnRocm9waWMuY2xhdWRlLnByb3ZpZGVkanBhcmFtZXRlcnOheB9jb20uYW50aHJvcGljLm9yaWdpbi1jb25maWRlbmNlZ3Vua25vd25rZGVzY3JpcHRpb254ZkNsYXVkZSBwcm92aWRlZCB0aGlzIGZpbGUgYXQgdGhlIHJlcXVlc3Qgb2YgYSB1c2VyIGFuZCBtYXkgaGF2ZSBjcmVhdGVkIG9yIG1vZGlmaWVkIHRoZSBmaWxlIGNvbnRlbnRzLm1zb2Z0d2FyZUFnZW50oWRuYW1lZkNsYXVkZXJhbGxBY3Rpb25zSW5jbHVkZWT1AAAAyGp1bWIAAABAanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5oYXNoLmRhdGEAAAAAGGMyc2htPWt9QAonTqximAa9hS2/AAAAgGNib3KlY2FsZ2ZzaGEyNTZjcGFkTQAAAAAAAAAAAAAAAABkaGFzaFgg333bcjSVNFwoQhySDdk8jXlDvU6bBmN471UEpS5XzsVkbmFtZW5qdW1iZiBtYW5pZmVzdGpleGNsdXNpb25zgaJlc3RhcnQYIWZsZW5ndGgZFooAAAI+anVtYgAAACdqdW1kYzJjbAARABCAAACqADibcQNjMnBhLmNsYWltLnYyAAAAAg9jYm9ypWNhbGdmc2hhMjU2aXNpZ25hdHVyZXhNc2VsZiNqdW1iZj0vYzJwYS91cm46YzJwYTozMzk2MTE3NC03ZTQ1LTQxZjMtYmJmZi05OTA0MDQ5M2VjMGIvYzJwYS5zaWduYXR1cmVqaW5zdGFuY2VJRHgseG1wOmlpZDpiNmZiNDc3My1kZjI2LTQ0NTAtYjVkOS03YjYzZjM2MmU0YzdyY3JlYXRlZF9hc3NlcnRpb25zg6JjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgggTB/bnQz9IkfE6v5yeftIL2XXBYNY9saZeidOv8yZ3KiY3VybHgqc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5hY3Rpb25zLnYyZGhhc2hYIPragUxvio3PVgvPnk8yf1B/5XMwea4pOe2Qfq5t/LcAomN1cmx4KXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaGFzaC5kYXRhZGhhc2hYIA/qAHzlabRHuL0yQJ+ZrPX/RXr19jz2NZcmj41KmmW0dGNsYWltX2dlbmVyYXRvcl9pbmZvo2RuYW1lb0FudGhyb3BpYyBGaWxlc2d2ZXJzaW9uZTEuMC4wa3NwZWNWZXJzaW9uZTIuNC4wAAAQOGp1bWIAAAAoanVtZGMyY3MAEQAQgAAAqgA4m3EDYzJwYS5zaWduYXR1cmUAAAAQCGNib3LShFkCEqIBJhghWQIKMIICBjCCAY2gAwIBAgIUQOWgCu7COdC+uIP6BkIFPWdVEwAwCgYIKoZIzj0EAwMwSTEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxLjAsBgNVBAMTJUFudGhyb3BpYyBDb250ZW50IENyZWRlbnRpYWxzIFJvb3QgQ0EwHhcNMjYwODA3MTg0MzU2WhcNMjgwODA2MTk0MzU2WjBEMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEpMCcGA1UEAxMgQW50aHJvcGljIENsYXVkZSBDb250ZW50IFNpZ25pbmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASYegpry1AYBRTVNL1CpTlbROnY3dey+UrsF9C3phYrATN3ZHf93Mo8RQN0KOUuOn19P4oWNFWe5n2/She9N7eTo1gwVjAOBgNVHQ8BAf8EBAMCB4AwFQYDVR0lBA4wDAYKKwYBBAGD6F4CATAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFM5R4gSBTmRbI/jjxM+aPpzB11zCMAoGCCqGSM49BAMDA2cAMGQCMDFzHRSeAXrSy1WOzkbhPZ6Km2wGTmZ/2gK18k8BQGXyqz88Rdrz6CTX9flAnYNVxgIwcF9c3fVhqmJKpi+UhasNUMko69cyX6STPfta3Q8EjyzDjzoyrol46FP6VFHhvUcJoWNwYWRZDZ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <h1>تشخيص مجاني لبزنسك، وخطة 30 يوم في إيميلك</h1>
+    <p>دقيقتين إلى أربعة. أغلب الأسئلة اختيارات، ما محتاج تكتب كتير.</p>
+    <div class="stages" id="stages">
+      <div class="stage"><i><span></span></i>بياناتك</div>
+      <div class="stage"><i><span></span></i>التأهيل</div>
+      <div class="stage"><i><span></span></i>التشخيص</div>
+      <div class="stage"><i><span></span></i>الخطوة الجاية</div>
+    </div>
+  </header>
+  <main class="card" id="card" aria-live="polite"></main>
+  <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+
+<script>// Mind Up Free Diagnosis: question bank (Hormozi: qualify -> diagnose the constraint -> close)
+// type: single | multi | short | long | scale.  w = score weight map (0-10) used for lead score.
+window.MU_Q = {
+  contact: [
+    {id:"name", t:"اسمك الكريم؟", type:"short", req:true, ph:"مثلاً: أحمد عثمان"},
+    {id:"whatsapp", t:"رقم الواتساب", type:"short", req:true, ph:"مثلاً: 0912345678", inputmode:"tel"},
+    {id:"email", t:"الإيميل (هنا بيجيك تقرير التشخيص)", type:"short", req:true, ph:"name@example.com", inputmode:"email"},
+    {id:"business", t:"اسم البزنس أو الصفحة (لو موجود)", type:"short", ph:"اختياري"},
+    {id:"source", t:"شفتنا وين؟", type:"single", opts:["فيسبوك","إنستغرام","تيك توك","لينكدإن","يوتيوب","واتساب / صديق رشّحنا","ورشة أو كورس"]}
+  ],
+  qualify: [
+    {id:"segment", t:"أي وصف أقرب ليك؟", type:"single", req:true, opts:[
+      {v:"freelancer", l:"فريلانسر، أو عايز أبدأ فريلانس", d:"شغال براي أو داير أبدأ"},
+      {v:"small", l:"بزنس صغير", d:"محل، صفحة، مشروع ناشئ، فريق صغير"},
+      {v:"medium", l:"بزنس متوسط", d:"شركة شغالة وعندها فريق وفروع أو توزيع"},
+      {v:"classA", l:"شركة كبيرة (Class A)", d:"مجموعة، شركة رائدة في قطاعها"}
+    ]},
+    // seg: per-segment override (title/options/score). The question after the segment adapts to the chosen audience.
+    {id:"sector", t:"مجالك شنو؟", type:"single", req:true, seg:{
+      freelancer:{t:"شغال (أو داير تشتغل) في ياتو مجال؟", opts:["تصميم جرافيك","مونتاج وفيديو وموشن","كتابة محتوى وكوبي رايتنق","إدارة سوشيال ميديا","إعلانات ممولة","برمجة ومواقع وتطبيقات","تصوير","ترجمة","تدريب وكوتشنق","مجال تاني"]},
+      small:{t:"بزنسك في ياتو مجال؟", opts:["متجر أونلاين أو صفحة بيع","محل تجاري أو سوبرماركت","مطعم أو كافيه أو أكل منزلي","تجميل وعناية وأزياء","عيادة أو صيدلية","مركز تدريب أو تعليم","خدمات (صيانة، توصيل، سفر، تنظيم مناسبات)","منتج محلي أو تصنيع صغير","مجال تاني"]},
+      medium:{t:"شركتكم في ياتو قطاع؟", opts:["تجارة وتوزيع","أغذية ومنتجات استهلاكية (FMCG)","تعليم (مدارس، كليات، مراكز)","صحة (مستشفيات، عيادات، صيدليات)","طاقة وطاقة شمسية","عقارات ومقاولات","سفر وسياحة ولوجستيات","تقنية واتصالات","تصنيع","مجال تاني"]},
+      classA:{t:"المجموعة أو الشركة في ياتو قطاع؟", opts:["أغذية ومشروبات ومنتجات استهلاكية (FMCG)","بنوك وخدمات مالية ودفع إلكتروني","اتصالات وتقنية","تعليم عالي وجامعات","صحة ومستشفيات وأدوية","طاقة وطاقة شمسية","صناعة وتصنيع","تجارة وتوزيع على نطاق واسع","مجموعة متعددة الأنشطة","مجال تاني"]}
+    }},
+    {id:"role", t:"إنت منو في البزنس؟", type:"single", req:true, seg:{
+      freelancer:{t:"وضعك هسي شنو؟", opts:["فريلانسر متفرغ","فريلانسر جنب وظيفة","طالب أو خريج وداير أبدأ","عندي فريق صغير (وكالة ناشئة)"], sc:[5,3,0,5]},
+      small:{t:"إنت منو في البزنس؟", opts:["صاحب البزنس","شريك","مدير أو مسؤول تسويق","موظف"], sc:[5,5,3,0]},
+      medium:{t:"دورك في الشركة؟", opts:["المالك أو المؤسس","المدير العام","مدير التسويق","مدير المبيعات","موظف وبجمع معلومات"], sc:[8,8,5,5,0]},
+      classA:{t:"موقعك في الشركة؟", opts:["الرئيس التنفيذي أو المدير العام","مالك أو عضو مجلس إدارة","مدير التسويق أو البراند","مدير المبيعات أو التوزيع","مدير التحول الرقمي","المشتريات أو موظف"], sc:[10,10,8,6,6,2]}
+    }},
+    {id:"stage", t:"الحجم الحالي", type:"single", req:true, seg:{
+      freelancer:{t:"دخلك من الفريلانس في الشهر تقريباً؟", opts:["لسه ما في دخل","أقل من 100$","100$ – 300$","300$ – 1,000$","أكتر من 1,000$"], sc:[0,3,6,10,14]},
+      small:{t:"المبيعات الشهرية التقريبية (بالدولار أو ما يعادله)؟", opts:["أقل من 500$","500$ – 2,000$","2,000$ – 5,000$","5,000$ – 10,000$","أكتر من 10,000$"], sc:[2,5,8,11,14]},
+      medium:{t:"المبيعات الشهرية التقريبية للشركة؟", opts:["أقل من 10,000$","10,000$ – 50,000$","50,000$ – 100,000$","أكتر من 100,000$","نفضّل ما نحدد"], sc:[6,10,13,15,8]},
+      classA:{t:"حجم الشركة (عدد الموظفين تقريباً)؟", opts:["أقل من 200","200 – 500","500 – 2,000","أكتر من 2,000"], sc:[10,12,14,15]}
+    }}
+  ],
+  diagnose: {
+    freelancer: [
+      {id:"f_clients", t:"عندك كم عميل في الشهر حالياً؟", type:"single", req:true, opts:["ولا عميل","1 – 2","3 – 5","أكتر من 5"]},
+      {id:"f_from", t:"العملاء بيجوك من وين غالباً؟", type:"multi", opts:["معارف وأصدقاء","فيسبوك وإنستغرام","منصات فريلانس (مستقل، Upwork...)","رسائل باردة أنا برسلها","ما في مصدر ثابت"]},
+      {id:"f_price", t:"متوسط سعر الشغل الواحد عندك؟", type:"single", opts:["أقل من 20$","20$ – 50$","50$ – 150$","أكتر من 150$","لسه ما سعّرت"]},
+      {id:"f_problem", t:"أكبر حاجة واقفة قدامك هسي؟", type:"single", req:true, opts:["ما عارف أجيب عملاء","بجيب عملاء بس السعر قليل","الدخل ما ثابت، شهر في وشهر مافي","ما عندي بورتفوليو أو إثبات","ما عارف أبدأ من وين أصلاً"]},
+      {id:"f_hours", t:"كم ساعة في اليوم بتقدر تديها لجلب العملاء؟", type:"single", opts:["أقل من ساعة","1 – 2 ساعة","3 ساعات أو أكتر"]},
+      {id:"f_goal", t:"داير توصل لكم في الشهر خلال 90 يوم؟", type:"single", req:true, opts:["300$","500$ – 1,000$","1,000$ – 3,000$","أكتر من 3,000$"]},
+      {id:"f_tried", t:"جربت شنو قبل كده؟", type:"multi", opts:["كورسات","نشر محتوى","إعلانات","رسائل للعملاء","ما جربت حاجة"]}
+    ],
+    small: [
+      {id:"s_customers", t:"بيجوك كم استفسار أو عميل محتمل في الشهر؟", type:"single", req:true, opts:["أقل من 20","20 – 100","100 – 500","أكتر من 500","ما عارف بالضبط"]},
+      {id:"s_close", t:"من كل 10 بيسألوا، كم واحد بيشتري فعلاً؟", type:"single", req:true, opts:["0 – 1","2 – 3","4 – 6","7 أو أكتر","ما بنحسبها"]},
+      {id:"s_channels", t:"بتبيع وبتسوّق وين؟", type:"multi", opts:["فيسبوك","إنستغرام","تيك توك","واتساب","محل أو معرض","موقع إلكتروني","معارف وتوصيات"]},
+      {id:"s_reply", t:"منو البيرد على العملاء ويتابعهم؟", type:"single", opts:["أنا براي","موظف واحد","فريق مبيعات","ما في متابعة منظمة"]},
+      {id:"s_repeat", t:"العملاء بيرجعوا يشتروا تاني؟", type:"single", opts:["أغلبهم بيرجعوا","بعضهم","نادراً","ما بنتابع الحتة دي"]},
+      {id:"s_problem", t:"أكبر مشكلة هسي؟", type:"single", req:true, opts:["عملاء جدد قليلين","في استفسارات لكن البيع ضعيف","المحتوى ما بيجيب نتيجة","ما عندي وقت ولا نظام","الأرباح ضعيفة رغم المبيعات"]},
+      {id:"s_spend", t:"بتصرف كم في التسويق شهرياً؟", type:"single", opts:["ما بصرف","أقل من 100$","100$ – 500$","أكتر من 500$"]},
+      {id:"s_agency", t:"اشتغلت مع وكالة أو مسوّق قبل كده؟", type:"single", opts:["أيوه وكانت تجربة كويسة","أيوه وما جابت نتيجة","لا، أول مرة"]}
+    ],
+    medium: [
+      {id:"m_team", t:"عندكم شنو من الأقسام دي؟", type:"multi", req:true, opts:["فريق تسويق داخلي","فريق مبيعات","خدمة عملاء","وكالة خارجية","ما عندنا قسم تسويق"]},
+      {id:"m_crm", t:"بيانات العملاء والمبيعات محفوظة وين؟", type:"single", req:true, opts:["CRM أو نظام","إكسل أو شيت","واتساب وأوراق","ما محفوظة بشكل منظم"]},
+      {id:"m_leads", t:"عدد العملاء المحتملين الشهري؟", type:"single", opts:["أقل من 50","50 – 200","200 – 1,000","أكتر من 1,000","ما بنقيسه"]},
+      {id:"m_cac", t:"عارفين تكلفة جلب العميل الواحد (CAC)؟", type:"single", opts:["أيوه وبنتابعها","تقريباً","لا"]},
+      {id:"m_constraint", t:"وين أكبر اختناق في النمو؟", type:"single", req:true, opts:["عملاء جدد قليلين","تحويل الاستفسارات لمبيعات","التسليم والتشغيل ما بيلحق","العملاء ما بيرجعوا","الأرباح والهوامش","البراند ضعيف قدام المنافسين"]},
+      {id:"m_goal", t:"هدف النمو في 12 شهر؟", type:"single", req:true, opts:["نحافظ على الوضع","نمو 20% – 50%","نضاعف المبيعات","ندخل سوق أو منتج جديد"]},
+      {id:"m_budget", t:"ميزانية التسويق الشهرية المتاحة؟", type:"single", req:true, opts:["أقل من 500$","500$ – 2,000$","2,000$ – 5,000$","أكتر من 5,000$"]},
+      {id:"m_decider", t:"قرار الاستثمار في التسويق بيرجع لمنو؟", type:"single", opts:["ليّ أنا","لي ولشريك","مجلس إدارة أو إدارة عليا"]}
+    ],
+    classA: [
+      {id:"a_markets", t:"بتشتغلوا في أنهي أسواق؟", type:"multi", req:true, opts:["الخرطوم","ولايات السودان","بورتسودان والشرق","خارج السودان"]},
+      {id:"a_setup", t:"التسويق عندكم شغال كيف هسي؟", type:"single", req:true, opts:["فريق داخلي فقط","وكالة فقط","فريق داخلي + وكالة","ما في هيكل واضح"]},
+      {id:"a_moment", t:"اللحظة اللي بتمروا بيها؟", type:"single", req:true, opts:["توسّع أو دخول سوق جديد","إطلاق منتج أو خدمة","منافسة قوية وتراجع حصة","إعادة بناء البراند","تحول رقمي وأنظمة مبيعات","موسم قادم (رمضان، أعياد)"]},
+      {id:"a_challenge", t:"التحدي الأكبر؟", type:"single", req:true, opts:["نمو الحصة السوقية","أداء فريق المبيعات والموزعين","قياس عائد التسويق (ROI)","صورة البراند والثقة","بطء التنفيذ والتنسيق"]},
+      {id:"a_kpi", t:"بتقيسوا أداء التسويق بشنو؟", type:"multi", opts:["مبيعات منسوبة للحملات","Leads وتكلفتها","حصة سوقية","وعي بالبراند (استبيانات)","ما في قياس واضح"]},
+      {id:"a_budget", t:"ميزانية التسويق الشهرية التقريبية؟", type:"single", req:true, opts:["أقل من 5,000$","5,000$ – 20,000$","20,000$ – 50,000$","أكتر من 50,000$","نفضّل ما نحدد هسي"]},
+      {id:"a_decider", t:"القرار بيمر عبر منو؟", type:"single", opts:["المدير العام","مجلس الإدارة","مدير التسويق","لجنة مشتريات"]}
+    ]
+  },
+  close: [
+    {id:"pain_text", t:"في سطر أو سطرين: لو الحاجة دي اتحلت، حياتك أو البزنس حيكون كيف بعد 3 شهور؟", type:"long", ph:"اكتب براحتك، أو خليها فاضية", seg:{
+      freelancer:{t:"في سطر أو سطرين: لو بقى عندك عملاء ثابتين، حياتك حتكون كيف بعد 3 شهور؟"},
+      medium:{t:"في سطر أو سطرين: لو الاختناق ده اتحل، الشركة حتكون وين بعد 6 شهور؟"},
+      classA:{t:"في سطر أو سطرين: النتيجة اللي لو حصلت بعد 6 شهور تعتبروها نجاح؟", ph:"مثلاً: زيادة الحصة في الولايات، إطلاق ناجح، أرقام أوضح للإدارة"}
+    }},
+    {id:"urgency", t:"قد شنو مهم ليك تحل المشكلة دي الآن؟", type:"scale", req:true, min:1, max:10, lo:"ممكن تنتظر", hi:"ضروري هسي"},
+    {id:"start", t:"لو لقيت الحل المناسب، داير تبدأ متين؟", type:"single", req:true, opts:["فوراً، الأسبوع ده","خلال الشهر ده","خلال 3 شهور","لسه بستكشف"]},
+    {id:"invest", t:"لو التشخيص وضّح ليك خطة واضحة، مستعد تستثمر فيها؟", type:"single", req:true, opts:["أيوه، لو الخطة مقنعة","أيوه بس بميزانية محدودة","داير أبدأ بحاجة مجانية أول","لا، هسي بس بتعلم"], seg:{
+      freelancer:{t:"لو التشخيص وضّح ليك طريق واضح، مستعد تستثمر في نفسك (كورس أو متابعة)؟", opts:["أيوه، لو مقنع","أيوه بس بمبلغ بسيط","داير أبدأ بحاجة مجانية أول","لا، هسي بس بتعلم"]},
+      classA:{t:"لو التشخيص طلع بفرص واضحة، الخطوة الطبيعية عندكم شنو؟", opts:["نعتمد ميزانية وننفذ","نطلب عرض ونرفعه للإدارة","نبدأ بمشروع تجريبي (Pilot)","لسه بنستكشف"]}
+    }},
+    {id:"next", t:"الخطوة الجاية الأنسب ليك؟", type:"single", req:true, opts:[
+      {v:"booklet", l:"كتيب أو دليل أبدأ بيه براي"},
+      {v:"consult", l:"جلسة تشخيص 45 دقيقة مع أ. محمد مبارك"},
+      {v:"done", l:"فريق Mind Up ينفذ معاي (باقة)"}
+    ], seg:{
+      freelancer:{opts:[{v:"booklet", l:"كتيب مجاني أبدأ بيه براي"},{v:"consult", l:"جلسة 45 دقيقة مع أ. محمد مبارك"},{v:"done", l:"برنامج تدريبي فيه متابعة لحدي ما أجيب عملاء"}]},
+      classA:{t:"الخطوة الجاية الأنسب ليكم؟", opts:[{v:"consult", l:"اجتماع تشخيص مع أ. محمد مبارك"},{v:"done", l:"عرض مبدئي (Proposal) لحملة أو نظام نمو"},{v:"booklet", l:"التقرير يكفي هسي"}]}
+    }},
+    {id:"time", t:"أنسب وقت نتواصل معاك فيه؟", type:"single", opts:["الصباح (9 – 12)","الظهر (12 – 4)","المساء (4 – 9)"]}
+  ]
+};
+</script>
+<script>
+(function(){
+  var WA = "249119744949"; // Mind Up WhatsApp (0119744949)
+  var BOOKLET = {freelancer:"دليل المحتوى الفيروسي", small:"دليل أصحاب المشاريع", medium:"كتيب النمو المستدام", classA:""};
+  var SEG_AR = {freelancer:"فريلانسر", small:"بزنس صغير", medium:"بزنس متوسط", classA:"شركة كبيرة (Class A)"};
+  var Q = window.MU_Q, A = {}, i = 0, card = document.getElementById("card");
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbypkmlijmb-NVYGN4fnwCGe4raME5Iu_gc4U8HcJE__iBk7ZvV_xZ0nd6Ke9_JVPDZ4/exec"; var isLive = true;
+
+  function flow(){
+    var seg = A.segment, d = seg ? Q.diagnose[seg] : [];
+    var f = [];
+    Q.contact.forEach(function(q){f.push([0,q])});
+    Q.qualify.forEach(function(q){f.push([1,rq(q)])});
+    d.forEach(function(q){f.push([2,rq(q)])});
+    Q.close.forEach(function(q){f.push([3,rq(q)])});
+    return f;
+  }
+  // resolve a question for the chosen segment (title, options, scores change by audience)
+  function rq(q){var o=q.seg&&A.segment&&q.seg[A.segment]; if(!o) return q; var r={}; for(var k in q) r[k]=q[k]; for(var k2 in o) r[k2]=o[k2]; return r;}
+  function val(o){return typeof o==="string"?o:o.v}
+  function lab(o){return typeof o==="string"?o:o.l}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+  function progress(stage, pos, f){
+    var counts=[0,0,0,0], done=[0,0,0,0];
+    f.forEach(function(x,k){counts[x[0]]++; if(k<pos) done[x[0]]++;});
+    document.querySelectorAll(".stage").forEach(function(el,s){
+      el.classList.toggle("on", s<=stage);
+      el.querySelector("span").style.width = (counts[s]? Math.round(done[s]/counts[s]*100):0)+"%";
+    });
+  }
+
+  function render(){
+    var f = flow(); if(i>=f.length) return submit();
+    var stage=f[i][0], q=f[i][1]; progress(stage,i,f);
+    var h = '<div class="qnum">سؤال '+(i+1)+' من '+f.length+'</div>';
+    h += '<h2 class="q" id="qt">'+esc(q.t)+(q.req?' <span class="req">*</span>':'')+'</h2>';
+    if(q.type==="single"||q.type==="multi"){
+      h+='<div class="opts" role="group" aria-labelledby="qt">';
+      q.opts.forEach(function(o,k){
+        var v=val(o), on = q.type==="multi" ? (A[q.id]||[]).indexOf(v)>-1 : A[q.id]===v;
+        h+='<button type="button" class="opt" id="o_'+q.id+'_'+k+'" data-v="'+esc(v)+'" aria-pressed="'+on+'">'+esc(lab(o))+(o.d?'<small>'+esc(o.d)+'</small>':'')+'</button>';
+      });
+      h+='</div>'+(q.type==="multi"?'<div class="hint">ممكن تختار أكتر من واحد</div>':'');
+    } else if(q.type==="scale"){
+      h+='<div class="scale" role="group" aria-labelledby="qt">';
+      for(var n=q.min;n<=q.max;n++) h+='<button type="button" class="opt" id="o_'+q.id+'_'+n+'" data-v="'+n+'" aria-pressed="'+(String(A[q.id])===String(n))+'">'+n+'</button>';
+      h+='</div><div class="scale-l"><span>'+esc(q.lo)+'</span><span>'+esc(q.hi)+'</span></div>';
+    } else if(q.type==="long"){
+      h+='<textarea id="in_'+q.id+'" placeholder="'+esc(q.ph||"")+'">'+esc(A[q.id]||"")+'</textarea>';
+    } else {
+      h+='<input id="in_'+q.id+'" placeholder="'+esc(q.ph||"")+'" inputmode="'+(q.inputmode||"text")+'" value="'+esc(A[q.id]||"")+'">';
+    }
+    h+='<div class="err" id="err"></div><div class="nav">';
+    h+= i>0 ? '<button type="button" class="btn ghost" id="back">→ رجوع</button>' : '<span></span>';
+    var last = i===f.length-1;
+    h+='<button type="button" class="btn primary" id="next">'+(last?'أرسل وخلّصنا':'التالي ←')+'</button></div>';
+    if(!isLive && i===0) h+='<div class="preview">نسخة معاينة: الإرسال هنا ما بيوصل للـCRM. النسخة الحية بتشتغل من رابط Google.</div>';
+    card.innerHTML=h;
+
+    card.querySelectorAll(".opt").forEach(function(b){b.onclick=function(){
+      var v=b.getAttribute("data-v");
+      if(q.type==="multi"){var a=A[q.id]||[];var p=a.indexOf(v);p>-1?a.splice(p,1):a.push(v);A[q.id]=a;b.setAttribute("aria-pressed",p<0);}
+      else {A[q.id]= q.type==="scale"? Number(v): v; if(q.id==="segment") prune(true); setTimeout(next,180); render();}
+    }});
+    var inp=card.querySelector("input,textarea"); if(inp){inp.focus();inp.onkeydown=function(e){if(e.key==="Enter"&&inp.tagName==="INPUT"){e.preventDefault();next();}}}
+    document.getElementById("next").onclick=next;
+    var bk=document.getElementById("back"); if(bk) bk.onclick=function(){i--;render();};
+  }
+  function prune(){ // drop answers from other segments when segment changes
+    Object.keys(Q.diagnose).forEach(function(s){ if(s!==A.segment) Q.diagnose[s].forEach(function(q){delete A[q.id]}); });
+    [].concat(Q.qualify,Q.close).forEach(function(q){ if(q.seg && A[q.id]!==undefined){ var ok=(rq(q).opts||[]).map(val).indexOf(A[q.id])>-1; if(q.opts||rq(q).opts){ if(!ok && rq(q).type!=="long") delete A[q.id]; } } });
+  }
+  function next(){
+    var f=flow(), q=f[i][1], inp=card.querySelector("input,textarea"), e=document.getElementById("err");
+    if(inp) A[q.id]=inp.value.trim();
+    var v=A[q.id], empty = v===undefined||v===""||(Array.isArray(v)&&!v.length);
+    if(q.req&&empty){e.textContent="السؤال ده مهم عشان التشخيص يطلع دقيق.";return;}
+    if(q.id==="email"&&v&&!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)){e.textContent="الإيميل ما مكتوب صح. التقرير بيوصلك عليه.";return;}
+    if(q.id==="whatsapp"&&v&&v.replace(/\D/g,"").length<9){e.textContent="الرقم ناقص. اكتب الرقم كامل عشان نقدر نتواصل معاك.";return;}
+    i++; render();
+  }
+
+  // ---- scoring + constraint (Hormozi: Leads -> Conversion -> Delivery -> Retention -> Profit) ----
+  function qq(id){var all=[].concat(Q.qualify,Q.close,Q.diagnose[A.segment]||[]);for(var k=0;k<all.length;k++)if(all[k].id===id)return rq(all[k]);return null;}
+  function idx(id){var q=qq(id);return q&&q.opts?q.opts.map(val).indexOf(A[id]):-1;}
+  function pts(id){var q=qq(id),k=idx(id);return (q&&q.sc&&k>-1)?q.sc[k]:0;}
+  function score(){
+    var s={freelancer:8,small:18,medium:30,classA:35}[A.segment]||0;
+    s+=pts("stage");
+    s+=(A.urgency||0)*2;
+    s+=[15,10,5,0][idx("start")]||0;
+    s+=[15,8,3,0][idx("invest")]||0;
+    s+=pts("role");
+    var b=idx(A.segment==="classA"?"a_budget":"m_budget"); if(b>-1&&b<4) s+=b*2;
+    return Math.min(100,s);
+  }
+  function constraint(){
+    var p=A.f_problem||A.s_problem||A.m_constraint||A.a_challenge||"";
+    if(/عملاء جدد|أجيب عملاء|الحصة|ما عارف أبدأ|ما ثابت/.test(p)) return "Leads – جلب العملاء";
+    if(/البيع ضعيف|تحويل|المبيعات والموزعين|السعر قليل/.test(p)) return "Conversion – تحويل الاهتمام لمبيعات";
+    if(/التسليم|وقت ولا نظام|بطء التنفيذ/.test(p)) return "Delivery – التشغيل والأنظمة";
+    if(/ما بيرجعوا/.test(p)) return "Retention – رجوع العملاء";
+    if(/الأرباح|الهوامش|ROI/.test(p)) return "Profit – الربحية والقياس";
+    if(/البراند|المحتوى|بورتفوليو/.test(p)) return "Offer & Trust – العرض والثقة";
+    return "يحتاج مراجعة";
+  }
+  function tier(s){return s>=65?"Hot":s>=40?"Warm":"Cold";}
+
+  function submit(){
+    var s=score(), payload=Object.assign({}, A, {
+      score:s, tier:tier(s), constraint:constraint(), segment_ar:SEG_AR[A.segment]||"",
+      submitted_at:new Date().toISOString(), page:"diagnosis-v1"
+    });
+    Object.keys(payload).forEach(function(k){if(Array.isArray(payload[k]))payload[k]=payload[k].join("، ");});
+    card.innerHTML='<h2 class="q">ثواني بس، بنسجّل إجاباتك...</h2>';
+    var fail=function(){card.innerHTML='<h2 class="q">حصلت مشكلة في الإرسال</h2><p>جرّب تاني بعد شوية، أو راسلنا واتساب على <span class="num">0119744949</span> وقول "تشخيص".</p><button class="btn primary" id="retry">جرّب تاني</button>';document.getElementById("retry").onclick=submit;};
+    fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
+      .then(function(){thanks(payload)}).catch(fail);
+  }
+
+  function wa(text){return "https://wa.me/"+WA+"?text="+encodeURIComponent(text);}
+  function thanks(p){
+    document.querySelectorAll(".stage").forEach(function(el){el.classList.add("on");el.querySelector("span").style.width="100%";});
+    var name=p.name||"", seg=p.segment_ar, prob=p.f_problem||p.s_problem||p.m_constraint||p.a_challenge||"", biz=p.business?(" من "+p.business):"";
+    var book=BOOKLET[p.segment];
+    var h='<div class="done" style="display:flex;flex-direction:column;gap:16px">';
+    h+='<h2>شكراً يا '+esc(name)+'، استلمنا كل التفاصيل ✅</h2>';
+    h+='<p>فريق Mind Up بيراجع إجاباتك هسي. خلال 12 إلى 24 ساعة بيوصلك في الإيميل <b class="num">'+esc(p.email||"")+'</b>:</p>';
+    h+='<ul class="steps"><li><b class="n">1</b><span><b>تقرير التشخيص:</b> وين الاختناق الحقيقي في بزنسك، وليه.</span></li>';
+    h+='<li><b class="n">2</b><span><b>خطة 30 يوم:</b> خطوات أسبوع بأسبوع تبدأ بيها حتى لو براك.</span></li>';
+    h+='<li><b class="n">3</b><span><b>الخطوة الجاية:</b> لو حبيت نمشي معاك أبعد.</span></li></ul>';
+    h+='<p>ما داير تنتظر؟ اختار من هنا والرسالة بتنكتب ليك جاهزة في واتساب:</p><div class="wa">';
+    if(book) h+='<a href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). عملت التشخيص المجاني، وعايز "+book+".")+'" target="_blank" rel="noopener">أبدأ بالكتيب: '+esc(book)+'<span>واتساب ←</span></a>';
+    h+='<a class="'+(book?'alt':'')+'" href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). مشكلتي: "+prob+". عايز أحجز جلسة التشخيص 45 دقيقة مع أ. محمد مبارك.")+'" target="_blank" rel="noopener">أحجز جلسة تشخيص 45 دقيقة<span>واتساب ←</span></a>';
+    h+='<a class="alt" href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). عملت التشخيص و"+(p.segment==="classA"?"عايزين عرض مبدئي من Mind Up لشركتنا":p.segment==="freelancer"?"عايز أعرف برنامج Mind Up للفريلانسرز":"عايز أعرف باقات Mind Up المناسبة لي")+". التحدي الأساسي: "+prob+".")+'" target="_blank" rel="noopener">'+(p.segment==="classA"?"أطلب عرض مبدئي لشركتنا":p.segment==="freelancer"?"عايز برنامج فيه متابعة":"عايز فريق Mind Up ينفذ معاي")+'<span>واتساب ←</span></a>';
+    h+='</div><p class="hint">لو الزر ما فتح واتساب، راسلنا على <span class="num">0119744949</span> (من خارج السودان: <span class="num">+249 119 744 949</span>).</p></div>';
+    card.innerHTML=h;
+  }
+  render();
+})();
+</script>
+</body></html>
