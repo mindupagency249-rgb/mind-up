@@ -1,0 +1,256 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>نظام التصميم – Mind Up</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../tools/kit/logo-white.png">
+<link rel="stylesheet" href="tokens.css">
+<style>
+*{box-sizing:border-box}
+html{background:var(--mu-night)}
+body{margin:0;font-family:var(--font);font-size:var(--fs-body);line-height:var(--lh-body);color:#fff;direction:rtl;
+  background:radial-gradient(1100px 700px at 105% -10%,rgba(66,81,176,.85),transparent 60%),radial-gradient(800px 600px at -15% 30%,rgba(35,183,116,.38),transparent 62%),linear-gradient(180deg,#1c2246 0%,#141a1e 40%,#0f1413 100%);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.07;mix-blend-mode:overlay;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>")}
+.container{max-width:var(--container);margin:0 auto;padding-inline:var(--gutter-m)}
+@media(min-width:900px){.container{padding-inline:var(--gutter-d)}}
+section{padding-block:var(--s-8)}
+@media(min-width:900px){section{padding-block:var(--s-9)}}
+.glass{background:var(--glass-1);border:1px solid var(--glass-line);border-radius:var(--r-xl);-webkit-backdrop-filter:blur(var(--blur)) saturate(140%);backdrop-filter:blur(var(--blur)) saturate(140%);box-shadow:0 20px 60px rgba(0,0,0,.35),inset 0 1px 0 rgba(255,255,255,.14)}
+.cream{background:var(--mu-cream);color:var(--mu-dark)}
+.cream .muted{color:#6B6F6C}
+.muted{color:rgba(245,240,232,.68)}
+/* type roles */
+.t-display{font-size:var(--fs-display);line-height:var(--lh-display);font-weight:900;margin:0;letter-spacing:-.005em}
+.t-h1{font-size:var(--fs-h1);line-height:var(--lh-h1);font-weight:900;margin:0;text-wrap:balance}
+.t-h2{font-size:var(--fs-h2);line-height:var(--lh-h2);font-weight:700;margin:0;text-wrap:balance}
+.t-h3{font-size:var(--fs-h3);line-height:var(--lh-h3);font-weight:700;margin:0}
+.t-h4{font-size:var(--fs-h4);line-height:var(--lh-h4);font-weight:700;margin:0;color:var(--mu-green-300)}
+.cream .t-h4{color:var(--mu-green)}
+.t-lead{font-size:var(--fs-lead);line-height:var(--lh-lead);margin:0;max-width:var(--measure)}
+.t-body{margin:0;max-width:var(--measure)}
+.t-small{font-size:var(--fs-small);line-height:var(--lh-small);margin:0}
+.t-label{font-size:var(--fs-label);line-height:var(--lh-label);font-weight:500;color:var(--mu-green-300);margin:0;letter-spacing:.01em}
+.cream .t-label{color:var(--mu-green)}
+.t-index{font-size:var(--fs-index);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;color:var(--mu-blue-300)}
+.cream .t-index{color:var(--mu-blue)}
+.t-num{font-size:var(--fs-num-xl);font-weight:900;line-height:1;font-variant-numeric:tabular-nums;direction:ltr;unicode-bidi:isolate}
+em.g{font-style:normal;color:var(--mu-green-300)} .cream em.g{color:var(--mu-green)} em.b{font-style:normal;color:var(--mu-blue)}
+.dot{display:inline-block;width:.32em;height:.32em;background:var(--mu-green);transform:rotate(45deg);margin-inline-start:.12em;vertical-align:.08em}
+/* nav */
+.nav{display:flex;align-items:center;justify-content:space-between;padding-block:var(--s-5)}
+.logo{display:flex;align-items:center;gap:10px}.logo img{width:40px}.logo b{letter-spacing:.14em;font-size:14px}.logo small{display:block;font-size:11px;opacity:.7;letter-spacing:.08em}
+.nav ul{display:none;gap:var(--s-6);list-style:none;margin:0;padding:0;font-size:15px;font-weight:500}
+@media(min-width:900px){.nav ul{display:flex}}
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font:inherit;font-size:var(--fs-btn);font-weight:700;border-radius:var(--r-pill);padding:14px 28px;border:0;cursor:pointer;text-decoration:none;min-height:48px}
+.btn-green{background:var(--mu-green);color:#fff;box-shadow:0 10px 28px rgba(35,183,116,.38)}
+.btn-blue{background:var(--mu-blue);color:#fff;box-shadow:0 10px 28px rgba(66,81,176,.45)}
+.btn-glass{background:var(--glass-2);color:#fff;border:1px solid var(--glass-line)}
+.btn-ghost{background:transparent;color:rgba(245,240,232,.7)}
+.cream .btn-outline{background:transparent;color:var(--mu-blue);border:1.5px solid var(--mu-blue)}
+/* grids */
+.grid{display:grid;gap:var(--s-5)}
+@media(min-width:900px){.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}.g5{grid-template-columns:repeat(5,1fr)}}
+.sec-head{display:flex;flex-direction:column;gap:var(--s-3);margin-bottom:var(--s-7)}
+.card{padding:var(--s-5)}
+@media(min-width:900px){.card{padding:var(--s-6)}}
+/* specimen table */
+.spec{width:100%;border-collapse:collapse}
+.spec td{padding:var(--s-5) var(--s-3);border-top:1px solid var(--glass-line);vertical-align:middle}
+.spec td.meta{width:220px;font-size:13px;color:rgba(245,240,232,.68);line-height:1.6}
+.spec td.meta b{display:block;color:#fff;font-size:14px;font-weight:700}
+@media(max-width:700px){.spec td{display:block;padding:var(--s-2) 0;border:0}.spec tr{display:block;border-top:1px solid var(--glass-line);padding-block:var(--s-4)}.spec td.meta{width:auto}}
+@media(max-width:899px){.weights{grid-template-columns:1fr 1fr}}
+.weights .w{display:flex;flex-direction:column;gap:6px;padding:var(--s-5);border-radius:var(--r-lg)}
+.weights .w span.s{font-size:44px;line-height:1.15}
+.weights .w small{font-size:12px;color:rgba(245,240,232,.68)}
+/* kashida */
+.k-row{display:grid;grid-template-columns:1fr;gap:var(--s-3);padding:var(--s-5);border-radius:var(--r-lg)}
+@media(min-width:700px){.k-row{grid-template-columns:1fr auto 1fr;align-items:center}}
+.k-row .arrow{color:rgba(245,240,232,.4);text-align:center}
+.k-before{font-size:30px;font-weight:700;color:rgba(245,240,232,.55)}
+.k-after{font-size:30px;font-weight:700;color:var(--mu-green-300)}
+.rules{margin:0;padding:0;list-style:none;display:grid;gap:var(--s-3)}
+.rules li{display:flex;gap:var(--s-3);align-items:flex-start}
+.rules li b.ok,.rules li b.no{flex:none;width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12px}
+.rules li b.ok{background:rgba(35,183,116,.22);color:var(--mu-green-200)} .rules li b.no{background:rgba(255,122,107,.18);color:#FFB3A8}
+/* spacing */
+.sp{display:flex;align-items:flex-end;gap:var(--s-4);flex-wrap:wrap}
+.sp div{display:flex;flex-direction:column;align-items:center;gap:6px;font-size:12px;color:rgba(245,240,232,.68)}
+.sp i{display:block;background:linear-gradient(180deg,var(--mu-green),var(--mu-blue));border-radius:4px;width:24px}
+/* colors */
+.sw{border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--glass-line)}
+.sw div{height:110px}
+.sw p{margin:0;padding:var(--s-3) var(--s-4);font-size:13px;background:var(--mu-dark);color:#fff}
+.sw p b{display:block;font-size:15px}
+/* components */
+.opt{display:flex;flex-direction:column;align-items:flex-start;gap:2px;width:100%;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--glass-line);background:var(--glass-2);color:#fff;font:inherit;text-align:right}
+.opt small{font-size:12.5px;color:rgba(245,240,232,.68)}
+.opt.on{background:var(--glass-on);border-color:rgba(124,138,230,.9);box-shadow:0 8px 24px rgba(66,81,176,.45)}
+.inp{width:100%;font:inherit;font-size:17px;padding:14px 16px;border-radius:var(--r-md);border:1px solid var(--glass-line);background:rgba(0,0,0,.22);color:#fff}
+.band{display:inline-flex;align-items:center;gap:8px;font-weight:700;border-radius:var(--r-pill);padding:6px 14px;font-size:14px;border:1px solid}
+.band i{width:9px;height:9px;transform:rotate(45deg);background:currentColor}
+.band.red{background:rgba(255,122,107,.14);color:#FFB3A8;border-color:rgba(255,122,107,.4)}
+.band.mid{background:rgba(124,138,230,.18);color:var(--mu-blue-200);border-color:rgba(124,138,230,.45)}
+.band.green{background:rgba(35,183,116,.18);color:var(--mu-green-200);border-color:rgba(35,183,116,.45)}
+.kpi{background:var(--glass-2);border:1px solid var(--glass-line);border-radius:var(--r-md);padding:12px 14px}
+.kpi b{display:block;font-size:24px;font-weight:900;direction:ltr;text-align:right}
+.kpi small{font-size:12px;color:rgba(245,240,232,.68)}
+.steps4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0;padding:0;list-style:none}
+.steps4 li{display:flex;flex-direction:column;opacity:.45}.steps4 li.on{opacity:1}.steps4 li.done{opacity:.8}
+.steps4 b{font-size:24px;font-weight:900;line-height:1}.steps4 span{font-size:12px;color:var(--mu-green-300);font-weight:500}
+/* editorial index (Sample A) */
+.index{display:grid;gap:var(--s-6)}
+@media(min-width:900px){.index{grid-template-columns:repeat(4,1fr)}}
+.index div{border-top:2px solid var(--mu-blue);padding-top:var(--s-4);display:flex;flex-direction:column;gap:var(--s-2)}
+.hero-demo{padding-block:var(--s-7) var(--s-8);display:grid;gap:var(--s-7);align-items:center}
+@media(min-width:900px){.hero-demo{grid-template-columns:1.25fr 1fr}}
+.footnote{font-size:12px;color:rgba(245,240,232,.55);text-align:center;padding-block:var(--s-6)}
+.tag-k{font-family:ui-monospace,Menlo,monospace;font-size:12px;background:rgba(0,0,0,.3);padding:2px 8px;border-radius:6px;direction:ltr;display:inline-block}
+.cream .tag-k{background:rgba(66,81,176,.08)}
+</style></head><body>
+
+<div class="container">
+  <nav class="nav"><div class="logo"><img src="../tools/kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <ul><li>الأنظمة</li><li>الأدوات المجانية</li><li>قصص العملاء</li><li>عن Mind Up</li></ul>
+    <a class="btn btn-green" href="#">التشخيص المجاني</a></nav>
+</div>
+
+<!-- COVER -->
+<header class="container" style="padding-block:var(--s-8) var(--s-9)">
+  <p class="t-label">نظام التصميم · الإصدار 1 · 26 نوفمبر 2026</p>
+  <h1 class="t-display" style="margin-top:var(--s-4)">نظـــام التصميم<span class="dot"></span></h1>
+  <p class="t-lead muted" style="margin-top:var(--s-5)">مرجع واحد لموقع Mind Up والأدوات المجانية وفورم التشخيص. كل حجم وكل وزن وكل مسافة هنا ليها مكان محدد. بعد ما تعتمده، الكود كله بيتبني عليه.</p>
+  <div class="index" style="margin-top:var(--s-8)">
+    <div><span class="t-index">01</span><span class="t-h4">الخــط والأوزان</span><span class="t-small muted">خط ثمانية، 5 أوزان</span></div>
+    <div><span class="t-index">02</span><span class="t-h4">سلّم الأحـــجام</span><span class="t-small muted">من العنوان الكبير للتعليق</span></div>
+    <div><span class="t-index">03</span><span class="t-h4">الكشـــيدة</span><span class="t-small muted">مدّ الحرف في العناوين المهمة</span></div>
+    <div><span class="t-index">04</span><span class="t-h4">التطبيـــق</span><span class="t-small muted">المسافات، الألوان، الزجاج، المكوّنات</span></div>
+  </div>
+</header>
+
+<!-- 01 WEIGHTS -->
+<section><div class="container">
+  <div class="sec-head"><p class="t-label">· 01</p><h2 class="t-h1">الخــط والأوزان</h2><p class="t-lead muted">Thmanyah Sans، مرفوع مع الموقع نفسه عشان يظهر صاح في أي موبايل وأي شبكة. ما في أي خط بديل.</p></div>
+  <div class="grid g5 weights">
+    <div class="w glass"><span class="s" style="font-weight:300">نمو</span><b>Light · 300</b><small>أرقام ثانوية كبيرة، اقتباسات</small></div>
+    <div class="w glass"><span class="s" style="font-weight:400">نمو</span><b>Regular · 400</b><small>النص الأساسي والفقرات</small></div>
+    <div class="w glass"><span class="s" style="font-weight:500">نمو</span><b>Medium · 500</b><small>التسميات، القوائم، الروابط</small></div>
+    <div class="w glass"><span class="s" style="font-weight:700">نمو</span><b>Bold · 700</b><small>H2–H4، الأزرار، الأسئلة</small></div>
+    <div class="w glass"><span class="s" style="font-weight:900">نمو</span><b>Black · 900</b><small>Display، H1، الأرقام الكبيرة</small></div>
+  </div>
+  <div class="glass card" style="margin-top:var(--s-5)">
+    <p style="font-size:clamp(28px,3vw,44px);line-height:1.35;margin:0;font-weight:300">النمو ما صدفة. <span style="font-weight:400">النمو نظام</span> <span style="font-weight:500">بيبدأ بتشخيص،</span> <span style="font-weight:700">وبيمشي بأرقام،</span> <span style="font-weight:900;color:var(--mu-green-300)">وبيقيس كل أسبوع.</span></p>
+  </div>
+</div></section>
+
+<!-- 02 SCALE -->
+<section class="cream"><div class="container">
+  <div class="sec-head"><p class="t-label">· 02</p><h2 class="t-h1" style="color:var(--mu-blue)">سلّم الأحـــجام</h2><p class="t-lead muted">كل عنصر ليهو حجم في الموبايل وحجم في الديسكتوب، والموقع بيتنقل بينهم براه حسب عرض الشاشة. المسافة بين السطور أوسع في النص وأضيق في العناوين.</p></div>
+  <table class="spec" style="--glass-line:rgba(50,56,53,.14)">
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">Display</b>موبايل 56 · ديسكتوب 88px · Black 900 · سطر 1.05<br>غلاف الصفحة الرئيسية بس</td><td><span class="t-display" style="color:var(--mu-blue)">نكـــبر بزنسك<span class="dot"></span></span></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">H1</b>موبايل 36 · ديسكتوب 56px · Black 900 · سطر 1.15<br>عنوان كل صفحة أو قسم كبير</td><td><h3 class="t-h1">أنظمة نمو، ما إعلانات وبس</h3></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">H2</b>موبايل 28 · ديسكتوب 40px · Bold 700 · سطر 1.2<br>عنوان داخل القسم</td><td><h3 class="t-h2">وين بيضيع العميل بين الاستفسار والدفع؟</h3></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">H3</b>موبايل 22 · ديسكتوب 28px · Bold 700 · سطر 1.3<br>عنوان كرت، سؤال في الأداة</td><td><h3 class="t-h3">Revenue Conversion System</h3></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">H4 · عنوان جانبي</b>موبايل 18 · ديسكتوب 20px · Bold 700 · أخضر · مع كشيدة</td><td><span class="t-h4">الاختنـــاق الحقيقي</span></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">Lead</b>موبايل 18 · ديسكتوب 20px · Regular 400 · سطر 1.7<br>أول فقرة تحت العنوان</td><td><p class="t-lead">عندك منتج الناس بترجع ليهو، ودي أقوى نقطة عندك. المشكلة إنو العملاء الجداد قليلين.</p></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">Body</b>موبايل 16 · ديسكتوب 17px · Regular 400 · سطر 1.75<br>أقصى عرض 68 حرف للسطر</td><td><p class="t-body">النشر في فيسبوك وإنستغرام بدون صرف معاهو وصول محدود ومتذبذب. الرسايل بتتأخر، والعميل البيسأل بيمشي لغيرك، وده بيأثر مباشرة على الإقفال.</p></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">Small</b>14px · Regular/Medium · سطر 1.6</td><td><p class="t-small muted">الأرقام دي محسوبة من إجاباتك إنت.</p></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">Label</b>13px · Medium 500 · أخضر</td><td><p class="t-label">· 03 الخطة</p></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">رقم كبير</b>موبايل 64 · ديسكتوب 96px · Black 900 · أرقام متساوية العرض</td><td><span class="t-num" style="color:var(--mu-blue)">$16,000</span></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">رقم فهرس</b>موبايل 28 · ديسكتوب 40px · Black 900 · أزرق</td><td><span class="t-index">01 &nbsp; 02 &nbsp; 03</span></td></tr>
+    <tr><td class="meta" style="color:#6B6F6C"><b style="color:var(--mu-dark)">زر</b>16px · Bold 700 · ارتفاع 48px</td><td><a class="btn btn-blue">أعمل التشخيص المجاني</a> &nbsp; <a class="btn btn-outline">شوف الأنظمة</a></td></tr>
+  </table>
+</div></section>
+
+<!-- 03 KASHIDA -->
+<section><div class="container">
+  <div class="sec-head"><p class="t-label">· 03</p><h2 class="t-h1">الكشـــيدة<span class="dot"></span></h2><p class="t-lead muted">مدّ الحرف (Shift + ت في الكيبورد العربي، أو Shift + J). بنستعملها عشان العنوان المهم يتنفس ويبقى ليهو شخصية، بس بقواعد.</p></div>
+  <div class="grid g2">
+    <div class="grid" style="gap:var(--s-3)">
+      <div class="k-row glass"><span class="k-before">التشخيص</span><span class="arrow">←</span><span class="k-after">التشـــخيص</span></div>
+      <div class="k-row glass"><span class="k-before">الحسبة</span><span class="arrow">←</span><span class="k-after">الحـــسبة</span></div>
+      <div class="k-row glass"><span class="k-before">أهدافك</span><span class="arrow">←</span><span class="k-after">أهـــدافك</span></div>
+      <div class="k-row glass"><span class="k-before">جلب العملاء</span><span class="arrow">←</span><span class="k-after">جلب العمـــلاء</span></div>
+      <div class="k-row glass"><span class="k-before">الخطوة الجاية</span><span class="arrow">←</span><span class="k-after">الخـــطوة الجاية</span></div>
+    </div>
+    <div class="glass card">
+      <h3 class="t-h3" style="margin-bottom:var(--s-4)">قواعد الاستعمال</h3>
+      <ul class="rules">
+        <li><b class="ok">✓</b><span><b>وين:</b> العناوين الجانبية (H4)، عناوين الأقسام (H1)، وغلاف الصفحة (Display).</span></li>
+        <li><b class="ok">✓</b><span><b>كم:</b> 3 مدّات (ـــ) في الحجم الصغير والمتوسط، و2 في Display. كلمة واحدة بس في العنوان، وتكون 4 حروف أو أكتر.</span></li>
+        <li><b class="ok">✓</b><span><b>وين في الكلمة:</b> بعد حرف بيتوصل بالبعده، في نص أطول كلمة.</span></li>
+        <li><b class="no">✕</b><span>ما بعد ا د ذ ر ز و ة ء، لأنها ما بتتوصل باللي بعدها.</span></li>
+        <li><b class="no">✕</b><span>ما في النص العادي، ولا الأزرار، ولا الخانات، ولا الأرقام، ولا أسماء العملاء.</span></li>
+        <li><b class="no">✕</b><span>ما في الأسئلة الطويلة جوه الأدوات، لأنها بتطوّل السطر في الموبايل.</span></li>
+      </ul>
+      <p class="t-small muted" style="margin-top:var(--s-4)">في الكود: <span class="tag-k">mu.kashida("التشخيص")</span> بتحطها في المكان الصاح براها.</p>
+    </div>
+  </div>
+</div></section>
+
+<!-- 04 SPACING + COLOR -->
+<section class="cream"><div class="container">
+  <div class="sec-head"><p class="t-label">· 04</p><h2 class="t-h1" style="color:var(--mu-blue)">المسافـــات والألوان</h2><p class="t-lead muted">كل المسافات مضاعفات 4. القسم بياخد 64px في الموبايل و96px في الديسكتوب. عرض الموقع 1200px، والفورم والأدوات 640px.</p></div>
+  <div class="sp" style="--x:1">
+    <div><i style="height:4px"></i>4</div><div><i style="height:8px"></i>8</div><div><i style="height:12px"></i>12</div><div><i style="height:16px"></i>16</div><div><i style="height:24px"></i>24</div><div><i style="height:32px"></i>32</div><div><i style="height:48px"></i>48</div><div><i style="height:64px"></i>64</div><div><i style="height:96px"></i>96</div><div><i style="height:128px"></i>128</div>
+  </div>
+  <div class="grid g4" style="margin-top:var(--s-7);color:#fff">
+    <div class="sw"><div style="background:#4251B0"></div><p><b>Mind Up Blue</b>#4251B0 · العناوين، الأزرار الأساسية، الأرقام</p></div>
+    <div class="sw"><div style="background:#23B774"></div><p><b>Growth Green</b>#23B774 · الإجراء، التسميات، الكلمة المهمة</p></div>
+    <div class="sw"><div style="background:#323835"></div><p><b>Dark</b>#323835 · النص على الكريمي</p></div>
+    <div class="sw" style="color:var(--mu-dark)"><div style="background:#F5F0E8;border-bottom:1px solid rgba(0,0,0,.08)"></div><p style="background:#fff"><b>Cream</b>#F5F0E8 · أقسام المقالات والتقارير</p></div>
+  </div>
+  <p class="t-small muted" style="margin-top:var(--s-4)">الموقع بيبدّل بين قسم غامق زجاجي (الغلاف والأدوات) وقسم كريمي هادي (الشرح والقصص)، زي ملف Sample A. ما في أصفر.</p>
+</div></section>
+
+<!-- 05 COMPONENTS -->
+<section><div class="container">
+  <div class="sec-head"><p class="t-label">· 05</p><h2 class="t-h1">المكوّنـــات</h2><p class="t-lead muted">نفس القطع بتتكرر في الموقع والأدوات، عشان أي صفحة جديدة تطلع شبه أخواتها.</p></div>
+  <div class="grid g3">
+    <div class="glass card grid" style="gap:var(--s-4)"><p class="t-label">أزرار</p>
+      <a class="btn btn-green">أعرض النتيجة</a><a class="btn btn-blue">أعمل التشخيص المجاني</a><a class="btn btn-glass">شوف الأدوات</a><a class="btn btn-ghost">رجوع</a></div>
+    <div class="glass card grid" style="gap:var(--s-3)"><p class="t-label">سؤال واختيارات</p>
+      <p class="t-label" style="color:var(--mu-green-300)">شركتك · 3 من 24</p><h3 class="t-h3">دورك في الشركة؟</h3>
+      <div class="opt">المالك أو المؤسس</div><div class="opt on">مدير المبيعات أو التوزيع</div><div class="opt">موظف وبجمع معلومات<small>بنرسل ليك ملخص تشاركه مع إدارتك</small></div>
+      <input class="inp" placeholder="مثلاً: 0912345678"></div>
+    <div class="glass card grid" style="gap:var(--s-4)"><p class="t-label">نتيجة</p>
+      <ol class="steps4"><li class="done"><b>01</b><span>شركتك</span></li><li class="done"><b>02</b><span>الحسبة</span></li><li class="on"><b>03</b><span>أهدافك</span></li><li><b>04</b><span>بياناتك</span></li></ol>
+      <span class="t-num" style="font-size:72px">$60</span>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="band red"><i></i>منخفضة</span><span class="band mid"><i></i>كويسة</span><span class="band green"><i></i>ممتازة</span></div>
+      <div class="grid g2" style="gap:10px;grid-template-columns:1fr 1fr"><div class="kpi"><small>نسبة الإغلاق</small><b>7.5%</b></div><div class="kpi"><small>متوسط الصفقة</small><b>$800</b></div></div></div>
+  </div>
+</div></section>
+
+<!-- 06 APPLIED: agency homepage hero -->
+<section style="padding-top:0"><div class="container">
+  <div class="sec-head"><p class="t-label">· 06</p><h2 class="t-h1">التطبيـــق على الموقع</h2><p class="t-lead muted">شكل أول شاشة في موقع Mind Up بالنظام ده.</p></div>
+  <div class="glass" style="padding:var(--s-6) var(--s-6) 0;overflow:hidden">
+    <div class="hero-demo">
+      <div style="display:flex;flex-direction:column;gap:var(--s-5)">
+        <p class="t-label">Mind Up Growth Systems · الخرطوم</p>
+        <h1 class="t-display" style="font-size:clamp(44px,3.6vw + 30px,76px)">نبني ليك <em class="g">نظـام نمو</em><br>ما حملة إعلانية<span class="dot"></span></h1>
+        <p class="t-lead muted">تشخيص ← خطة ← تنفيذ ← قياس. للشركات المتوسطة والكبيرة البتبيع وعايزة تبيع أكتر بنظام ما معتمد على شخص.</p>
+        <div style="display:flex;gap:var(--s-3);flex-wrap:wrap"><a class="btn btn-green">أعمل التشخيص المجاني</a><a class="btn btn-glass">جرّب حاسبة Lead Value</a></div>
+      </div>
+      <div class="grid" style="gap:var(--s-3)">
+        <div class="glass card" style="background:var(--glass-2)"><p class="t-label">· 01 التشـــخيص</p><p class="t-h3" style="margin-top:6px">نعرف وين القيد الحقيقي</p></div>
+        <div class="glass card" style="background:var(--glass-2)"><p class="t-label">· 02 الخطـــة</p><p class="t-h3" style="margin-top:6px">Blueprint بأرقامك إنت</p></div>
+        <div class="glass card" style="background:var(--glass-2)"><p class="t-label">· 03 التنفيـــذ</p><p class="t-h3" style="margin-top:6px">نظام مبيعات وتسويق شغال</p></div>
+      </div>
+    </div>
+  </div>
+  <!-- cream editorial block -->
+  <div class="cream" style="border-radius:var(--r-xl);padding:var(--s-7) var(--s-6);margin-top:var(--s-5)">
+    <div class="grid g2" style="gap:var(--s-7);align-items:start">
+      <div><p class="t-label">· 02 الاختنـــاق الحقيقي</p><h2 class="t-h1" style="color:var(--mu-blue);margin-top:var(--s-3)">جلب العملاء</h2></div>
+      <div class="grid" style="gap:var(--s-5)">
+        <div style="display:flex;gap:var(--s-4)"><span class="t-index">01</span><div><p class="t-h3" style="font-size:20px">ما في مصدر ثابت لعملاء جداد</p><p class="t-body muted">النشر بدون صرف معاهو وصول محدود ومتذبذب.</p></div></div>
+        <div style="display:flex;gap:var(--s-4)"><span class="t-index">02</span><div><p class="t-h3" style="font-size:20px">الرد براك</p><p class="t-body muted">الرسايل بتتأخر، والعميل البيسأل بيمشي لغيرك.</p></div></div>
+      </div>
+    </div>
+  </div>
+</div></section>
+
+<p class="footnote">Mind Up · نظام التصميم v1 · ملف الكود: design/tokens.css</p>
+</body></html>
