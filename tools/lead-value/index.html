@@ -4,16 +4,17 @@
 <meta name="description" content="أداة مجانية من Mind Up Growth Systems: أعرف كل Lead بيدخل بزنسك بيساوي كم دولار، وين الفاقد، وكيف ترفع قيمته.">
 <meta property="og:title" content="كل Lead بيدخل بزنسك بيساوي كم؟">
 <meta property="og:description" content="حاسبة Lead Value المجانية من Mind Up. دقيقة واحدة وتعرف الرقم.">
-<meta name="theme-color" content="#4251B0">
-<link rel="icon" href="../kit/logo.png"><link rel="stylesheet" href="../kit/brand.css">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../kit/logo-white.png"><link rel="preload" href="../kit/fonts/thmanyah-sans-Bold.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../kit/brand.css">
 </head><body>
 <div class="wrap">
   <header class="hero">
-    <div class="brand"><img src="../kit/logo.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
     <span class="tag">أداة مجانية · Lead Value Calculator</span>
-    <h1>كل Lead بيدخل بزنسك بيساوي كم دولار؟</h1>
-    <p>أغلب أصحاب الشركات بيعرفوا عدد الـLeads. قليل منهم بيعرف قيمة الواحد. الرقم ده بيغيّر قرار الميزانية والإعلان والمتابعة.</p>
+    <h1>كل Lead بيدخل بزنسك<br>بيساوي <em>كم دولار؟</em></h1>
+    <p>أغلب الشركات بتعرف عدد الـLeads. قليل منها بيعرف قيمة الواحد. الرقم ده بيغيّر قرار الميزانية والإعلان والمتابعة.</p>
     <div class="bar"><span id="bar"></span></div>
+    <ol class="steps4" id="steps"></ol>
   </header>
   <main class="card" id="card" aria-live="polite"></main>
   <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
@@ -21,7 +22,7 @@
 <script>
 window.TOOL={
   id:"lead-value", name:"حاسبة قيمة العميل المحتمل (Lead Value)", duration:"دقيقتين تقريباً، أغلبها اختيارات", section:"الحسبة",
-  intro:'<h2 class="q">في دقيقة بتعرف:</h2><ul><li><b>قيمة كل Lead</b> بالدولار.</li><li><b>نسبة الإغلاق</b> والإيراد من كل Lead.</li><li><b>وين الفاقد:</b> التأهيل، المتابعة، ولا المصدر.</li><li><b>كم كان ممكن تكسب</b> لو رفعت الإغلاق شوية، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%. في الآخر بنسألك عن هدفكم عشان التوصية تكون على مقاسكم.</p>',
+  intro:'<h2 class="q">في دقيقتين بتعرف:</h2><ul><li><b>قيمة كل Lead</b> بالدولار.</li><li><b>نسبة الإغلاق</b> والإيراد من كل Lead.</li><li><b>وين الفاقد:</b> التأهيل، المتابعة، ولا المصدر.</li><li><b>كم كان ممكن تكسب</b> لو رفعت الإغلاق شوية، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%. في الآخر بنسألك عن هدفكم عشان التوصية تكون على مقاسكم.</p>',
   questions:[
     {id:"period",t:"داير تحسب على أي فترة؟",type:"single",req:true,opts:["آخر شهر","آخر 3 شهور","آخر 6 شهور","آخر سنة"]},
     {id:"leads",t:"كم Lead (استفسار أو عميل محتمل) جاك في الفترة دي؟",d:"كل زول سأل، راسل، اتصل أو سجّل بياناته.",type:"number",req:true,ph:"مثلاً: 400",min:1,minMsg:"لازم يكون في Lead واحد على الأقل"},

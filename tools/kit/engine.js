@@ -65,7 +65,11 @@
     pct:function(n){return isFinite(n)?(Math.round(n*1000)/10)+"%":"–";}};
   function visible(q){return !q.when||q.when(A);}
   function go(d){do{i+=d;}while(Q[i]&&!visible(Q[i]));render();}
-  function setBar(){var p=i<0?0:Math.min(100,Math.round(i/Q.length*100));if(bar)bar.style.width=p+"%";}
+  var SECS=[SEC,SEC2,SEC3,SEC4], stepsEl=document.getElementById("steps");
+  if(stepsEl) stepsEl.innerHTML=SECS.map(function(x,k){return '<li><b>0'+(k+1)+'</b><span>'+x+'</span></li>';}).join("");
+  function setBar(done){var p=done?100:(i<0?0:Math.min(100,Math.round(i/Q.length*100)));if(bar)bar.style.width=p+"%";
+    if(!stepsEl)return; var cur=done?4:(i<0?-1:SECS.indexOf((Q[i]&&Q[i].sec)||SEC4));
+    [].forEach.call(stepsEl.children,function(li,k){li.className=k<cur?"done":k===cur?"on":"";});}
   function intro(){
     var h='<div class="intro" style="display:flex;flex-direction:column;gap:14px">'+T.intro+'</div>';
     h+='<div class="nav"><span class="hint">'+esc(T.duration||"دقيقتين تقريباً")+'</span><button class="btn primary" id="start">يلا نبدأ</button></div>';
@@ -122,7 +126,7 @@
       budget_l:bd.l||"",start_l:st.l||"",urgency:st.u||"",breakdown:{fit:sz.fit||0,authority:rl.au||0,budget:bd.p||0,timing:st.p||0,pain:pain}};
   }
   function submit(){
-    if(bar)bar.style.width="100%";
+    setBar(true);
     var R=T.compute(A), L=lead(R); R.lead=L;
     var test=/[?&]test=1/.test(location.search);
     var payload={
