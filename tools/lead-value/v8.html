@@ -1,0 +1,83 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>حاسبة قيمة العميل المحتمل – Mind Up</title>
+<meta name="description" content="أداة مجانية من Mind Up Growth Systems: أعرف كل Lead بيدخل بزنسك بيساوي كم دولار، وين الفاقد، وكيف ترفع قيمته.">
+<meta property="og:title" content="كل Lead بيدخل بزنسك بيساوي كم؟">
+<meta property="og:description" content="حاسبة Lead Value المجانية من Mind Up. دقيقة واحدة وتعرف الرقم.">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../kit/logo-white.png"><link rel="preload" href="../kit/fonts/handicrafts-Black.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../kit/brand.css"><link rel="stylesheet" href="../kit/type-8.css"><script src="../kit/kashida-live.js"></script>
+</head><body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <span class="tag">أداة مجانية · Lead Value Calculator</span>
+    <h1>كل Lead بيدخل بزنسك<br>بيـــساوي <em>كم دولار؟</em></h1>
+    <p>أغلب الشركات بتعرف عدد الـLeads. قليل منها بيعرف قيمة الواحد. الرقم ده بيغيّر قرار الميزانية والإعلان والمتابعة.</p>
+    <div class="bar"><span id="bar"></span></div>
+    <ol class="steps4" id="steps"></ol>
+  </header>
+  <main class="card" id="card" aria-live="polite"></main>
+  <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+<script>
+window.TOOL={
+  id:"lead-value", name:"حاسبة قيمة العميل المحتمل (Lead Value)", duration:"دقيقتين تقريباً، أغلبها اختيارات", section:"الحسبة",
+  intro:'<h2 class="q">في دقيقتين بتعرف:</h2><ul><li><b>قيمة كل Lead</b> بالدولار.</li><li><b>نسبة الإغلاق</b> والإيراد من كل Lead.</li><li><b>وين الفاقد:</b> التأهيل، المتابعة، ولا المصدر.</li><li><b>كم كان ممكن تكسب</b> لو رفعت الإغلاق شوية، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%. في الآخر بنسألك عن هدفكم عشان التوصية تكون على مقاسكم.</p>',
+  questions:[
+    {id:"period",t:"داير تحسب على أي فترة؟",type:"single",req:true,opts:["آخر شهر","آخر 3 شهور","آخر 6 شهور","آخر سنة"]},
+    {id:"leads",t:"كم Lead (استفسار أو عميل محتمل) جاك في الفترة دي؟",d:"كل زول سأل، راسل، اتصل أو سجّل بياناته.",type:"number",req:true,ph:"مثلاً: 400",min:1,minMsg:"لازم يكون في Lead واحد على الأقل"},
+    {id:"customers",t:"منهم كم اشترى فعلاً؟",type:"number",req:true,ph:"مثلاً: 40",check:function(A){return A.customers>A.leads?"عدد المشترين أكبر من عدد الـLeads، راجع الرقمين":"";}},
+    {id:"revenue",t:"إجمالي الإيراد من المبيعات دي في نفس الفترة (بالدولار)؟",d:"لو حاسبها بالجنيه، حوّلها لدولار تقريبي.",type:"number",req:true,ph:"مثلاً: 30000"},
+    {id:"deal",t:"متوسط قيمة الصفقة الواحدة (بالدولار)؟",d:"لو ما عارفه، خليه فاضي ونحسبه نحن.",type:"number",ph:"اختياري"},
+    {id:"lead_source",t:"المصدر الأساسي للـLeads شنو؟",type:"single",req:true,opts:["فيسبوك","إنستغرام","لينكدإن","قوقل","توصيات ومعارف","واتساب","تيك توك","مصدر تاني"]},
+    {id:"q_qualify",t:"بتعمل تأهيل لكل Lead قبل ما تعرض عليه؟",d:"يعني بتعرف هل عنده الحاجة والميزانية وصاحب القرار.",type:"yesno",req:true},
+    {id:"q_scoring",t:"عندكم طريقة تقييم للـLeads (Lead Scoring)؟",d:"مثلاً: ساخن، دافي، بارد، أو درجة من 10.",type:"yesno",req:true},
+    {id:"q_followup",t:"في متابعة منظّمة للـLead البيسأل وما يشتري؟",type:"yesno",req:true},
+    {id:"q_best",t:"بتعرف ياتو مصدر بيجيب أعلى قيمة Lead؟",type:"yesno",req:true},
+    {id:"q_quality",t:"بتقيسوا جودة الـLeads، ما عددهم بس؟",type:"yesno",req:true}
+  ],
+  compute:function(A){
+    var months={"آخر شهر":1,"آخر 3 شهور":3,"آخر 6 شهور":6,"آخر سنة":12}[A.period]||1;
+    var lv=A.revenue/A.leads, cr=A.customers/A.leads, deal=(A.deal!==""&&A.deal>0)?A.deal:(A.customers?A.revenue/A.customers:0);
+    var score=lv<20?20:lv<50?45:lv<100?70:lv<250?90:100;
+    var band=lv<20?"red":lv<=100?"yellow":"green";
+    var gaps=[["q_qualify","تأهيل الـLeads"],["q_scoring","تقييم الـLeads"],["q_followup","المتابعة"],["q_best","معرفة أفضل مصدر"],["q_quality","قياس الجودة"]];
+    var missing=gaps.filter(function(g){return A[g[0]]==="لا"}).map(function(g){return g[1]});
+    var conv=(A.q_followup==="لا"||cr<0.1), acq=(A.q_qualify==="لا"||A.q_quality==="لا"||A.q_best==="لا");
+    var rec=conv?"revenue":(acq||lv<20?"acquisition":"revenue");
+    var tags=[lv<20?"Low Lead Value":lv>100?"High Lead Value":"Mid Lead Value"];
+    if(A.q_quality==="لا"||A.q_best==="لا")tags.push("Low Quality Leads");
+    if(A.q_qualify==="لا"||A.q_scoring==="لا")tags.push("Needs Better Qualification");
+    tags.push(rec==="acquisition"?"Needs Client Acquisition System":"Needs Revenue Conversion System");
+    var monthly=A.revenue/months, tier=monthly>=5000?"Hot":monthly>=1000?"Warm":"Cold";
+    var target=Math.min(cr+0.05,1), extra=(target-cr)*A.leads*deal;
+    var constraint=rec==="revenue"?"Conversion – تحويل الـLeads لمبيعات":"Leads – جودة واستهداف الـLeads";
+    var pain=Math.min(10,(score<=45?6:score<=70?4:2)+Math.min(4,missing.length));
+    return {pain:pain,lv:lv,cr:cr,deal:deal,score:score,band:band,missing:missing,rec:rec,tags:tags,tier:tier,months:months,extra:extra,target:target,
+      constraint:constraint,sector:"مصدر: "+A.lead_source,stage:"إيراد شهري تقريبي $"+Math.round(monthly).toLocaleString("en-US"),
+      summary:"Lead Value $"+lv.toFixed(1)+" | Close "+(cr*100).toFixed(1)+"% | Deal $"+Math.round(deal)+" | "+A.leads+" leads / "+A.period+" | ناقص: "+(missing.join("، ")||"لا شي"),
+      store:{lead_value:+lv.toFixed(2),close_rate:+(cr*100).toFixed(2),avg_deal:Math.round(deal),revenue_per_lead:+lv.toFixed(2),monthly_revenue:Math.round(monthly),score:score}};
+  },
+  result:function(A,R){
+    var M=window.MU, nm=M.esc(A.name.split(" ")[0]);
+    var bandTxt={red:"قيمة منخفضة",yellow:"قيمة كويسة",green:"قيمة ممتازة"}[R.band];
+    var h='<div style="display:flex;flex-direction:column;gap:16px">';
+    h+='<div class="qnum">نتيجتك يا '+nm+' · '+M.esc(A.period)+'</div>';
+    h+='<div><div class="hint">كل Lead بيدخل بزنسك بيساوي</div><div class="big">'+M.money(R.lv)+'</div></div>';
+    h+='<span class="band '+R.band+'"><i></i>'+bandTxt+'</span>';
+    h+='<div><div class="scale-l"><span>Lead Value Score</span><b class="num">'+R.score+' / 100</b></div><div class="meter"><span style="width:'+R.score+'%"></span></div></div>';
+    h+='<div class="kpis"><div class="kpi"><small>نسبة الإغلاق</small><b>'+M.pct(R.cr)+'</b></div><div class="kpi"><small>الإيراد من كل Lead</small><b>'+M.money(R.lv)+'</b></div><div class="kpi"><small>متوسط الصفقة</small><b>'+M.money(R.deal)+'</b></div></div>';
+    if(R.extra>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">لو نسبة الإغلاق طلعت من <b class="num">'+M.pct(R.cr)+'</b> لـ<b class="num">'+M.pct(R.target)+'</b> بس، بنفس عدد الـLeads ونفس الصفقة، كان '+M.esc(A.period)+' جاب ليك زيادة حوالي <b class="num">'+M.money(R.extra)+'</b>. بدون ولا جنيه زيادة في الإعلان.</p></div>';
+    h+='<div class="box"><h3>وين الفاقد عندك</h3><ul class="gaps">';
+    [["q_qualify","تأهيل الـLeads قبل العرض"],["q_scoring","تقييم الـLeads (ساخن، دافي، بارد)"],["q_followup","متابعة منظّمة للبيسأل وما يشتري"],["q_best","معرفة أفضل مصدر"],["q_quality","قياس الجودة ما العدد بس"]].forEach(function(g){var ok=A[g[0]]==="نعم";h+='<li><b class="'+(ok?'ok':'x')+'">'+(ok?'✓':'✕')+'</b><span>'+g[1]+'</span></li>';});
+    h+='</ul></div>';
+    var recName=R.rec==="revenue"?"Revenue Conversion System":"Client Acquisition System";
+    var why=R.rec==="revenue"?"الـLeads بتجيك، لكن جزء كبير منهم بيضيع بين أول رسالة والدفع. المشكلة في التحويل والمتابعة، ما في العدد.":"المشكلة في نوع الـLeads الداخلة. محتاج تعرف منو العميل الصاح، من وين بيجي، وتصفّي قبل ما تصرف وقت فريقك.";
+    h+='<div class="box"><h3>توصيتنا: '+recName+'</h3><p style="margin:0">'+why+'</p><p class="hint" style="margin:0">السؤال الصاح ما «كيف أجيب Leads أكتر؟». السؤال: «كيف أزيد قيمة كل Lead عندي؟»</p></div>';
+    h+='</div>';
+    return h;
+  }
+};
+</script>
+<script src="../kit/engine.js"></script>
+</body></html>

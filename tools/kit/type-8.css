@@ -1,0 +1,40 @@
+/* Mind Up type layer «خط 8» (The Year of Handicrafts, from the founder's zip) – 26 Nov 2026.
+   Scale (mobile): Display 38/900 · Title 25/700 · Section 20/600 + kashida · Label 13/600 + kashida · Body 16/400 lh 1.85 · Small 13/500 · Number 64/900 */
+@font-face{font-family:"Mind8";src:url(fonts/handicrafts-Regular.woff2) format("woff2");font-weight:400;font-display:swap}
+@font-face{font-family:"Mind8";src:url(fonts/handicrafts-Medium.woff2) format("woff2");font-weight:500;font-display:swap}
+@font-face{font-family:"Mind8";src:url(fonts/handicrafts-SemiBold.woff2) format("woff2");font-weight:600;font-display:swap}
+@font-face{font-family:"Mind8";src:url(fonts/handicrafts-Bold.woff2) format("woff2");font-weight:700;font-display:swap}
+@font-face{font-family:"Mind8";src:url(fonts/handicrafts-Black.woff2) format("woff2");font-weight:900;font-display:swap}
+:root{--font:"Mind8","Thmanyah Sans","Segoe UI",Tahoma,sans-serif;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s8:32px}
+body{font-family:var(--font);font-size:16px;line-height:1.85;font-weight:400}
+.wrap{gap:var(--s5)}
+.hero{padding:var(--s6) var(--s6) var(--s5);gap:var(--s4)}
+.brand b{font-weight:900;letter-spacing:.12em}
+.hero .tag{font-size:13px;font-weight:600;letter-spacing:0}
+.hero h1{font-size:38px;line-height:1.3;font-weight:900;letter-spacing:0}
+.hero h1 em{font-weight:900}
+.hero p{font-size:15.5px;line-height:1.8}
+.steps4 li b{font-size:24px;font-weight:900}
+.steps4 li span{font-size:12.5px;font-weight:600}
+.card{padding:var(--s8) var(--s6);gap:var(--s4)}
+.qnum{font-size:13px;font-weight:600;letter-spacing:0}
+.q{font-size:25px;line-height:1.5;font-weight:700}
+.intro .q{font-size:28px;font-weight:900}
+.intro li{font-size:16px;line-height:1.75}
+.intro li::before{font-weight:900;font-size:28px}
+.hint{font-size:14px;line-height:1.75}
+.opt{font-size:16.5px;font-weight:500;padding:var(--s4) var(--s5);line-height:1.6}
+.opt small{font-size:13px;font-weight:400}
+.yn .opt{font-weight:700}
+input,textarea{font-size:17px;font-weight:500}
+.btn{font-size:16.5px;font-weight:700}
+.big{font-size:66px;font-weight:900}
+.kpi b{font-size:24px;font-weight:900}
+.kpi small{font-size:12.5px;font-weight:500}
+.box{padding:var(--s5);gap:var(--s3)}
+.box h3{font-size:20px;font-weight:600;line-height:1.45}
+.box p,.gaps li{font-size:15.5px;line-height:1.8}
+.band{font-weight:700;font-size:14.5px}
+.cta,.wa a{font-weight:700;font-size:16.5px}
+.foot{font-size:12.5px}
+@media (max-width:420px){.hero h1{font-size:34px}.q{font-size:22px}.intro .q{font-size:25px}.big{font-size:58px}}
