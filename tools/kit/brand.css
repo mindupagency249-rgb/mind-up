@@ -102,3 +102,51 @@ textarea{min-height:110px;resize:vertical}
 .foot{text-align:center;font-size:12px;color:var(--muted)}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 @media (max-width:420px){.hero h1{font-size:22px}.q{font-size:19px}.kpis{grid-template-columns:1fr 1fr}.big{font-size:48px}}
+
+/* ===== v5 – Company Profile look (founder 26 Nov 22:47 Sudan: «عدل ديزاين الويب وفقا لده», 01_Company-Profile_MindUp_FINAL Sep 2026):
+   white pages with blue/green glows + the profile's triangle cluster, black hero with deep-green glow, Thmanyah Black titles,
+   green English subtitle, dark cards with green border, green→teal gradient box. ===== */
+:root{--bg:#FFFFFF;--ink:#0B0F0E;--muted:#5E6461;--line:#E4E8E6;--chip:#F4F7F5;--chip-on:#0B0F0E;--chip-on-fg:#FFFFFF;--soft:#F4F7F5;--g2:#4BBE72;--black:#050807}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#FFFFFF;--card:#FFFFFF;--ink:#0B0F0E;--muted:#5E6461;--line:#E4E8E6;--chip:#F4F7F5;--chip-on:#0B0F0E;--soft:#F4F7F5;--red-bg:#FCE9E6;--red-fg:#B23A2B;--green-bg:#E3F6EC;--green-fg:#14794B;--err:#C0392B;color-scheme:light}}
+body{background:
+  radial-gradient(520px 420px at 105% 0%,rgba(66,81,176,.16),transparent 70%),
+  radial-gradient(560px 460px at -10% 30%,rgba(35,183,116,.14),transparent 70%),
+  radial-gradient(600px 500px at 110% 100%,rgba(35,183,116,.20),transparent 70%),#FFFFFF;position:relative;overflow-x:hidden}
+html{overflow-x:clip}
+body::before{content:"";position:absolute;top:-24px;left:0;width:90px;height:190px;background:url(profile/tri.png) no-repeat top left/contain;opacity:.95;pointer-events:none;z-index:0}
+body::after{content:"";position:absolute;bottom:0;right:0;width:80px;height:170px;background:url(profile/tri.png) no-repeat bottom left/contain;transform:scaleX(-1);opacity:.9;pointer-events:none;z-index:0}
+.wrap{position:relative;z-index:1}
+.hero{background:radial-gradient(130% 90% at 100% 0%,rgba(31,110,80,.85),transparent 55%),radial-gradient(120% 80% at 0% 100%,rgba(31,110,80,.55),transparent 55%),var(--black);border-radius:24px;padding:24px 22px 22px}
+.hero::after{display:none}
+.hero .tag{background:none;padding:0;color:var(--g2);font-size:15px;font-weight:400;order:3;margin-top:-6px}
+.hero h1{font-size:32px;font-weight:900;line-height:1.25;order:2}
+.hero h1 em{color:var(--g2)}
+.hero p{order:4;opacity:.82;font-size:15px}
+.hero .brand{order:1}.hero .bar{order:5}.hero .steps4,.hero .stages{order:6}
+html{background:#fff}body{min-height:100vh}
+.steps4 li b{background:rgba(255,255,255,.18)}
+.steps4 li.done b{background:var(--g2)}.steps4 li.on b{background:linear-gradient(90deg,var(--g2) 50%,rgba(255,255,255,.18) 50%)}
+.card{background:#fff;border:1px solid var(--line);border-radius:24px;box-shadow:0 18px 50px rgba(11,15,14,.07)}
+.qnum{color:var(--green);font-weight:500;font-size:13px;display:flex;align-items:center;gap:8px}
+.qnum::before{content:"";width:18px;height:2px;background:var(--green);display:inline-block}
+.q{font-weight:900;font-size:22px}
+.opt{background:#fff;border:1.5px solid var(--line);border-radius:14px}
+.opt:hover{border-color:var(--green)}
+.opt[aria-pressed="true"]{background:var(--black);border-color:var(--green);color:#fff;box-shadow:0 8px 22px rgba(35,183,116,.25)}
+input,textarea{background:#fff}
+.btn.primary{background:var(--green);box-shadow:0 10px 24px rgba(35,183,116,.3)}
+.intro li::before{background:var(--black);color:var(--g2);border-radius:8px}
+.big{color:var(--ink)}
+.kpi{background:var(--black);border:1px solid rgba(35,183,116,.55);color:#fff}
+.kpi small{color:rgba(255,255,255,.65)}
+.box{background:var(--black);border:1px solid rgba(35,183,116,.55);color:#fff}
+.box h3{color:var(--g2)}
+.box p,.box li{color:rgba(255,255,255,.9)}
+.box.hi{background:linear-gradient(135deg,#1c8f8a 0%,#2fae86 50%,#79cf5a 100%);border:0;color:#fff}
+.box.hi h3{color:#fff}
+.gaps li b.x{background:rgba(255,122,107,.18);color:#FFB3A8}.gaps li b.ok{background:rgba(75,190,114,.22);color:#8EE6B8}
+.box.teaser{background:var(--black)}
+.meter{background:#E4E8E6}.meter span{background:linear-gradient(90deg,#1c8f8a,#79cf5a)}
+.cta{background:var(--black);border:1.5px solid var(--green)}
+.tl a{background:#fff}
+.tl a:hover{border-color:var(--green)}
