@@ -75,11 +75,20 @@
     h+='<div class="nav"><span class="hint">'+esc(T.duration||"دقيقتين تقريباً")+'</span><button class="btn primary" id="start">يلا نبدأ</button></div>';
     card.innerHTML=h;document.getElementById("start").onclick=function(){go(1)};
   }
+  function teaser(){ /* partial result before the gate: show what we found, hide the numbers */
+    var R; try{R=T.compute(A);}catch(e){return "";} if(!R) return "";
+    if(T.teaser) return T.teaser(R);
+    var lab={red:["red","في مشكلة واضحة"],yellow:["yellow","في فرصة تحسين كبيرة"],green:["green","وضعك كويس، وفي مساحة تكبر"]}[R.band]||null, m=(R.missing||[]).length, t='<div class="box teaser">';
+    if(lab) t+='<span class="band '+lab[0]+'"><i></i>'+lab[1]+'</span>';
+    if(m) t+='<p>لقينا <b>'+m+' '+(m===1?'فاقد':'فواقد')+'</b> في نظامك، والتوصية جاهزة.</p>';
+    if(R.extra>0) t+='<p>وفي إيراد إضافي ممكن حوالي <b class="blur">$'+Math.round(R.extra).toLocaleString("en-US").replace(/\d/g,"8")+'</b> من نفس الـLeads.</p>';
+    return t+'</div>';
+  }
   function render(){
     setBar(); if(i<0) return intro(); var q=Q[i]; if(!q) return submit();
     var vis=Q.filter(function(x){return visible(x)&&x.type!=="gatehead";}), cnt=vis.indexOf(q)+1, h;
     if(q.type==="gatehead"){
-      h='<div class="qnum">خطوة أخيرة</div><h2 class="q">نتيجتك جاهزة ✅</h2><p>أكتب بياناتك عشان تظهر ليك النتيجة كاملة مع التوصية، ونحفظها ليك لو حبيت نراجعها معاك.</p>';
+      h='<div class="qnum">خطوة أخيرة</div><h2 class="q">نتيجتك جاهزة</h2>'+teaser()+'<p>أكتب بياناتك عشان يظهر ليك الرقم الكامل والتوصية، ونحفظها ليك لو حبيت نراجعها معاك.</p>';
       h+='<div class="nav"><button class="btn ghost" id="back">رجوع</button><button class="btn primary" id="next">التالي</button></div>';
       card.innerHTML=h; bind(q); return;
     }

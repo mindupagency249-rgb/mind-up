@@ -1,0 +1,32 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مركز التشخيص المجاني – Mind Up</title>
+<meta name="description" content="أدوات مجانية من Mind Up Growth Systems: كل أداة دقيقتين، وبتوريك وين الفاقد في بزنسك وكيف تصلحه.">
+<meta property="og:title" content="مركز التشخيص المجاني – Mind Up">
+<meta property="og:description" content="أدوات مجانية، كل واحدة دقيقتين، وبتوريك وين الفاقد في بزنسك.">
+<meta property="og:image" content="https://mindupagency249-rgb.github.io/mind-up/tools/kit/og-center.jpg"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#4251B0">
+<link rel="icon" href="kit/logo-white.png"><link rel="stylesheet" href="kit/brand.css"><script src="kit/kashida-live.js"></script>
+<style>.tl{list-style:none;margin:0;padding:0;display:grid;gap:12px}.tl a{display:flex;flex-direction:column;gap:4px;text-decoration:none;color:var(--ink);background:var(--chip);border:1.5px solid var(--line);border-radius:16px;padding:16px 18px;transition:transform .12s}.tl a:hover{transform:translateY(-1px);border-color:var(--chip-on)}.tl b{font-size:18px}.tl small{color:var(--muted);font-size:14px}.tl .go{color:var(--green);font-weight:700;font-size:14px}.soon{opacity:.55;pointer-events:none}</style>
+</head><body><div class="wrap">
+<header class="hero">
+  <div class="brand"><img src="kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+  <span class="tag">مركز التشخيص المجاني</span>
+  <h1>أدوات مجانية بتوريك<br><em>وين الفاقد في بزنسك</em></h1>
+  <p>كل أداة دقيقتين. بتطلع منها برقم واضح وتوصية عملية، من أرقامك إنت.</p>
+</header>
+<main class="card">
+  <div class="qnum">الأدوات المتاحة</div>
+  <ul class="tl" id="tl"></ul>
+  <a class="cta" href="../">أعمل التشخيص المجاني الكامل لبزنسك</a>
+</main>
+<div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+<script>
+/* Daily builder: add each new tool at the TOP of this list. */
+var TOOLS=[
+ {id:"lead-value",name:"حاسبة قيمة الـLead",d:"كل Lead بيدخل بزنسك بيساوي كم دولار، ووين الفاقد."},
+ {id:"growth-constraint",name:"مقياس عنق الزجاجة",d:"أيه الحاجة الواحدة الموقفة نمو بزنسك.",soon:1}
+];
+document.getElementById("tl").innerHTML=TOOLS.map(function(t){return '<li><a href="'+t.id+'/"'+(t.soon?' class="soon" aria-disabled="true"':'')+'><b>'+t.name+'</b><small>'+t.d+'</small><span class="go">'+(t.soon?'قريباً':'أبدأ الأداة ←')+'</span></a></li>'}).join("");
+</script></body></html>
