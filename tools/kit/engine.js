@@ -138,9 +138,10 @@
     setBar(true);
     var R=T.compute(A), L=lead(R); R.lead=L;
     var test=/[?&]test=1/.test(location.search);
+    var SRC=(location.search.match(/[?&]src=([a-z0-9_-]{1,20})/i)||[])[1]||"";SRC={ahmed:"أحمد حسن",fadl:"فضل",ig:"انستقرام",fb:"فيسبوك",wa:"واتساب"}[SRC]||SRC;
     var payload={
       name:(test?"اختبار – ":"")+A.name, whatsapp:A.whatsapp, email:A.email||"", business:A.business,
-      source:"🧮 أداة: "+T.name, segment_ar:L.seg_ar, segment:L.seg, sector:A.sector, role:L.role_l, stage:L.size_l,
+      source:"🧮 أداة: "+T.name+(SRC?" · "+SRC:""), segment_ar:L.seg_ar, segment:L.seg, sector:A.sector, role:L.role_l, stage:L.size_l,
       constraint:R.constraint, score:L.score, tier:L.tier, urgency:L.urgency, start:L.start_l, invest:L.budget_l,
       next:NEXT_AR[A.next]||A.next, time:A.time, pain_text:A.pain_text||"",
       tool:T.id, tool_name:T.name, decision_role:L.decision, goal:A.goal, lead_band:L.band, score_breakdown:L.breakdown,
