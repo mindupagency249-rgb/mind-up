@@ -25,9 +25,9 @@
 <script>
 /* Daily builder: add each new tool at the TOP of this list. */
 var TOOLS=[
+ {id:"growth-constraint",name:"مقياس قيد النمو (Growth Constraint)",d:"شنو الحاجة الواحدة الموقفة نمو شركتك، ودرجة جاهزيتكم من 100."},
  {id:"cac",name:"حاسبة تكلفة جلب العميل (CAC)",d:"العميل الجديد بيكلّفك كم دولار، وهل الرقم ده مربح."},
- {id:"lead-value",name:"حاسبة قيمة الـLead",d:"كل Lead بيدخل بزنسك بيساوي كم دولار، ووين الفاقد."},
- {id:"growth-constraint",name:"مقياس عنق الزجاجة",d:"أيه الحاجة الواحدة الموقفة نمو بزنسك.",soon:1}
+ {id:"lead-value",name:"حاسبة قيمة الـLead",d:"كل Lead بيدخل بزنسك بيساوي كم دولار، ووين الفاقد."}
 ];
 document.getElementById("tl").innerHTML=TOOLS.map(function(t){return '<li><a href="'+t.id+'/"'+(t.soon?' class="soon" aria-disabled="true"':'')+'><b>'+t.name+'</b><small>'+t.d+'</small><span class="go">'+(t.soon?'قريباً':'أبدأ الأداة ←')+'</span></a></li>'}).join("");
 </script><!-- MU contact FAB (founder 27 Nov): one-tap WhatsApp + call -->

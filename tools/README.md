@@ -11,3 +11,4 @@ Live base: https://mindupagency249-rgb.github.io/mind-up/tools/<tool-id>/
 |---|------|------|-------------------|------|
 | 1 | حاسبة قيمة العميل المحتمل (Lead Value) | tools/lead-value/ | Revenue Conversion / Client Acquisition System | 26 Nov 2026 |
 | 2 | حاسبة تكلفة جلب العميل (CAC) | tools/cac/ | Client Acquisition System / Revenue Conversion System | 27 Nov 2026 |
+| 3 | مقياس قيد النمو (Growth Constraint) | tools/growth-constraint/ | Business Direction Blueprint | 27 Nov 2026 |

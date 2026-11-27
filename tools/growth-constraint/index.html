@@ -1,0 +1,105 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>مقياس قيد النمو (Growth Constraint) – Mind Up</title>
+<meta name="description" content="أداة مجانية من Mind Up Growth Systems: أعرف الحاجة الواحدة الموقفة نمو شركتكم، جلب العملاء ولا التحويل ولا التشغيل.">
+<meta property="og:title" content="شنو الحاجة الواحدة الموقفة نمو شركتك؟">
+<meta property="og:description" content="مقياس قيد النمو المجاني من Mind Up. 3 دقائق وتعرف القيد الحقيقي ونقطة البداية.">
+<meta property="og:image" content="https://mindupagency249-rgb.github.io/mind-up/tools/growth-constraint/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../kit/logo-white.png"><link rel="preload" href="../kit/fonts/thmanyah-sans-Bold.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../kit/brand.css"><script src="../kit/kashida-live.js"></script>
+</head><body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <span class="tag">أداة مجانية · Growth Constraint Score</span>
+    <h1>شنو الحاجة الواحدة<br><em>الموقفة نمو شركتك؟</em></h1>
+    <p>أغلب الشركات بتحاول تصلّح كل حاجة في نفس الوقت. الحقيقة إنه في قيد واحد بس شادّ النمو لورا. لو عرفته، بتعرف تبدأ من وين.</p>
+    <div class="bar"><span id="bar"></span></div>
+    <ol class="steps4" id="steps"></ol>
+  </header>
+  <main class="card" id="card" aria-live="polite"></main>
+  <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+<script>
+(function(){
+var LEADS={"أقل من 20":[0,15],"20 – 50":[10,35],"50 – 100":[20,75],"100 – 300":[30,200],"أكتر من 300":[40,400]};
+var CLOSE={"أقل من 10%":[0,0.05],"10% – 20%":[15,0.15],"20% – 40%":[30,0.30],"أكتر من 40%":[40,0.45],"ما عارف":[0,0]};
+var OWNER={"بالكامل":0,"لحد كبير":20,"جزئياً":40,"لا، الفريق بيمشي براهو":60};
+var LOSS={"أقل من 500$":2,"500$ – 2,000$":4,"2,000$ – 10,000$":6,"أكتر من 10,000$":8,"ما عارف":3};
+var GAPS=[["q_strategy","نعم","استراتيجية تسويق واضحة ومكتوبة"],["q_offer","نعم","عرض (Offer) العميل بيفهمه في جملة"],["q_qualify","نعم","تأهيل وتشخيص قبل تقديم العرض"],["q_crm","نعم","CRM بيمسك كل عميل محتمل"],["q_follow","نعم","نظام Follow-up واضح"],["q_sop","نعم","إجراءات تشغيل مكتوبة (SOPs)"]];
+var PIL={acq:["جلب العملاء","Leads – جلب العملاء ضعيف أو غير منتظم"],conv:["التحويل والمبيعات","Conversion – الـLeads بتدخل وما بتتحوّل لمبيعات"],ops:["التشغيل والأنظمة","Systems – التشغيل معتمد على أشخاص ما على نظام"]};
+window.TOOL={
+  id:"growth-constraint", name:"مقياس قيد النمو (Growth Constraint)", duration:"3 دقائق تقريباً، كلها اختيارات", section:"التشخيص",
+  intro:'<h2 class="q">في 3 دقائق بتعرف:</h2><ul><li><b>درجة جاهزية شركتك للنمو</b> من 100.</li><li><b>القيد الواحد</b> الشادّ النمو: جلب العملاء، التحويل، ولا التشغيل.</li><li><b>كم عميل وكم دولار</b> ممكن تكسبهم في الشهر لو اتحل القيد، من أرقامك إنت.</li><li><b>نقطة البداية</b> المناسبة لمرحلة شركتكم.</li></ul><p class="hint">مبني على Business Growth Diagnostic بتاع Mind Up. جاوب على وضع شركتكم الحالي، ما على الوضع المفروض يكون.</p>',
+  questions:[
+    {id:"leads",t:"كم عميل محتمل (Lead) بيدخل شركتكم في الشهر تقريباً؟",d:"أي زول سأل، اتصل، راسل أو طلب عرض سعر.",type:"single",req:true,opts:Object.keys(LEADS)},
+    {id:"src",t:"أغلب عملائكم بيجوا من وين؟",type:"single",req:true,opts:["التوصيات والعلاقات","الإعلانات الممولة","المحتوى والسوشيال ميديا","فريق مبيعات ميداني","المعارض والمناسبات","تاني"]},
+    {id:"q_strategy",t:"عندكم استراتيجية تسويق واضحة ومكتوبة؟",d:"يعني عارفين بتستهدفوا منو، بأي رسالة، وفي أي قناة.",type:"yesno",req:true},
+    {id:"q_offer",t:"عرضكم (Offer) واضح، والعميل بيفهمه في جملة واحدة؟",type:"yesno",req:true},
+    {id:"close",t:"من كل 10 عملاء محتملين، كم واحد بيشتري في الآخر؟",d:"يعني نسبة إغلاق الصفقات (Close Rate) التقريبية.",type:"single",req:true,opts:["أقل من 10%","10% – 20%","20% – 40%","أكتر من 40%","ما عارف"]},
+    {id:"deal",t:"متوسط قيمة الصفقة أو الطلب الواحد (بالدولار)؟",d:"تقريبي. لو ما عارفه، خليه فاضي.",type:"number",ph:"اختياري، مثلاً: 800"},
+    {id:"q_qualify",t:"في تأهيل وتشخيص للعميل قبل ما تقدّموا ليه العرض؟",type:"yesno",req:true},
+    {id:"q_crm",t:"بتستخدموا CRM (أو شيت منظّم) يمسك كل عميل محتمل ومرحلته؟",type:"yesno",req:true},
+    {id:"q_follow",t:"في نظام Follow-up واضح للبيسأل وما يشتري؟",d:"منو بيتابع، متين، وبكم رسالة.",type:"yesno",req:true},
+    {id:"q_sop",t:"عندكم إجراءات تشغيل مكتوبة (SOPs) الفريق بيمشي عليها؟",type:"yesno",req:true},
+    {id:"owner",t:"الشغل اليومي بيعتمد على المالك أو المدير العام لأي درجة؟",d:"قرارات، موافقات، ومتابعة العملاء الكبار.",type:"single",req:true,opts:Object.keys(OWNER)},
+    {id:"loss",t:"في تقديرك، أكبر مشكلة عندكم بتخسّركم كم في الشهر؟",type:"single",req:true,opts:Object.keys(LOSS)}
+  ],
+  compute:function(A){
+    var yes=function(k){return A[k]==="نعم"};
+    var L=LEADS[A.leads]||[0,0], C=CLOSE[A.close]||[0,0];
+    var acq=L[0]+(yes("q_strategy")?30:0)+(yes("q_offer")?30:0);
+    var conv=C[0]+(yes("q_qualify")?20:0)+(yes("q_crm")?20:0)+(yes("q_follow")?20:0);
+    var ops=(yes("q_sop")?40:0)+(OWNER[A.owner]||0);
+    var score=Math.round((acq+conv+ops)/3);
+    var order=[["conv",conv],["acq",acq],["ops",ops]].sort(function(a,b){return a[1]-b[1]}); var key=order[0][0];
+    var band=score<=30?"red":score<=60?"yellow":"green";
+    var level=score<=30?"النمو واقف":score<=60?"نمو بطيء ومتقطّع":score<=80?"جاهزين للنمو، وفي قيد واحد":"جاهزين للتوسع";
+    var missing=GAPS.filter(function(g){return A[g[0]]!==g[1]}).map(function(g){return g[2]});
+    if(A.owner==="بالكامل"||A.owner==="لحد كبير") missing.push("شغل بيمشي من غير المالك");
+    var deal=(A.deal!==""&&A.deal>0)?A.deal:0, leadsMid=L[1], rate=C[1];
+    var addCust=rate?leadsMid*0.05:0, extra=(addCust&&deal)?addCust*deal:0;
+    var pain=Math.min(10,(LOSS[A.loss]||3)+(missing.length>=4?2:missing.length>=2?1:0));
+    var tags=["Constraint: "+(key==="acq"?"Leads":key==="conv"?"Conversion":"Systems")];
+    if(A.close==="ما عارف")tags.push("Unknown Close Rate"); if(A.q_crm==="لا")tags.push("No CRM");
+    if(A.owner==="بالكامل"||A.owner==="لحد كبير")tags.push("Founder Dependent"); if(A.src==="التوصيات والعلاقات")tags.push("Referral Dependent");
+    if(band!=="green")tags.push("Growth Review"); tags.push("Needs Business Direction Blueprint");
+    return {score:score,band:band,level:level,acq:acq,conv:conv,ops:ops,key:key,constraint:PIL[key][1],missing:missing,pain:pain,tags:tags,
+      deal:deal,leadsMid:leadsMid,rate:rate,addCust:addCust,extra:extra,
+      summary:"Growth "+score+"/100 | قيد: "+PIL[key][0]+" | جلب "+acq+" · تحويل "+conv+" · تشغيل "+ops+" | Leads "+A.leads+" | Close "+A.close+(deal?" | Deal $"+deal:"")+" | خسارة "+A.loss+" | ناقص: "+(missing.join("، ")||"لا شي"),
+      store:{growth_score:score,acquisition:acq,conversion:conv,systems:ops,constraint:key,leads_range:A.leads,close_range:A.close,lead_source:A.src,deal:deal||"",loss_range:A.loss,owner_dependency:A.owner,extra_monthly:Math.round(extra)}};
+  },
+  teaser:function(R){
+    var t='<div class="box teaser"><span class="band '+R.band+'"><i></i>'+R.level+'</span>';
+    t+='<p>لقينا <b>القيد الشادّ نموّكم</b>'+(R.missing.length?' و<b>'+R.missing.length+' '+(R.missing.length===1?'نقطة ضعف':'نقاط ضعف')+'</b> في النظام':'')+'، والتوصية جاهزة.</p>';
+    t+='<p>درجة جاهزيتكم للنمو <b class="blur">'+String(R.score).replace(/\d/g,"8")+' / 100</b>.</p>';
+    return t+'</div>';
+  },
+  result:function(A,R){
+    var M=window.MU, nm=M.esc(A.name.split(" ")[0]);
+    var h='<div style="display:flex;flex-direction:column;gap:16px">';
+    h+='<div class="qnum">نتيجتك يا '+nm+'</div>';
+    h+='<div><div class="hint">درجة جاهزية شركتكم للنمو</div><div class="big">'+R.score+' / 100</div></div>';
+    h+='<span class="band '+R.band+'"><i></i>'+R.level+'</span>';
+    h+='<div><div class="scale-l"><span>Growth Constraint Score</span><b class="num">'+R.score+' / 100</b></div><div class="meter"><span style="width:'+R.score+'%"></span></div></div>';
+    h+='<div class="kpis"><div class="kpi"><small>جلب العملاء</small><b>'+R.acq+'</b></div><div class="kpi"><small>التحويل والمبيعات</small><b>'+R.conv+'</b></div><div class="kpi"><small>التشغيل والأنظمة</small><b>'+R.ops+'</b></div></div>';
+    var why={acq:"الـLeads الداخلة قليلة أو ما منتظمة، أو الرسالة والعرض ما واضحين. أي تحسين في المبيعات حيكون محدود لأنه ما في كفاية ناس داخلين أصلاً.",
+      conv:"في ناس بتسأل وبتهتم، لكن عدد كبير منهم بيضيع بين أول سؤال والدفع. ده أرخص قيد تحلّه، لأنك ما محتاج تصرف على إعلان زيادة.",
+      ops:"المبيعات والتسويق ممكن يمشوا، لكن الشغل معتمد على أشخاص ما على نظام. أي نمو حيضغط على المالك والفريق قبل ما يزيد الربح."}[R.key];
+    h+='<div class="box"><h3>القيد عندكم: '+PIL[R.key][0]+'</h3><p style="margin:0">'+why+'</p></div>';
+    if(R.extra>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتك، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو رفعتوا نسبة الإغلاق <b class="num">5</b> نقاط بس، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة في الشهر، يعني حوالي <b class="num">'+M.money(R.extra)+'</b> في الشهر و<b class="num">'+M.money(R.extra*12)+'</b> في السنة. من نفس الـLeads، بدون صرف زيادة.</p></div>';
+    else if(R.addCust>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتك، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو رفعتوا نسبة الإغلاق <b class="num">5</b> نقاط بس، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة كل شهر من نفس الـLeads. أضرب الرقم ده في متوسط صفقتكم وبتعرف القيمة.</p></div>';
+    else h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">ما بنقدر نحسبها، لأنه نسبة الإغلاق ما معروفة. ودي نفسها نقطة مهمة: الشركة البتعرف أرقامها بتعرف وين الفلوس بتضيع. أول خطوة تبدوا تسجّلوا كل Lead والحصل فيه.</p></div>';
+    h+='<div class="box"><h3>وين الفاقد عندكم</h3><ul class="gaps">';
+    GAPS.forEach(function(g){var ok=A[g[0]]===g[1];h+='<li><b class="'+(ok?'ok':'x')+'">'+(ok?'✓':'✕')+'</b><span>'+g[2]+'</span></li>';});
+    var free=!(A.owner==="بالكامل"||A.owner==="لحد كبير");h+='<li><b class="'+(free?'ok':'x')+'">'+(free?'✓':'✕')+'</b><span>شغل بيمشي من غير المالك</span></li>';
+    h+='</ul></div>';
+    h+='<div class="box"><h3>توصيتنا: Business Direction Blueprint</h3><p style="margin:0">قبل ما تصرفوا على إعلان أو توظيف أو أداة جديدة، محتاجين خريطة واحدة: القيد ده بالتحديد، الأرقام الحالية، وشنو يتعمل في 90 يوم بالترتيب. ده الـBlueprint البنبنيه مع الإدارة.</p><p class="hint" style="margin:0">الحل ما «نعمل كل حاجة». الحل نحل القيد الواحد ده أول، والباقي بيمشي وراه.</p></div>';
+    h+='</div>';
+    return h;
+  }
+};
+})();
+</script>
+<script src="../kit/engine.js"></script>
+</body></html>
