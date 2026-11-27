@@ -1,0 +1,98 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>حاسبة تكلفة جلب العميل (CAC) – Mind Up</title>
+<meta name="description" content="أداة مجانية من Mind Up Growth Systems: أعرف العميل الجديد بيكلّفك كم دولار، وهل تسويقك كاسب ولا بيصرف ميزانيتك.">
+<meta property="og:title" content="العميل الواحد بيكلّفك كم؟">
+<meta property="og:description" content="حاسبة CAC المجانية من Mind Up. دقيقتين وتعرف تسويقك كاسب ولا خسران.">
+<meta property="og:image" content="https://mindupagency249-rgb.github.io/mind-up/tools/cac/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../kit/logo-white.png"><link rel="preload" href="../kit/fonts/thmanyah-sans-Bold.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../kit/brand.css"><script src="../kit/kashida-live.js"></script>
+</head><body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <span class="tag">أداة مجانية · CAC Calculator</span>
+    <h1>العميل الجديد<br>بيكلّفك <em>كم دولار؟</em></h1>
+    <p>أغلب الشركات عارفة صرفت كم على التسويق. قليل منها عارف العميل الواحد كلّفها كم. الرقم ده بيقول ليك تسويقك كاسب ولا بيصرف ميزانيتك.</p>
+    <div class="bar"><span id="bar"></span></div>
+    <ol class="steps4" id="steps"></ol>
+  </header>
+  <main class="card" id="card" aria-live="polite"></main>
+  <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+<script>
+window.TOOL={
+  id:"cac", name:"حاسبة تكلفة جلب العميل (CAC)", duration:"دقيقتين تقريباً، أغلبها اختيارات", section:"الحسبة",
+  intro:'<h2 class="q">في دقيقتين بتعرف:</h2><ul><li><b>العميل الجديد بيكلّفك كم</b> بالدولار (CAC).</li><li><b>هل الربح من العميل بيغطي تكلفته</b> 3 مرات ولا لا.</li><li><b>وين الهدر:</b> الاعتماد على الإعلان، المتابعة، ولا التتبّع.</li><li><b>كم عميل زيادة ممكن تجيب</b> بنفس الصرف، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة. ما محتاجة تكون دقيقة 100%. في الآخر بنسألك عن هدفكم عشان التوصية تكون على مقاسكم.</p>',
+  questions:[
+    {id:"period",t:"داير تحسب على أي فترة؟",type:"single",req:true,opts:["آخر شهر","آخر 3 شهور","آخر 6 شهور","آخر سنة"]},
+    {id:"mkt",t:"صرفت كم على التسويق في الفترة دي (بالدولار)؟",d:"إعلانات، محتوى، تصميم، وكالات، مؤثرين. لو حاسبها بالجنيه، حوّلها لدولار تقريبي.",type:"number",req:true,ph:"مثلاً: 1000"},
+    {id:"sales",t:"وصرفت كم على المبيعات (بالدولار)؟",d:"رواتب فريق المبيعات، العمولات، أدوات الـCRM، الاتصالات والاشتراكات.",type:"number",req:true,ph:"مثلاً: 500"},
+    {id:"other",t:"في مصروفات تانية مرتبطة بجلب العملاء (بالدولار)؟",d:"مثلاً معارض، عينات مجانية، مواصلات للمبيعات. لو ما في، خليه فاضي.",type:"number",ph:"اختياري"},
+    {id:"customers",t:"كم عميل جديد جاك في نفس الفترة؟",d:"العملاء الجدد بس، ما العملاء الراجعين.",type:"number",req:true,ph:"مثلاً: 30",min:1,minMsg:"لازم يكون في عميل واحد على الأقل"},
+    {id:"deal",t:"متوسط قيمة أول عملية بيع للعميل الجديد (بالدولار)؟",d:"لو ما عارفه، خليه فاضي.",type:"number",ph:"اختياري"},
+    {id:"margin",t:"هامش الربح التقريبي من البيعة شنو؟",type:"single",req:true,opts:["أقل من 20%","20% – 40%","40% – 60%","أكتر من 60%","ما عارف"]},
+    {id:"repeat",t:"العميل في المتوسط بيشتري منك كم مرة؟",type:"single",req:true,opts:["مرة واحدة","2 – 3 مرات","4 مرات أو أكتر","ما عارف"]},
+    {id:"q_track",t:"بتعرف كل عميل جديد جا من وين؟",d:"يعني إعلان، توصية، محتوى، معرض...",type:"yesno",req:true},
+    {id:"q_profit",t:"بتطلع بربح من أول عملية بيع للعميل؟",type:"single",req:true,opts:["نعم","لا","ما عارف"]},
+    {id:"q_adsonly",t:"بتعتمد على الإعلانات الممولة بس عشان تجيب عملاء؟",type:"yesno",req:true},
+    {id:"q_followup",t:"في متابعة منظّمة للي بيسأل وما يشتري؟",type:"yesno",req:true},
+    {id:"q_ltv",t:"بتعرف العميل بيجيب ليك كم ربح طول فترة تعامله معاك (LTV)؟",type:"yesno",req:true}
+  ],
+  compute:function(A){
+    var months={"آخر شهر":1,"آخر 3 شهور":3,"آخر 6 شهور":6,"آخر سنة":12}[A.period]||1;
+    var other=(A.other!==""&&A.other>0)?A.other:0, total=A.mkt+A.sales+other, cac=total/A.customers;
+    var deal=(A.deal!==""&&A.deal>0)?A.deal:0;
+    var m={"أقل من 20%":0.15,"20% – 40%":0.3,"40% – 60%":0.5,"أكتر من 60%":0.65}[A.margin]||0;
+    var p={"مرة واحدة":1,"2 – 3 مرات":2.5,"4 مرات أو أكتر":5}[A.repeat]||0;
+    var first=deal*m, ltgp=deal*m*p, ratio=(ltgp&&cac)?ltgp/cac:0;
+    var score=cac<50?100:cac<100?90:cac<200?75:cac<400?55:30;
+    if(ratio){if(ratio<1)score=Math.min(score,30);else if(ratio<3)score=Math.min(score,60);}
+    var band=(cac>300||(ratio&&ratio<1))?"red":(cac>=100||(ratio&&ratio<3))?"yellow":"green";
+    var gaps=[["q_track","نعم","تتبّع مصدر كل عميل"],["q_profit","نعم","الربح من أول عملية بيع"],["q_adsonly","لا","مصادر عملاء غير الإعلان"],["q_followup","نعم","متابعة البيسأل وما يشتري"],["q_ltv","نعم","معرفة قيمة العميل (LTV)"]];
+    var missing=gaps.filter(function(g){return A[g[0]]!==g[1]}).map(function(g){return g[2]});
+    var rec=(A.q_followup==="لا"&&cac<100&&A.q_adsonly==="لا")?"revenue":"acquisition";
+    var tags=[cac>300?"High CAC":cac<100?"Low CAC":"Mid CAC"];
+    if(A.q_track==="لا")tags.push("No Tracking"); if(A.q_adsonly==="نعم")tags.push("Ads Dependent");
+    if(ratio&&ratio<3)tags.push("LTGP:CAC < 3"); if(band!=="green")tags.push("Marketing Review");
+    tags.push(rec==="acquisition"?"Needs CAS":"Needs Revenue Conversion System");
+    var monthly=total/months, tier=monthly>=2000?"Hot":monthly>=500?"Warm":"Cold";
+    var addCust=Math.max(1,Math.round(A.customers*0.2)), newCac=total/(A.customers+addCust), extra=deal?addCust*deal:0;
+    var constraint=rec==="revenue"?"Conversion – تحويل الـLeads لمبيعات":"Leads – تكلفة جلب العملاء عالية";
+    var pain=Math.min(10,(band==="red"?6:band==="yellow"?4:2)+Math.min(4,missing.length));
+    return {pain:pain,cac:cac,total:total,deal:deal,first:first,ltgp:ltgp,ratio:ratio,score:score,band:band,missing:missing,rec:rec,tags:tags,tier:tier,months:months,
+      extra:extra,addCust:addCust,newCac:newCac,constraint:constraint,sector:"صرف شهري تقريبي $"+Math.round(monthly).toLocaleString("en-US"),stage:"عملاء جدد "+A.customers+" / "+A.period,
+      summary:"CAC $"+cac.toFixed(1)+" | Spend $"+Math.round(total)+" | New "+A.customers+" / "+A.period+(ratio?" | LTGP:CAC "+ratio.toFixed(1):"")+" | ناقص: "+(missing.join("، ")||"لا شي"),
+      store:{cac:+cac.toFixed(2),marketing_spend:A.mkt,sales_spend:A.sales,other_spend:other,new_customers:A.customers,ltgp:Math.round(ltgp),ltgp_cac:+ratio.toFixed(2),score:score}};
+  },
+  teaser:function(R){
+    var lab={red:["red","تكلفة العميل عالية"],yellow:["yellow","في فرصة تنزّل التكلفة"],green:["green","تكلفتك كويسة، وفي مساحة تكبر"]}[R.band], m=R.missing.length;
+    var t='<div class="box teaser"><span class="band '+lab[0]+'"><i></i>'+lab[1]+'</span>';
+    if(m) t+='<p>لقينا <b>'+m+' '+(m===1?'نقطة هدر':'نقاط هدر')+'</b> في نظام جلب العملاء، والتوصية جاهزة.</p>';
+    t+='<p>تكلفة العميل عندك حوالي <b class="blur">$'+String(Math.round(R.cac)).replace(/\d/g,"8")+'</b>.</p>';
+    return t+'</div>';
+  },
+  result:function(A,R){
+    var M=window.MU, nm=M.esc(A.name.split(" ")[0]);
+    var bandTxt={red:"تكلفة عالية",yellow:"تكلفة متوسطة",green:"تكلفة كويسة"}[R.band];
+    var h='<div style="display:flex;flex-direction:column;gap:16px">';
+    h+='<div class="qnum">نتيجتك يا '+nm+' · '+M.esc(A.period)+'</div>';
+    h+='<div><div class="hint">العميل الجديد بيكلّفك</div><div class="big">'+M.money(R.cac)+'</div></div>';
+    h+='<span class="band '+R.band+'"><i></i>'+bandTxt+'</span>';
+    h+='<div><div class="scale-l"><span>CAC Score</span><b class="num">'+R.score+' / 100</b></div><div class="meter"><span style="width:'+R.score+'%"></span></div></div>';
+    h+='<div class="kpis"><div class="kpi"><small>إجمالي الصرف</small><b>'+M.money(R.total)+'</b></div><div class="kpi"><small>عملاء جدد</small><b>'+A.customers+'</b></div><div class="kpi"><small>ربح العميل ÷ تكلفته</small><b>'+(R.ratio?R.ratio.toFixed(1)+'x':'—')+'</b></div></div>';
+    if(R.ratio){var ok=R.ratio>=3;h+='<div class="box"><h3>قاعدة الـ3 أضعاف</h3><p style="margin:0">الربح المتوقع من العميل طول تعامله معاك حوالي <b class="num">'+M.money(R.ltgp)+'</b>، يعني <b class="num">'+R.ratio.toFixed(1)+'x</b> من تكلفته. '+(ok?'ده فوق الـ3 أضعاف، يعني عندك مساحة تكبّر الصرف بأمان.':'ده أقل من 3 أضعاف، يعني أي زيادة في الإعلان حتاكل من ربحك قبل ما تكبّرك.')+'</p>'+(R.first?'<p class="hint" style="margin:0">'+(R.first>=R.cac?'أول بيعة بتغطي تكلفة العميل، ودي نقطة قوية.':'أول بيعة ما بتغطي تكلفة العميل، فإنت بتموّل العميل من جيبك لحدي ما يرجع يشتري.')+'</p>':'')+'</div>';}
+    h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">لو بنفس الصرف ده حوّلت <b class="num">'+R.addCust+'</b> عميل زيادة بس (متابعة أسرع وعرض أوضح)، تكلفة العميل بتنزل من <b class="num">'+M.money(R.cac)+'</b> لـ<b class="num">'+M.money(R.newCac)+'</b>'+(R.extra?'، وبيدخل ليك حوالي <b class="num">'+M.money(R.extra)+'</b> زيادة في '+M.esc(A.period)+'':'')+'. بدون ولا جنيه زيادة في الإعلان.</p></div>';
+    h+='<div class="box"><h3>وين الهدر عندك</h3><ul class="gaps">';
+    [["q_track","نعم","بتعرف كل عميل جا من وين"],["q_profit","نعم","بتربح من أول عملية بيع"],["q_adsonly","لا","عندك مصادر عملاء غير الإعلان"],["q_followup","نعم","متابعة منظّمة للي بيسأل وما يشتري"],["q_ltv","نعم","عارف قيمة العميل طول تعامله (LTV)"]].forEach(function(g){var ok=A[g[0]]===g[1];h+='<li><b class="'+(ok?'ok':'x')+'">'+(ok?'✓':'✕')+'</b><span>'+g[2]+'</span></li>';});
+    h+='</ul></div>';
+    var recName=R.rec==="revenue"?"Revenue Conversion System":"Client Acquisition System";
+    var why=R.rec==="revenue"?"تكلفة جلب العميل عندك معقولة، لكن في عملاء بيضيعوا بين أول سؤال والدفع. التحسين في المتابعة والتحويل بينزّل التكلفة أكتر.":"تكلفة العميل بتتحدد من 3 حاجات: منو بتستهدف، العرض بتاعك، وكيف بتتابع. لما واحدة منهم ضعيفة، الإعلان بيصرف أكتر عشان يجيب نفس العدد.";
+    h+='<div class="box"><h3>توصيتنا: '+recName+'</h3><p style="margin:0">'+why+'</p><p class="hint" style="margin:0">الحل ما «نزيد الميزانية». الحل نجيب عملاء أكتر من نفس الصرف.</p></div>';
+    h+='</div>';
+    return h;
+  }
+};
+</script>
+<script src="../kit/engine.js"></script>
+</body></html>
