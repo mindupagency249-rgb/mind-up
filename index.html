@@ -324,7 +324,7 @@ window.MU_Q = {
     var payload=Object.assign({}, A, {
       score:s, tier:tier(s), constraint:D.c, segment_ar:SEG_AR[A.segment]||"",
       next: NEXT_AR[A.next]||A.next||"", recommended: NEXT_AR[D.rec], stated_problem: D.stated,
-      diag_head: D.head, diag_insight: D.insight, diag_second: D.second? C[D.second].c : "", diag_cost: D.cost,
+      diag_head: D.head, diag_insight: D.insight, diag_second: D.second? C[D.second].c : "", diag_cost: D.cost, diag_ev: D.ev.slice(0,4).join(" || "), diag_actions: D.actions.join(" || "),
       submitted_at:new Date().toISOString(), page:"diagnosis-v2-instant"
     });
     Object.keys(payload).forEach(function(k){if(Array.isArray(payload[k]))payload[k]=payload[k].join("، ");});
@@ -508,12 +508,20 @@ window.MU_Q = {
     opts(p,D).forEach(function(o){
       var isRec=o.k===D.rec, isMine=o.k===D.choice;
       var badge = isRec&&isMine? "الأنسب ليك" : isRec? "ترشيحنا ليك" : isMine? "اختيارك" : "";
-      h+='<div class="dx-opt'+(isRec?' rec':'')+'">'+(badge?'<em>'+badge+'</em>':'')+'<b>'+esc(o.t)+'</b><p>'+esc(o.d)+'</p><small>'+esc(o.price)+'</small><a href="'+wa(o.msg)+'" target="_blank" rel="noopener">'+esc(o.cta)+' <span>واتساب ←</span></a></div>';
+      h+='<div class="dx-opt'+(isRec?' rec':'')+'" data-k="'+o.k+'">'+(badge?'<em>'+badge+'</em>':'')+'<b>'+esc(o.t)+'</b><p>'+esc(o.d)+'</p><small>'+esc(o.price)+'</small><a href="'+wa(o.msg)+'" target="_blank" rel="noopener">'+esc(o.cta)+' <span>واتساب ←</span></a></div>';
     });
     h+='</div><p class="hint">نسخة من التشخيص دي مع خطة 30 يوم بتوصلك في الإيميل <b class="num">'+esc(p.email||"")+'</b>. لو الزر ما فتح واتساب، راسلنا على <span class="num">0119744949</span> (من خارج السودان: <span class="num">+249 119 744 949</span>).</p>';
     h+='<button type="button" class="btn ghost" id="dxPrint">احفظ التشخيص (PDF)</button></div>';
     card.innerHTML=h; window.scrollTo({top:card.offsetTop-10,behavior:"smooth"});
     var pb=document.getElementById("dxPrint"); if(pb) pb.onclick=function(){window.print();};
+    // founder 27 Nov: record which paid option was clicked (Apps Script writes column AA, no new row, no email)
+    var OPT_AR={booklet:"كتيب مدفوع", consult:"استشارة مدفوعة", done:"تنفيذ / شغل معانا"}, sent={};
+    card.querySelectorAll(".dx-opt a").forEach(function(a){a.addEventListener("click",function(){
+      var k=a.parentNode.getAttribute("data-k"); if(sent[k]) return; sent[k]=1;
+      var body=JSON.stringify({event:"option_click", option:OPT_AR[k]||k, whatsapp:p.whatsapp||"", email:p.email||""});
+      try{ if(!(navigator.sendBeacon && navigator.sendBeacon(ENDPOINT, new Blob([body],{type:"text/plain;charset=utf-8"})))) throw 0; }
+      catch(e){ fetch(ENDPOINT,{method:"POST",mode:"no-cors",keepalive:true,headers:{"Content-Type":"text/plain;charset=utf-8"},body:body}); }
+    });});
   }
   render();
 })();
