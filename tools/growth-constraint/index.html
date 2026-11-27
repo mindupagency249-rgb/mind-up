@@ -13,7 +13,7 @@
     <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
     <span class="tag">أداة مجانية · Growth Constraint Score</span>
     <h1>شنو الحاجة الواحدة<br><em>الموقفة نمو شركتك؟</em></h1>
-    <p>أغلب الشركات بتحاول تصلّح كل حاجة في نفس الوقت. الحقيقة إنه في قيد واحد بس شادّ النمو لورا. لو عرفته، بتعرف تبدأ من وين.</p>
+    <p>كل بزنس بيمشي في سلسلة: جلب العملاء، التحويل، التسليم، رجوع العملاء، والربح. في حلقة واحدة بس هي الأضعف، وهي البتحدد سرعة نموّكم كلها.</p>
     <div class="bar"><span id="bar"></span></div>
     <ol class="steps4" id="steps"></ol>
   </header>
@@ -22,56 +22,69 @@
 </div>
 <script>
 (function(){
-var LEADS={"أقل من 20":[0,15],"20 – 50":[10,35],"50 – 100":[20,75],"100 – 300":[30,200],"أكتر من 300":[40,400]};
-var CLOSE={"أقل من 10%":[0,0.05],"10% – 20%":[15,0.15],"20% – 40%":[30,0.30],"أكتر من 40%":[40,0.45],"ما عارف":[0,0]};
-var OWNER={"بالكامل":0,"لحد كبير":20,"جزئياً":40,"لا، الفريق بيمشي براهو":60};
-var LOSS={"أقل من 500$":2,"500$ – 2,000$":4,"2,000$ – 10,000$":6,"أكتر من 10,000$":8,"ما عارف":3};
-var GAPS=[["q_strategy","نعم","استراتيجية تسويق واضحة ومكتوبة"],["q_offer","نعم","عرض (Offer) العميل بيفهمه في جملة"],["q_qualify","نعم","تأهيل وتشخيص قبل تقديم العرض"],["q_crm","نعم","CRM بيمسك كل عميل محتمل"],["q_follow","نعم","نظام Follow-up واضح"],["q_sop","نعم","إجراءات تشغيل مكتوبة (SOPs)"]];
-var PIL={acq:["جلب العملاء","Leads – جلب العملاء ضعيف أو غير منتظم"],conv:["التحويل والمبيعات","Conversion – الـLeads بتدخل وما بتتحوّل لمبيعات"],ops:["التشغيل والأنظمة","Systems – التشغيل معتمد على أشخاص ما على نظام"]};
+/* v2 (founder 27 Nov): fewer, sharper questions. Hormozi chain Leads → Conversion → Delivery → Retention → Profit.
+   Each stage = 2 behavioural questions scored 0–100. Constraint = weakest stage (tie → earlier in the chain). */
+function M(o){var r={},l=[];o.forEach(function(x){r[x[0]]=x[1];l.push(x[0]);});return {s:r,l:l};}
+var LEADS=M([["أقل من 20",0],["20 – 50",15],["50 – 100",30],["100 – 300",45],["أكتر من 300",50]]), LMID={"أقل من 20":15,"20 – 50":35,"50 – 100":75,"100 – 300":200,"أكتر من 300":400};
+var PRED=M([["أيوه، بنزيد الصرف أو النشاط والـLeads بتزيد",50],["يمكن، بس ما متأكدين من وين حتجي",25],["لا، أغلبها توصيات وعلاقات وما بنتحكم فيها",0]]);
+var CLOSE=M([["أقل من 1",0],["1 – 2",20],["3 – 4",35],["5 أو أكتر",45],["ما عارفين",0]]), CRATE={"أقل من 1":0.05,"1 – 2":0.15,"3 – 4":0.35,"5 أو أكتر":0.5};
+var LOST=M([["ما بيردوا بعد أول تواصل",15],["بيسألوا عن السعر ويختفوا",15],["بيقولوا «حنفكر» أو «حنشاور»",15],["ما عارفين بيضيعوا وين",0]]);
+var OFFER=M([["عندنا نتيجة أو ضمان واضح ما عند غيرنا",40],["الجودة والاسم",25],["سعرنا أرخص",10],["ما عندنا إجابة واضحة",0]]);
+var CAP=M([["أيوه، بسهولة",50],["أيوه، لكن بضغط كبير على الفريق",25],["لا، الجودة حتقع أو حنرفض طلبات",0]]);
+var OWNER=M([["الشغل بيمشي عادي",50],["بيمشي، لكن القرارات الكبيرة بتقيف",30],["المبيعات والعملاء الكبار بيقيفوا",15],["كل حاجة تقريباً بتقيف",0]]);
+var REPEAT=M([["أقل من 2",0],["2 – 4",25],["5 – 7",45],["8 أو أكتر",60],["ما عارفين",0]]);
+var AFTER=M([["أيوه، نظام منظّم ومكتوب",40],["بشكل شخصي وحسب الظروف",20],["لا، العلاقة بتنتهي بعد التسليم",0]]);
+var NUMS=M([["بنعرف الاتنين بالأرقام",50],["بنعرف واحد منهم بس",30],["تقريبي في راسنا",15],["ما بنعرف",0]]);
+var PRICE=M([["نادراً",50],["أحياناً",25],["غالباً، السعر هو البيحسم",0]]);
+var ST={leads:{n:"جلب العملاء",c:"Leads – الـLeads قليلة أو ما بتتحكموا فيها",sys:"Client Acquisition System",why:"الـLeads الداخلة قليلة أو جاية من التوصيات بس، فما بتقدروا تقرروا «الشهر الجاي داير أكبر». أي تحسين في المبيعات حيكون محدود لأنه ما في كفاية ناس داخلين أصلاً."},
+ conv:{n:"التحويل والمبيعات",c:"Conversion – الـLeads بتدخل وما بتتحوّل لمبيعات",sys:"Revenue Conversion System",why:"في ناس بتسأل وبتهتم، لكن عدد كبير منهم بيضيع بين أول سؤال والدفع. ده أرخص قيد تحلّه، لأنك ما محتاج تصرف على إعلان زيادة."},
+ deliv:{n:"التسليم والتشغيل",c:"Delivery – التشغيل ما بيستحمل نمو ومعتمد على أشخاص",sys:"Business Direction Blueprint (تشغيل وأنظمة)",why:"لو الطلبات زادت بكرة، الفريق أو المالك هو البيقيف. يعني أي فلوس تصرفوها على التسويق هسي حتتحول لضغط وشكاوى قبل ما تتحول لربح."},
+ ret:{n:"رجوع العملاء",c:"Retention – العميل بيشتري مرة وما بيرجع",sys:"Management Retainer (برنامج رجوع العملاء)",why:"إنتو بتدفعوا تكلفة جلب العميل كل مرة من الصفر، لأنه العميل ما بيرجع. أرخص بيعة في أي بزنس هي البيعة التانية لنفس العميل."},
+ prof:{n:"الربحية",c:"Profit – الأرقام ما واضحة والسعر هو البيحسم",sys:"Business Direction Blueprint (أرقام وتسعير)",why:"لما ما تعرفوا العميل بيكلّفكم كم وبيجيب كم، وبتنافسوا بالسعر، ممكن المبيعات تزيد والربح ينقص. النمو هنا خطر قبل ما يكون فرصة."}};
+var ORDER=["leads","conv","deliv","ret","prof"];
 window.TOOL={
   id:"growth-constraint", name:"مقياس قيد النمو (Growth Constraint)", duration:"3 دقائق تقريباً، كلها اختيارات", section:"التشخيص",
-  intro:'<h2 class="q">في 3 دقائق بتعرف:</h2><ul><li><b>درجة جاهزية شركتك للنمو</b> من 100.</li><li><b>القيد الواحد</b> الشادّ النمو: جلب العملاء، التحويل، ولا التشغيل.</li><li><b>كم عميل وكم دولار</b> ممكن تكسبهم في الشهر لو اتحل القيد، من أرقامك إنت.</li><li><b>نقطة البداية</b> المناسبة لمرحلة شركتكم.</li></ul><p class="hint">مبني على Business Growth Diagnostic بتاع Mind Up. جاوب على وضع شركتكم الحالي، ما على الوضع المفروض يكون.</p>',
+  intro:'<h2 class="q">في 3 دقائق بتعرف:</h2><ul><li><b>وين بالضبط النمو واقف</b> في سلسلة البزنس: جلب العملاء، التحويل، التسليم، رجوع العملاء، ولا الربحية.</li><li><b>درجة كل مرحلة</b> من 100، ودرجة جاهزيتكم للنمو.</li><li><b>كم ممكن تكسبوا</b> لو اتحل القيد، من أرقامكم إنتو.</li><li><b>القيد الواحد</b> البتبدوا بيه، لأنه حلّ مشكلتين في نفس الوقت ما بيمشي.</li></ul><p class="hint">مبني على Business Growth Diagnostic بتاع Mind Up. الأسئلة قليلة لكن كل سؤال بيكشف حاجة. جاوب على الحاصل فعلاً، ما على المفروض يحصل.</p>',
   questions:[
-    {id:"leads",t:"كم عميل محتمل (Lead) بيدخل شركتكم في الشهر تقريباً؟",d:"أي زول سأل، اتصل، راسل أو طلب عرض سعر.",type:"single",req:true,opts:Object.keys(LEADS)},
-    {id:"src",t:"أغلب عملائكم بيجوا من وين؟",type:"single",req:true,opts:["التوصيات والعلاقات","الإعلانات الممولة","المحتوى والسوشيال ميديا","فريق مبيعات ميداني","المعارض والمناسبات","تاني"]},
-    {id:"q_strategy",t:"عندكم استراتيجية تسويق واضحة ومكتوبة؟",d:"يعني عارفين بتستهدفوا منو، بأي رسالة، وفي أي قناة.",type:"yesno",req:true},
-    {id:"q_offer",t:"عرضكم (Offer) واضح، والعميل بيفهمه في جملة واحدة؟",type:"yesno",req:true},
-    {id:"close",t:"من كل 10 عملاء محتملين، كم واحد بيشتري في الآخر؟",d:"يعني نسبة إغلاق الصفقات (Close Rate) التقريبية.",type:"single",req:true,opts:["أقل من 10%","10% – 20%","20% – 40%","أكتر من 40%","ما عارف"]},
+    {id:"leads",t:"كم عميل محتمل (Lead) بيدخل شركتكم في الشهر تقريباً؟",d:"أي زول سأل، اتصل، راسل أو طلب عرض سعر.",type:"single",req:true,opts:LEADS.l},
+    {id:"lead_pred",t:"لو قررتوا تضاعفوا الـLeads الشهر الجاي، بتعرفوا تعملوها؟",d:"السؤال ده بيكشف هل جلب العملاء عندكم نظام ولا حظ.",type:"single",req:true,opts:PRED.l},
+    {id:"close",t:"من كل 10 عملاء محتملين، كم واحد بيشتري في الآخر؟",type:"single",req:true,opts:CLOSE.l},
+    {id:"lost",t:"الـLeads البتضيع، أغلبها بتضيع وين؟",type:"single",req:true,opts:LOST.l},
+    {id:"offer",t:"لو سألنا عميل: ليه تشتري منهم ما من المنافس؟ غالباً حيقول شنو؟",type:"single",req:true,opts:OFFER.l},
     {id:"deal",t:"متوسط قيمة الصفقة أو الطلب الواحد (بالدولار)؟",d:"تقريبي. لو ما عارفه، خليه فاضي.",type:"number",ph:"اختياري، مثلاً: 800"},
-    {id:"q_qualify",t:"في تأهيل وتشخيص للعميل قبل ما تقدّموا ليه العرض؟",type:"yesno",req:true},
-    {id:"q_crm",t:"بتستخدموا CRM (أو شيت منظّم) يمسك كل عميل محتمل ومرحلته؟",type:"yesno",req:true},
-    {id:"q_follow",t:"في نظام Follow-up واضح للبيسأل وما يشتري؟",d:"منو بيتابع، متين، وبكم رسالة.",type:"yesno",req:true},
-    {id:"q_sop",t:"عندكم إجراءات تشغيل مكتوبة (SOPs) الفريق بيمشي عليها؟",type:"yesno",req:true},
-    {id:"owner",t:"الشغل اليومي بيعتمد على المالك أو المدير العام لأي درجة؟",d:"قرارات، موافقات، ومتابعة العملاء الكبار.",type:"single",req:true,opts:Object.keys(OWNER)},
-    {id:"loss",t:"في تقديرك، أكبر مشكلة عندكم بتخسّركم كم في الشهر؟",type:"single",req:true,opts:Object.keys(LOSS)}
+    {id:"capacity",t:"لو الطلبات اتضاعفت الشهر الجاي، بتقدروا تسلّموا بنفس الجودة؟",type:"single",req:true,opts:CAP.l},
+    {id:"owner",t:"لو المالك أو المدير العام غاب شهر كامل، الشغل بيمشي كيف؟",type:"single",req:true,opts:OWNER.l},
+    {id:"repeat",t:"من كل 10 عملاء اشتروا منكم السنة الفاتت، كم واحد رجع اشترى تاني أو جدّد؟",type:"single",req:true,opts:REPEAT.l},
+    {id:"after",t:"في نظام بتتابعوا بيه العميل بعد البيع؟",d:"متابعة، عروض للعملاء القدام، طلب توصية.",type:"single",req:true,opts:AFTER.l},
+    {id:"nums",t:"بتعرفوا العميل الجديد بيكلّفكم كم (CAC)، وبيجيب ليكم ربح كم طول تعامله (LTV)؟",type:"single",req:true,opts:NUMS.l},
+    {id:"price",t:"لما بتنافسوا على عميل، بتضطروا تنزّلوا السعر؟",type:"single",req:true,opts:PRICE.l}
   ],
   compute:function(A){
-    var yes=function(k){return A[k]==="نعم"};
-    var L=LEADS[A.leads]||[0,0], C=CLOSE[A.close]||[0,0];
-    var acq=L[0]+(yes("q_strategy")?30:0)+(yes("q_offer")?30:0);
-    var conv=C[0]+(yes("q_qualify")?20:0)+(yes("q_crm")?20:0)+(yes("q_follow")?20:0);
-    var ops=(yes("q_sop")?40:0)+(OWNER[A.owner]||0);
-    var score=Math.round((acq+conv+ops)/3);
-    var order=[["conv",conv],["acq",acq],["ops",ops]].sort(function(a,b){return a[1]-b[1]}); var key=order[0][0];
+    var v=function(m,k){return m.s[A[k]]||0;};
+    var S={leads:v(LEADS,"leads")+v(PRED,"lead_pred"), conv:v(CLOSE,"close")+v(LOST,"lost")+v(OFFER,"offer"),
+      deliv:v(CAP,"capacity")+v(OWNER,"owner"), ret:v(REPEAT,"repeat")+v(AFTER,"after"), prof:v(NUMS,"nums")+v(PRICE,"price")};
+    var key=ORDER.slice().sort(function(a,b){return S[a]-S[b]||ORDER.indexOf(a)-ORDER.indexOf(b);})[0];
+    var score=Math.round(ORDER.reduce(function(t,k){return t+S[k];},0)/5);
     var band=score<=30?"red":score<=60?"yellow":"green";
     var level=score<=30?"النمو واقف":score<=60?"نمو بطيء ومتقطّع":score<=80?"جاهزين للنمو، وفي قيد واحد":"جاهزين للتوسع";
-    var missing=GAPS.filter(function(g){return A[g[0]]!==g[1]}).map(function(g){return g[2]});
-    if(A.owner==="بالكامل"||A.owner==="لحد كبير") missing.push("شغل بيمشي من غير المالك");
-    var deal=(A.deal!==""&&A.deal>0)?A.deal:0, leadsMid=L[1], rate=C[1];
+    var checks=[["lead_pred",A.lead_pred===PRED.l[0],"Leads بتقدروا تزيدوها لما تقرروا"],["close",A.close!=="ما عارفين"&&A.close!=="أقل من 1","نسبة إغلاق معروفة وفوق 10%"],["offer",A.offer===OFFER.l[0],"عرض (Offer) ما بيتقارن بالسعر"],["capacity",A.capacity===CAP.l[0],"تسليم بيستحمل ضعف الطلبات"],["owner",A.owner===OWNER.l[0],"شغل بيمشي من غير المالك"],["after",A.after===AFTER.l[0],"نظام متابعة بعد البيع"],["nums",A.nums===NUMS.l[0],"CAC و LTV معروفين بالأرقام"]];
+    var missing=checks.filter(function(c){return !c[1]}).map(function(c){return c[2]});
+    var deal=(A.deal!==""&&A.deal>0)?A.deal:0, leadsMid=LMID[A.leads]||0, rate=CRATE[A.close]||0;
     var addCust=rate?leadsMid*0.05:0, extra=(addCust&&deal)?addCust*deal:0;
-    var pain=Math.min(10,(LOSS[A.loss]||3)+(missing.length>=4?2:missing.length>=2?1:0));
-    var tags=["Constraint: "+(key==="acq"?"Leads":key==="conv"?"Conversion":"Systems")];
-    if(A.close==="ما عارف")tags.push("Unknown Close Rate"); if(A.q_crm==="لا")tags.push("No CRM");
-    if(A.owner==="بالكامل"||A.owner==="لحد كبير")tags.push("Founder Dependent"); if(A.src==="التوصيات والعلاقات")tags.push("Referral Dependent");
-    if(band!=="green")tags.push("Growth Review"); tags.push("Needs Business Direction Blueprint");
-    return {score:score,band:band,level:level,acq:acq,conv:conv,ops:ops,key:key,constraint:PIL[key][1],missing:missing,pain:pain,tags:tags,
+    var sub={"ما بيردوا بعد أول تواصل":"المتابعة (Follow-up)","بيسألوا عن السعر ويختفوا":"العرض والقيمة قبل السعر","بيقولوا «حنفكر» أو «حنشاور»":"الإغلاق ومعالجة الاعتراضات","ما عارفين بيضيعوا وين":"التتبّع: ما في CRM بيوري وين بيضيعوا"}[A.lost]||"";
+    var pain=Math.min(10,Math.round((100-S[key])/12)+(missing.length>=5?2:missing.length>=3?1:0));
+    var tags=["Constraint: "+{leads:"Leads",conv:"Conversion",deliv:"Delivery",ret:"Retention",prof:"Profit"}[key]];
+    if(A.close==="ما عارفين")tags.push("Unknown Close Rate"); if(A.lead_pred===PRED.l[2])tags.push("Referral Dependent");
+    if(A.owner===OWNER.l[2]||A.owner===OWNER.l[3])tags.push("Founder Dependent"); if(A.price===PRICE.l[2]||A.offer===OFFER.l[2])tags.push("Commoditized");
+    if(A.capacity===CAP.l[2])tags.push("Capacity Limit"); if(band!=="green")tags.push("Growth Review"); tags.push("Needs Business Direction Blueprint");
+    return {score:score,band:band,level:level,S:S,key:key,constraint:ST[key].c+(key==="conv"&&sub?" · "+sub:""),sub:sub,missing:missing,checks:checks,pain:pain,tags:tags,
       deal:deal,leadsMid:leadsMid,rate:rate,addCust:addCust,extra:extra,
-      summary:"Growth "+score+"/100 | قيد: "+PIL[key][0]+" | جلب "+acq+" · تحويل "+conv+" · تشغيل "+ops+" | Leads "+A.leads+" | Close "+A.close+(deal?" | Deal $"+deal:"")+" | خسارة "+A.loss+" | ناقص: "+(missing.join("، ")||"لا شي"),
-      store:{growth_score:score,acquisition:acq,conversion:conv,systems:ops,constraint:key,leads_range:A.leads,close_range:A.close,lead_source:A.src,deal:deal||"",loss_range:A.loss,owner_dependency:A.owner,extra_monthly:Math.round(extra)}};
+      summary:"Growth "+score+"/100 | قيد: "+ST[key].n+(key==="conv"&&sub?" ("+sub+")":"")+" | جلب "+S.leads+" · تحويل "+S.conv+" · تسليم "+S.deliv+" · رجوع "+S.ret+" · ربحية "+S.prof+" | Leads "+A.leads+" | Close "+A.close+"/10"+(deal?" | Deal $"+deal:"")+" | ناقص: "+(missing.join("، ")||"لا شي"),
+      store:{growth_score:score,leads:S.leads,conversion:S.conv,delivery:S.deliv,retention:S.ret,profit:S.prof,constraint:key,conversion_leak:A.lost,leads_range:A.leads,close_per10:A.close,deal:deal||"",extra_monthly:Math.round(extra),version:2}};
   },
   teaser:function(R){
     var t='<div class="box teaser"><span class="band '+R.band+'"><i></i>'+R.level+'</span>';
-    t+='<p>لقينا <b>القيد الشادّ نموّكم</b>'+(R.missing.length?' و<b>'+R.missing.length+' '+(R.missing.length===1?'نقطة ضعف':'نقاط ضعف')+'</b> في النظام':'')+'، والتوصية جاهزة.</p>';
+    t+='<p>حددنا <b>المرحلة الواحدة الشادّة نموّكم</b> من 5 مراحل'+(R.missing.length?'، ولقينا <b>'+R.missing.length+' '+(R.missing.length===1?'نقطة ضعف':'نقاط ضعف')+'</b>':'')+'. التوصية جاهزة.</p>';
     t+='<p>درجة جاهزيتكم للنمو <b class="blur">'+String(R.score).replace(/\d/g,"8")+' / 100</b>.</p>';
     return t+'</div>';
   },
@@ -81,20 +94,17 @@ window.TOOL={
     h+='<div class="qnum">نتيجتك يا '+nm+'</div>';
     h+='<div><div class="hint">درجة جاهزية شركتكم للنمو</div><div class="big">'+R.score+' / 100</div></div>';
     h+='<span class="band '+R.band+'"><i></i>'+R.level+'</span>';
-    h+='<div><div class="scale-l"><span>Growth Constraint Score</span><b class="num">'+R.score+' / 100</b></div><div class="meter"><span style="width:'+R.score+'%"></span></div></div>';
-    h+='<div class="kpis"><div class="kpi"><small>جلب العملاء</small><b>'+R.acq+'</b></div><div class="kpi"><small>التحويل والمبيعات</small><b>'+R.conv+'</b></div><div class="kpi"><small>التشغيل والأنظمة</small><b>'+R.ops+'</b></div></div>';
-    var why={acq:"الـLeads الداخلة قليلة أو ما منتظمة، أو الرسالة والعرض ما واضحين. أي تحسين في المبيعات حيكون محدود لأنه ما في كفاية ناس داخلين أصلاً.",
-      conv:"في ناس بتسأل وبتهتم، لكن عدد كبير منهم بيضيع بين أول سؤال والدفع. ده أرخص قيد تحلّه، لأنك ما محتاج تصرف على إعلان زيادة.",
-      ops:"المبيعات والتسويق ممكن يمشوا، لكن الشغل معتمد على أشخاص ما على نظام. أي نمو حيضغط على المالك والفريق قبل ما يزيد الربح."}[R.key];
-    h+='<div class="box"><h3>القيد عندكم: '+PIL[R.key][0]+'</h3><p style="margin:0">'+why+'</p></div>';
-    if(R.extra>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتك، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو رفعتوا نسبة الإغلاق <b class="num">5</b> نقاط بس، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة في الشهر، يعني حوالي <b class="num">'+M.money(R.extra)+'</b> في الشهر و<b class="num">'+M.money(R.extra*12)+'</b> في السنة. من نفس الـLeads، بدون صرف زيادة.</p></div>';
-    else if(R.addCust>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتك، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو رفعتوا نسبة الإغلاق <b class="num">5</b> نقاط بس، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة كل شهر من نفس الـLeads. أضرب الرقم ده في متوسط صفقتكم وبتعرف القيمة.</p></div>';
-    else h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">ما بنقدر نحسبها، لأنه نسبة الإغلاق ما معروفة. ودي نفسها نقطة مهمة: الشركة البتعرف أرقامها بتعرف وين الفلوس بتضيع. أول خطوة تبدوا تسجّلوا كل Lead والحصل فيه.</p></div>';
+    h+='<div class="box"><h3>سلسلة النمو عندكم</h3>';
+    ORDER.forEach(function(k){var me=k===R.key;h+='<div style="margin-top:8px"><div class="scale-l"><span>'+(me?'<b style="color:var(--red-fg)">● '+ST[k].n+' (القيد)</b>':ST[k].n)+'</span><b class="num">'+R.S[k]+' / 100</b></div><div class="meter"><span style="width:'+Math.max(3,R.S[k])+'%"></span></div></div>';});
+    h+='</div>';
+    h+='<div class="box"><h3>القيد عندكم: '+ST[R.key].n+'</h3><p style="margin:0">'+ST[R.key].why+'</p>'+(R.key==="conv"&&R.sub?'<p class="hint" style="margin:0">ونقطة التسريب الأكبر عندكم: <b>'+R.sub+'</b>.</p>':'')+'</div>';
+    if(R.extra>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتكم، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو اشترى <b class="num">5</b> زيادة بس من كل 100، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة في الشهر، يعني حوالي <b class="num">'+M.money(R.extra)+'</b> في الشهر و<b class="num">'+M.money(R.extra*12)+'</b> في السنة. من نفس الـLeads، بدون صرف زيادة.</p></div>';
+    else if(R.addCust>0) h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">بإجاباتكم، بيدخلكم حوالي <b class="num">'+R.leadsMid+'</b> Lead في الشهر. لو اشترى <b class="num">5</b> زيادة بس من كل 100، ده حوالي <b class="num">'+Math.round(R.addCust*10)/10+'</b> عميل زيادة كل شهر من نفس الـLeads. أضربه في متوسط صفقتكم وبتعرف القيمة.</p></div>';
+    else h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">ما بنقدر نحسبها، لأنه نسبة الإغلاق ما معروفة. ودي نفسها نقطة مهمة: الشركة البتعرف أرقامها بتعرف وين الفلوس بتضيع. أول خطوة تسجّلوا كل Lead والحصل فيه.</p></div>';
     h+='<div class="box"><h3>وين الفاقد عندكم</h3><ul class="gaps">';
-    GAPS.forEach(function(g){var ok=A[g[0]]===g[1];h+='<li><b class="'+(ok?'ok':'x')+'">'+(ok?'✓':'✕')+'</b><span>'+g[2]+'</span></li>';});
-    var free=!(A.owner==="بالكامل"||A.owner==="لحد كبير");h+='<li><b class="'+(free?'ok':'x')+'">'+(free?'✓':'✕')+'</b><span>شغل بيمشي من غير المالك</span></li>';
+    R.checks.forEach(function(c){h+='<li><b class="'+(c[1]?'ok':'x')+'">'+(c[1]?'✓':'✕')+'</b><span>'+c[2]+'</span></li>';});
     h+='</ul></div>';
-    h+='<div class="box"><h3>توصيتنا: Business Direction Blueprint</h3><p style="margin:0">قبل ما تصرفوا على إعلان أو توظيف أو أداة جديدة، محتاجين خريطة واحدة: القيد ده بالتحديد، الأرقام الحالية، وشنو يتعمل في 90 يوم بالترتيب. ده الـBlueprint البنبنيه مع الإدارة.</p><p class="hint" style="margin:0">الحل ما «نعمل كل حاجة». الحل نحل القيد الواحد ده أول، والباقي بيمشي وراه.</p></div>';
+    h+='<div class="box"><h3>توصيتنا: Business Direction Blueprint</h3><p style="margin:0">قبل ما تصرفوا على إعلان أو توظيف أو أداة جديدة، محتاجين خريطة واحدة: القيد ده بالأرقام، وشنو يتعمل في 90 يوم بالترتيب. '+(/^Business Direction/.test(ST[R.key].sys)?'والتركيز في الخريطة دي حيكون على <b>'+(R.key==="deliv"?'التشغيل والأنظمة':'الأرقام والتسعير')+'</b>.':'وبعد الخريطة، النظام المناسب لقيدكم هو <b>'+ST[R.key].sys+'</b>.')+'</p><p class="hint" style="margin:0">ما «نصلّح كل حاجة». نحل القيد الواحد ده أول، وبعدها نعيد التشخيص ونشوف القيد الجاي.</p></div>';
     h+='</div>';
     return h;
   }
