@@ -1,0 +1,118 @@
+<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>حاسبة معدل التحويل (Conversion Rate) – Mind Up</title>
+<meta name="description" content="أداة مجانية من Mind Up Growth Systems: أعرف في أنهي مرحلة من رحلة البيع بتخسر أكبر عدد من العملاء، ومعدل التحويل الحقيقي عندك كم.">
+<meta property="og:title" content="عملاءك بيضيعوا وين؟">
+<meta property="og:description" content="حاسبة معدل التحويل المجانية من Mind Up. دقيقتين وتعرف أكبر نقطة فقد في رحلة البيع.">
+<meta property="og:image" content="https://mindupagency249-rgb.github.io/mind-up/tools/conversion-rate/og.jpg"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1c2246">
+<link rel="icon" href="../kit/logo-white.png"><link rel="preload" href="../kit/fonts/thmanyah-sans-Bold.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="../kit/brand.css"><script src="../kit/kashida-live.js"></script>
+<style>
+.fun{display:flex;flex-direction:column;gap:6px}
+.fun .st{display:flex;align-items:center;gap:10px}
+.fun .lb{width:92px;flex:none;font-size:13px;opacity:.85}
+.fun .tr{flex:1;background:rgba(255,255,255,.12);border-radius:8px;height:30px;position:relative;overflow:hidden}
+.fun .fl{height:100%;border-radius:8px;background:linear-gradient(90deg,#4251B0,#23B774);min-width:4px}
+.fun .vl{position:absolute;inset-inline-start:8px;top:5px;font-size:13px;font-weight:700;color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.25)}
+.fun .dr{font-size:12px;opacity:.7;padding-inline-start:102px}
+.fun .dr.worst{opacity:1;color:#ff8a7a;font-weight:700}
+</style>
+</head><body>
+<div class="wrap">
+  <header class="hero">
+    <div class="brand"><img src="../kit/logo-white.png" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
+    <span class="tag">أداة مجانية · Conversion Rate Calculator</span>
+    <h1>عملاءك<br>بيضيعوا <em>وين؟</em></h1>
+    <p>مشكلة المبيعات ما دايماً قلة عملاء. أحياناً بيدخل عندك عدد كبير، وأغلبهم بيضيع في مرحلة واحدة. الأداة دي بتوريك المرحلة دي بالرقم.</p>
+    <div class="bar"><span id="bar"></span></div>
+    <ol class="steps4" id="steps"></ol>
+  </header>
+  <main class="card" id="card" aria-live="polite"></main>
+  <div class="foot">Mind Up Growth Systems · الخرطوم · بياناتك ما بتتشارك مع أي جهة</div>
+</div>
+<script>
+(function(){
+var ST=[["leads","Leads"],["qualified","مؤهلين"],["diagnosis","تشخيص / اجتماع"],["proposal","عروض أسعار"],["closed","عقود"],["paid","دفعوا"]];
+var TR=["Lead ← تأهيل","تأهيل ← تشخيص","تشخيص ← عرض سعر","عرض سعر ← إغلاق","إغلاق ← دفع"];
+function pct(x){return (Math.round(x*1000)/10)+"%";}
+window.TOOL={
+  id:"conversion-rate", name:"حاسبة معدل التحويل (Conversion Rate)", duration:"دقيقتين تقريباً، أغلبها أرقام", section:"رحلة البيع",
+  intro:'<h2 class="q">في دقيقتين بتعرف:</h2><ul><li><b>معدل التحويل الحقيقي</b> من أول Lead لحدي الدفع.</li><li><b>أكبر نقطة فقد</b> في رحلة البيع، بالنسبة.</li><li><b>Conversion Score</b> من 100.</li><li><b>كم عميل وكم دولار زيادة</b> لو صلّحت المرحلة الأضعف بس، من أرقامك إنت.</li></ul><p class="hint">جهّز أرقام تقريبية من آخر فترة: كم Lead، كم اتأهل، كم دخل اجتماع، كم عرض سعر، كم وقّع، كم دفع. ما محتاجة تكون دقيقة 100%.</p>',
+  questions:[
+    {id:"period",t:"داير تحلّل أنهي فترة؟",type:"single",req:true,opts:["آخر شهر","آخر 3 شهور","آخر 6 شهور","آخر سنة"]},
+    {id:"leads",t:"كم Lead دخل عندك في الفترة دي؟",d:"أي زول سأل أو راسل أو اتصل أو ملأ فورم.",type:"number",req:true,ph:"مثلاً: 500",min:1,minMsg:"لازم يكون في Lead واحد على الأقل"},
+    {id:"qualified",t:"كم واحد منهم كان مؤهل (Qualified)؟",d:"يعني محتاج خدمتك فعلاً وعنده القدرة يدفع.",type:"number",req:true,ph:"مثلاً: 340"},
+    {id:"diagnosis",t:"كم واحد دخل معاك اجتماع أو مكالمة تشخيص؟",type:"number",req:true,ph:"مثلاً: 190"},
+    {id:"proposal",t:"كم عرض سعر (Proposal) رسلت؟",type:"number",req:true,ph:"مثلاً: 150"},
+    {id:"closed",t:"كم عقد أو اتفاق اتقفل؟",type:"number",req:true,ph:"مثلاً: 58"},
+    {id:"paid",t:"كم عميل دفع فعلاً؟",type:"number",req:true,ph:"مثلاً: 54"},
+    {id:"deal",t:"متوسط قيمة الصفقة الواحدة (بالدولار)؟",d:"لو ما عارفه، خليه فاضي.",type:"number",ph:"اختياري"},
+    {id:"q_script",t:"عندكم Script موحّد للإغلاق والرد على الاعتراضات؟",type:"yesno",req:true},
+    {id:"q_follow",t:"في نظام Follow-up واضح للي ما ردّ بعد عرض السعر؟",type:"yesno",req:true},
+    {id:"q_lost",t:"بتسجّلوا سبب خسارة كل صفقة؟",type:"yesno",req:true},
+    {id:"q_calls",t:"بتراجعوا تسجيلات أو ملاحظات مكالمات المبيعات؟",type:"yesno",req:true},
+    {id:"q_dash",t:"عندكم Dashboard بيوريكم أرقام المبيعات كل أسبوع؟",type:"yesno",req:true}
+  ],
+  compute:function(A){
+    var v=ST.map(function(s){return Math.max(0,+A[s[0]]||0)}), fixed=false;
+    for(var i=1;i<v.length;i++){if(v[i]>v[i-1]){v[i]=v[i-1];fixed=true;}}
+    var r=[];for(i=0;i<5;i++)r.push(v[i]?v[i+1]/v[i]:0);
+    var overall=v[0]?v[5]/v[0]:0, op=overall*100;
+    var score=op<5?20:op<10?40:op<20?60:op<35?80:100;
+    var w=0;for(i=1;i<5;i++)if(r[i]<r[w])w=i;
+    var weak=r.filter(function(x){return x<0.5}).length;
+    var rec=weak>=3?"bgd":(w===0?"cas":"rcs");
+    var band=score<=40?"red":score<=60?"yellow":"green";
+    var gaps=[["q_script","Script موحّد للإغلاق"],["q_follow","نظام Follow-up"],["q_lost","تسجيل أسباب خسارة الصفقات"],["q_calls","مراجعة مكالمات المبيعات"],["q_dash","Dashboard للمبيعات"]];
+    var missing=gaps.filter(function(g){return A[g[0]]!=="نعم"}).map(function(g){return g[1]});
+    var lift=Math.min(1,r[w]+0.10), nv=v.slice(); nv[w+1]=Math.round(v[w]*lift);
+    for(i=w+2;i<6;i++)nv[i]=Math.round(nv[i-1]*r[i-1]);
+    var addPaid=Math.max(0,nv[5]-v[5]), deal=(A.deal!==""&&A.deal>0)?+A.deal:0, extra=addPaid*deal;
+    var tags=[];if(w===3||r[3]<0.3)tags.push("Low Closing");if(A.q_follow!=="نعم")tags.push("Weak Follow-up");if(w===2)tags.push("Weak Offer");
+    tags.push(rec==="cas"?"Needs CAS":rec==="bgd"?"Needs Business Growth Diagnostic":"Needs Revenue System");if(band!=="green")tags.push("Sales Review");
+    var constraint=rec==="cas"?"Leads – جودة الـLeads والتأهيل":"Conversion – "+TR[w];
+    var pain=Math.min(10,(band==="red"?6:band==="yellow"?4:2)+Math.min(4,missing.length));
+    var months={"آخر شهر":1,"آخر 3 شهور":3,"آخر 6 شهور":6,"آخر سنة":12}[A.period]||1, perMonth=v[0]/months;
+    var tier=perMonth>=100?"Hot":perMonth>=30?"Warm":"Cold";
+    return {v:v,r:r,fixed:fixed,overall:overall,score:score,w:w,weak:weak,rec:rec,band:band,missing:missing,addPaid:addPaid,extra:extra,deal:deal,lift:lift,
+      tags:tags,tier:tier,pain:pain,constraint:constraint,sector:"Leads شهرياً تقريباً "+Math.round(perMonth),stage:"تحويل كلي "+pct(overall)+" / "+A.period,
+      summary:"Overall "+pct(overall)+" | Score "+score+" | أكبر فقد: "+TR[w]+" ("+pct(1-r[w])+" فقد) | "+v.join("→")+" | ناقص: "+(missing.join("، ")||"لا شي"),
+      store:{leads:v[0],qualified:v[1],diagnosis:v[2],proposal:v[3],closed:v[4],paid:v[5],qualification_rate:+r[0].toFixed(3),diagnosis_rate:+r[1].toFixed(3),proposal_rate:+r[2].toFixed(3),closing_rate:+r[3].toFixed(3),payment_rate:+r[4].toFixed(3),overall_rate:+overall.toFixed(4),score:score,biggest_loss:TR[w]}};
+  },
+  teaser:function(R){
+    var lab={red:["red","التحويل ضعيف"],yellow:["yellow","التحويل متوسط، وفي فرصة"],green:["green","التحويل كويس، وفي مساحة تكبر"]}[R.band];
+    var t='<div class="box teaser"><span class="band '+lab[0]+'"><i></i>'+lab[1]+'</span>';
+    t+='<p>لقينا <b>أكبر نقطة فقد</b> في رحلة البيع عندك، بتخسر فيها حوالي <b class="blur">88%</b> من العملاء.</p>';
+    if(R.missing.length)t+='<p>و<b>'+R.missing.length+'</b> '+(R.missing.length===1?'حاجة ناقصة':'حاجات ناقصة')+' في نظام المبيعات. التوصية جاهزة.</p>';
+    return t+'</div>';
+  },
+  result:function(A,R){
+    var M=window.MU, nm=M.esc(A.name.split(" ")[0]);
+    var bandTxt={red:"تحويل ضعيف",yellow:"تحويل متوسط",green:"تحويل كويس"}[R.band];
+    var h='<div style="display:flex;flex-direction:column;gap:16px">';
+    h+='<div class="qnum">نتيجتك يا '+nm+' · '+M.esc(A.period)+'</div>';
+    h+='<div><div class="hint">من كل 100 Lead، بيدفع ليك</div><div class="big">'+(Math.round(R.overall*1000)/10)+'</div></div>';
+    h+='<span class="band '+R.band+'"><i></i>'+bandTxt+'</span>';
+    h+='<div><div class="scale-l"><span>Conversion Score</span><b class="num">'+R.score+' / 100</b></div><div class="meter"><span style="width:'+R.score+'%"></span></div></div>';
+    h+='<div class="kpis"><div class="kpi"><small>معدل التحويل الكلي</small><b>'+pct(R.overall)+'</b></div><div class="kpi"><small>نسبة الإغلاق من العروض</small><b>'+pct(R.r[3])+'</b></div><div class="kpi"><small>أكبر فقد</small><b>'+pct(1-R.r[R.w])+'</b></div></div>';
+    h+='<div class="box"><h3>رحلة البيع عندك</h3><div class="fun">';
+    for(var i=0;i<6;i++){var wd=R.v[0]?Math.max(2,R.v[i]/R.v[0]*100):0;
+      h+='<div class="st"><span class="lb">'+ST[i][1]+'</span><div class="tr"><div class="fl" style="width:'+wd+'%"></div><span class="vl num">'+R.v[i].toLocaleString("en-US")+'</span></div></div>';
+      if(i<5)h+='<div class="dr'+(i===R.w?' worst':'')+'">'+TR[i]+': '+pct(R.r[i])+(i===R.w?' · أكبر نقطة فقد':'')+'</div>';}
+    h+='</div>'+(R.fixed?'<p class="hint" style="margin:8px 0 0">ملاحظة: في مرحلة رقمها أكبر من المرحلة القبلها، فحسبناها بنفس رقم المرحلة القبلها.</p>':'')+'</div>';
+    var why=["الفقد الأكبر قبل التأهيل. يعني الإعلان والمحتوى بيجيبوا ناس ما مناسبين، أو الرسالة ما بتفرز المهتم من الفضولي.","الناس المؤهلين ما بيوصلوا للاجتماع. غالباً الرد بطيء، أو ما في حجز واضح وتذكير قبل الموعد.","بعد التشخيص ما بيطلع عرض سعر. غالباً التشخيص ما بيوضّح المشكلة والقيمة، فالعميل ما بيشوف سبب يطلب عرض.","العروض بتمشي وما بترجع عقود. ده غالباً ضعف في العرض نفسه، أو في الرد على الاعتراضات، أو غياب المتابعة بعد الإرسال.","العقود بتتوقّع والدفع بيتأخر أو ما بيحصل. محتاج شروط دفع أوضح ومتابعة تحصيل منظّمة."][R.w];
+    h+='<div class="box"><h3>أكبر نقطة فقد: '+TR[R.w]+'</h3><p style="margin:0">بتخسر هنا <b class="num">'+pct(1-R.r[R.w])+'</b> من العملاء. '+why+'</p></div>';
+    h+='<div class="box hi"><h3>الفلوس الواقفة على الطاولة</h3><p style="margin:0">لو رفعت المرحلة دي <b>10 نقاط بس</b> (من '+pct(R.r[R.w])+' لـ'+pct(R.lift)+') وباقي المراحل زي ما هي، بيدفع ليك حوالي <b class="num">'+R.addPaid+'</b> عميل زيادة في '+M.esc(A.period)+(R.extra?'، يعني حوالي <b class="num">'+M.money(R.extra)+'</b>':'')+'. بنفس عدد الـLeads، بدون ولا جنيه زيادة في الإعلان.</p></div>';
+    h+='<div class="box"><h3>نظام المبيعات عندك</h3><ul class="gaps">';
+    [["q_script","Script موحّد للإغلاق والاعتراضات"],["q_follow","Follow-up بعد عرض السعر"],["q_lost","تسجيل سبب خسارة كل صفقة"],["q_calls","مراجعة مكالمات المبيعات"],["q_dash","Dashboard أسبوعي للمبيعات"]].forEach(function(g){var ok=A[g[0]]==="نعم";h+='<li><b class="'+(ok?'ok':'x')+'">'+(ok?'✓':'✕')+'</b><span>'+g[1]+'</span></li>';});
+    h+='</ul></div>';
+    var recName={rcs:"Revenue Conversion System",cas:"Client Acquisition System",bgd:"Business Growth Diagnostic"}[R.rec];
+    var rw={rcs:"الفقد الأكبر عندك بعد ما العميل يكون مهتم. الحل ما نجيب Leads أكتر، الحل نحسّن العرض والاعتراضات والمتابعة والإغلاق عشان نفس الناس يدفعوا.",cas:"الفقد الأكبر عندك في أول الرحلة. الحل نضبط منو بتستهدف وكيف بتفرز الـLeads، عشان فريقك يصرف وقته مع الناس الصاح.",bgd:"عندك "+R.weak+" مراحل كل واحدة فيها فقد أكتر من النص. المشكلة ما في مرحلة واحدة، محتاجة تشخيص كامل للبزنس قبل أي حل."}[R.rec];
+    h+='<div class="box"><h3>توصيتنا: '+recName+'</h3><p style="margin:0">'+rw+'</p></div>';
+    return h+'</div>';
+  }
+};
+})();
+</script>
+<script src="../kit/engine.js"></script>
+</body></html>
