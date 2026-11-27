@@ -1,6 +1,6 @@
 <!DOCTYPE html><html lang="ar" dir="rtl"><head>
 <meta property="og:title" content="تشخيص Mind Up المجاني">
-<meta property="og:description" content="5 دقائق أسئلة، وبيوصلك تقرير وخطة 30 يوم مجاناً.">
+<meta property="og:description" content="4 دقايق أسئلة، والتشخيص بيظهر ليك فوراً: وين الاختناق الحقيقي وشنو تعمل فيهو.">
 <meta name="theme-color" content="#4251B0"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"></head><body><title>تشخيص Mind Up المجاني</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -63,6 +63,29 @@ textarea{min-height:110px;resize:vertical}
 .wa a{display:flex;justify-content:space-between;align-items:center;gap:10px;text-decoration:none;background:var(--green);color:#fff;border-radius:16px;padding:14px 18px;font-weight:700}
 .wa a.alt{background:var(--chip);color:var(--ink);border:1.5px solid var(--line)}
 .wa a span{font-weight:400;font-size:13px;opacity:.85}
+.dx h3{margin:6px 0 0;font-size:18px}
+.dx-tag{font-size:13px;color:var(--muted)}
+.dx-insight,.dx-cost{border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px}
+.dx-insight{background:var(--chip);border-inline-start:5px solid var(--blue)}
+.dx-cost{background:rgba(35,183,116,.1);border-inline-start:5px solid var(--green)}
+.dx-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.dx-tiles div{background:var(--bg);border:1px solid var(--line);border-radius:14px;padding:10px;display:flex;flex-direction:column;gap:4px;min-width:0}
+.dx-tiles b{font-size:18px;color:var(--blue);overflow-wrap:anywhere}
+.dx-tiles span{font-size:12px;color:var(--muted)}
+.dx-ev{margin:0;padding-inline-start:20px;display:grid;gap:8px}
+.dx-second{font-size:15px}
+.dx-opts{display:grid;gap:10px}
+.dx-opt{position:relative;border:1.5px solid var(--line);border-radius:16px;padding:14px 16px;display:flex;flex-direction:column;gap:6px;background:var(--card)}
+.dx-opt.rec{border-color:var(--green);box-shadow:0 0 0 3px rgba(35,183,116,.15)}
+.dx-opt em{font-style:normal;font-size:12px;font-weight:700;background:var(--green);color:#fff;border-radius:999px;padding:2px 10px;align-self:flex-start}
+.dx-opt p{margin:0;font-size:15px}
+.dx-opt small{color:var(--muted)}
+.dx-opt a{display:flex;justify-content:space-between;align-items:center;text-decoration:none;background:var(--blue);color:#fff;border-radius:12px;padding:11px 14px;font-weight:700}
+.dx-opt.rec a{background:var(--green)}
+.dx-opt a span{font-weight:400;font-size:13px;opacity:.85}
+@media (prefers-color-scheme: dark){.dx-tiles b{color:#9AA5F0}}
+@media (max-width:420px){.dx-tiles{grid-template-columns:1fr 1fr}.dx-tiles div:last-child{grid-column:1/-1}}
+@media print{.hero .stages,.mu-fab,#dxPrint,.dx-opt a{display:none}.card{border:0}body{background:#fff}}
 .num{direction:ltr;unicode-bidi:isolate;font-variant-numeric:tabular-nums;user-select:all}
 .foot{text-align:center;font-size:12px;color:var(--muted)}
 .preview{font-size:12px;background:var(--chip);border-radius:10px;padding:8px 12px;color:var(--muted)}
@@ -73,8 +96,8 @@ textarea{min-height:110px;resize:vertical}
 <div class="wrap">
   <header class="hero">
     <div class="brand"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGAAAABKCAYAAABEr1FoAAAWfmNhQlgAABZ+anVtYgAAAB5qdW1kYzJwYQARABCAAACqADibcQNjMnBhAAAAFlhqdW1iAAAAR2p1bWRjMm1hABEAEIAAAKoAOJtxA3VybjpjMnBhOjMzOTYxMTc0LTdlNDUtNDFmMy1iYmZmLTk5MDQwNDkzZWMwYgAAAAOTanVtYgAAAClqdW1kYzJhcwARABCAAACqADibcQNjMnBhLmFzc2VydGlvbnMAAAAAuGp1bWIAAABEanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5pbmdyZWRpZW50LnYzAAAAABhjMnNoh++n8mQ+I+g4JgyBdLm4ZgAAAGxjYm9yo2lkYzpmb3JtYXRpaW1hZ2UvcG5namluc3RhbmNlSUR4LHhtcDppaWQ6YmNmMzgyYWYtY2IxNi00ZGUxLTk4YTItZTQzYzQ3ZWE2N2MxbHJlbGF0aW9uc2hpcGhwYXJlbnRPZgAAAeJqdW1iAAAAQWp1bWRjYm9yABEAEIAAAKoAOJtxE2MycGEuYWN0aW9ucy52MgAAAAAYYzJzaNemrMkgXZI3jRC1WTRh9aoAAAGZY2JvcqJnYWN0aW9uc4KiZmFjdGlvbmtjMnBhLm9wZW5lZGpwYXJhbWV0ZXJzoWtpbmdyZWRpZW50c4GiY3VybHgtc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5pbmdyZWRpZW50LnYzZGhhc2hYIIEwf250M/SJHxOr+cnn7SC9l1wWDWPbGmXonTr/MmdypGZhY3Rpb254HWNvbS5hbnRocm9waWMuY2xhdWRlLnByb3ZpZGVkanBhcmFtZXRlcnOheB9jb20uYW50aHJvcGljLm9yaWdpbi1jb25maWRlbmNlZ3Vua25vd25rZGVzY3JpcHRpb254ZkNsYXVkZSBwcm92aWRlZCB0aGlzIGZpbGUgYXQgdGhlIHJlcXVlc3Qgb2YgYSB1c2VyIGFuZCBtYXkgaGF2ZSBjcmVhdGVkIG9yIG1vZGlmaWVkIHRoZSBmaWxlIGNvbnRlbnRzLm1zb2Z0d2FyZUFnZW50oWRuYW1lZkNsYXVkZXJhbGxBY3Rpb25zSW5jbHVkZWT1AAAAyGp1bWIAAABAanVtZGNib3IAEQAQgAAAqgA4m3ETYzJwYS5oYXNoLmRhdGEAAAAAGGMyc2htPWt9QAonTqximAa9hS2/AAAAgGNib3KlY2FsZ2ZzaGEyNTZjcGFkTQAAAAAAAAAAAAAAAABkaGFzaFgg333bcjSVNFwoQhySDdk8jXlDvU6bBmN471UEpS5XzsVkbmFtZW5qdW1iZiBtYW5pZmVzdGpleGNsdXNpb25zgaJlc3RhcnQYIWZsZW5ndGgZFooAAAI+anVtYgAAACdqdW1kYzJjbAARABCAAACqADibcQNjMnBhLmNsYWltLnYyAAAAAg9jYm9ypWNhbGdmc2hhMjU2aXNpZ25hdHVyZXhNc2VsZiNqdW1iZj0vYzJwYS91cm46YzJwYTozMzk2MTE3NC03ZTQ1LTQxZjMtYmJmZi05OTA0MDQ5M2VjMGIvYzJwYS5zaWduYXR1cmVqaW5zdGFuY2VJRHgseG1wOmlpZDpiNmZiNDc3My1kZjI2LTQ0NTAtYjVkOS03YjYzZjM2MmU0YzdyY3JlYXRlZF9hc3NlcnRpb25zg6JjdXJseC1zZWxmI2p1bWJmPWMycGEuYXNzZXJ0aW9ucy9jMnBhLmluZ3JlZGllbnQudjNkaGFzaFgggTB/bnQz9IkfE6v5yeftIL2XXBYNY9saZeidOv8yZ3KiY3VybHgqc2VsZiNqdW1iZj1jMnBhLmFzc2VydGlvbnMvYzJwYS5hY3Rpb25zLnYyZGhhc2hYIPragUxvio3PVgvPnk8yf1B/5XMwea4pOe2Qfq5t/LcAomN1cmx4KXNlbGYjanVtYmY9YzJwYS5hc3NlcnRpb25zL2MycGEuaGFzaC5kYXRhZGhhc2hYIA/qAHzlabRHuL0yQJ+ZrPX/RXr19jz2NZcmj41KmmW0dGNsYWltX2dlbmVyYXRvcl9pbmZvo2RuYW1lb0FudGhyb3BpYyBGaWxlc2d2ZXJzaW9uZTEuMC4wa3NwZWNWZXJzaW9uZTIuNC4wAAAQOGp1bWIAAAAoanVtZGMyY3MAEQAQgAAAqgA4m3EDYzJwYS5zaWduYXR1cmUAAAAQCGNib3LShFkCEqIBJhghWQIKMIICBjCCAY2gAwIBAgIUQOWgCu7COdC+uIP6BkIFPWdVEwAwCgYIKoZIzj0EAwMwSTEXMBUGA1UEChMOQW50aHJvcGljLCBQQkMxLjAsBgNVBAMTJUFudGhyb3BpYyBDb250ZW50IENyZWRlbnRpYWxzIFJvb3QgQ0EwHhcNMjYwODA3MTg0MzU2WhcNMjgwODA2MTk0MzU2WjBEMRcwFQYDVQQKEw5BbnRocm9waWMsIFBCQzEpMCcGA1UEAxMgQW50aHJvcGljIENsYXVkZSBDb250ZW50IFNpZ25pbmcwWTATBgcqhkjOPQIBBggqhkjOPQMBBwNCAASYegpry1AYBRTVNL1CpTlbROnY3dey+UrsF9C3phYrATN3ZHf93Mo8RQN0KOUuOn19P4oWNFWe5n2/She9N7eTo1gwVjAOBgNVHQ8BAf8EBAMCB4AwFQYDVR0lBA4wDAYKKwYBBAGD6F4CATAMBgNVHRMBAf8EAjAAMB8GA1UdIwQYMBaAFM5R4gSBTmRbI/jjxM+aPpzB11zCMAoGCCqGSM49BAMDA2cAMGQCMDFzHRSeAXrSy1WOzkbhPZ6Km2wGTmZ/2gK18k8BQGXyqz88Rdrz6CTX9flAnYNVxgIwcF9c3fVhqmJKpi+UhasNUMko69cyX6STPfta3Q8EjyzDjzoyrol46FP6VFHhvUcJoWNwYWRZDZ4AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA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" alt=""><div><b>MIND UP</b><small>GROWTH SYSTEMS</small></div></div>
-    <h1>تشخيص مجاني لبزنسك، وخطة 30 يوم في إيميلك</h1>
-    <p>دقيقتين إلى أربعة. أغلب الأسئلة اختيارات، ما محتاج تكتب كتير.</p>
+    <h1>تشخيص مجاني لبزنسك، والنتيجة تظهر ليك فوراً</h1>
+    <p>أربعة دقايق تقريباً، أغلبها اختيارات. أول ما تخلّص، بيظهر ليك وين الاختناق الحقيقي في بزنسك وشنو تعمل فيهو.</p>
     <div class="stages" id="stages">
       <div class="stage"><i><span></span></i>بياناتك</div>
       <div class="stage"><i><span></span></i>التأهيل</div>
@@ -92,7 +115,7 @@ window.MU_Q = {
   contact: [
     {id:"name", t:"اسمك الكريم؟", type:"short", req:true, ph:"مثلاً: أحمد عثمان"},
     {id:"whatsapp", t:"رقم الواتساب", type:"short", req:true, ph:"مثلاً: 0912345678", inputmode:"tel"},
-    {id:"email", t:"الإيميل (هنا بيجيك تقرير التشخيص)", type:"short", req:true, ph:"name@example.com", inputmode:"email"},
+    {id:"email", t:"الإيميل (هنا بتجيك نسخة التشخيص وخطة 30 يوم)", type:"short", req:true, ph:"name@example.com", inputmode:"email"},
     {id:"business", t:"اسم البزنس أو الصفحة (لو موجود)", type:"short", ph:"اختياري"},
     {id:"source", t:"شفتنا وين؟", type:"single", opts:["فيسبوك","إنستغرام","تيك توك","لينكدإن","يوتيوب","واتساب / صديق رشّحنا","ورشة أو كورس"]}
   ],
@@ -175,13 +198,13 @@ window.MU_Q = {
       freelancer:{t:"لو التشخيص وضّح ليك طريق واضح، مستعد تستثمر في نفسك (كورس أو متابعة)؟", opts:["أيوه، لو مقنع","أيوه بس بمبلغ بسيط","داير أبدأ بحاجة مجانية أول","لا، هسي بس بتعلم"]},
       classA:{t:"لو التشخيص طلع بفرص واضحة، الخطوة الطبيعية عندكم شنو؟", opts:["نعتمد ميزانية وننفذ","نطلب عرض ونرفعه للإدارة","نبدأ بمشروع تجريبي (Pilot)","لسه بنستكشف"]}
     }},
-    {id:"next", t:"الخطوة الجاية الأنسب ليك؟", type:"single", req:true, opts:[
-      {v:"booklet", l:"كتيب أو دليل أبدأ بيه براي"},
-      {v:"consult", l:"جلسة تشخيص 45 دقيقة مع أ. محمد مبارك"},
-      {v:"done", l:"فريق Mind Up ينفذ معاي (باقة)"}
+    {id:"next", t:"لو التشخيص وضّح المشكلة، بتفضّل تحلها كيف؟", type:"single", req:true, opts:[
+      {v:"booklet", l:"أطبّق براي بدليل عملي مكتوب (كتيب)"},
+      {v:"consult", l:"استشارة مع أ. محمد مبارك تحدد لي الخطوات"},
+      {v:"done", l:"فريق Mind Up ينفذ معاي"}
     ], seg:{
-      freelancer:{opts:[{v:"booklet", l:"كتيب مجاني أبدأ بيه براي"},{v:"consult", l:"جلسة 45 دقيقة مع أ. محمد مبارك"},{v:"done", l:"برنامج تدريبي فيه متابعة لحدي ما أجيب عملاء"}]},
-      classA:{t:"الخطوة الجاية الأنسب ليكم؟", opts:[{v:"consult", l:"اجتماع تشخيص مع أ. محمد مبارك"},{v:"done", l:"عرض مبدئي (Proposal) لحملة أو نظام نمو"},{v:"booklet", l:"التقرير يكفي هسي"}]}
+      freelancer:{opts:[{v:"booklet", l:"أطبّق براي بدليل عملي مكتوب (كتيب)"},{v:"consult", l:"استشارة مع أ. محمد مبارك تحدد لي الطريق"},{v:"done", l:"برنامج فيه متابعة لحدي ما أجيب عملاء"}]},
+      classA:{t:"الخطوة الأنسب ليكم بعد التشخيص؟", opts:[{v:"consult", l:"جلسة استراتيجية مع أ. محمد مبارك"},{v:"done", l:"عرض مبدئي (Proposal) لنظام نمو"},{v:"booklet", l:"دليل مكتوب نطبقه داخلياً"}]}
     }},
     {id:"time", t:"أنسب وقت نتواصل معاك فيه؟", type:"single", opts:["الصباح (9 – 12)","الظهر (12 – 4)","المساء (4 – 9)"]}
   ]
@@ -190,7 +213,6 @@ window.MU_Q = {
 <script>
 (function(){
   var WA = "249119744949"; // Mind Up WhatsApp (0119744949)
-  var BOOKLET = {freelancer:"دليل المحتوى الفيروسي", small:"دليل أصحاب المشاريع", medium:"كتيب النمو المستدام", classA:""};
   var SEG_AR = {freelancer:"فريلانسر", small:"بزنس صغير", medium:"بزنس متوسط", classA:"شركة كبيرة (Class A)"};
   var Q = window.MU_Q, A = {}, i = 0, card = document.getElementById("card");
   var ENDPOINT = "https://script.google.com/macros/s/AKfycbypkmlijmb-NVYGN4fnwCGe4raME5Iu_gc4U8HcJE__iBk7ZvV_xZ0nd6Ke9_JVPDZ4/exec"; var isLive = true;
@@ -243,7 +265,7 @@ window.MU_Q = {
     h+='<div class="err" id="err"></div><div class="nav">';
     h+= i>0 ? '<button type="button" class="btn ghost" id="back">→ رجوع</button>' : '<span></span>';
     var last = i===f.length-1;
-    h+='<button type="button" class="btn primary" id="next">'+(last?'أرسل وخلّصنا':'التالي ←')+'</button></div>';
+    h+='<button type="button" class="btn primary" id="next">'+(last?'أظهر لي التشخيص':'التالي ←')+'</button></div>';
     if(!isLive && i===0) h+='<div class="preview">نسخة معاينة: الإرسال هنا ما بيوصل للـCRM. النسخة الحية بتشتغل من رابط Google.</div>';
     card.innerHTML=h;
 
@@ -297,34 +319,202 @@ window.MU_Q = {
   function tier(s){return s>=65?"Hot":s>=40?"Warm":"Cold";}
 
   function submit(){
-    var s=score(), payload=Object.assign({}, A, {
-      score:s, tier:tier(s), constraint:constraint(), segment_ar:SEG_AR[A.segment]||"",
-      submitted_at:new Date().toISOString(), page:"diagnosis-v1"
+    var D=diagnose(), s=score();
+    var NEXT_AR={booklet:"كتيب مدفوع", consult:"استشارة مدفوعة مع أ. محمد", done:"شغل معانا (باقة/عرض)"};
+    var payload=Object.assign({}, A, {
+      score:s, tier:tier(s), constraint:D.c, segment_ar:SEG_AR[A.segment]||"",
+      next: NEXT_AR[A.next]||A.next||"", recommended: NEXT_AR[D.rec], stated_problem: D.stated,
+      diag_head: D.head, diag_insight: D.insight, diag_second: D.second? C[D.second].c : "", diag_cost: D.cost,
+      submitted_at:new Date().toISOString(), page:"diagnosis-v2-instant"
     });
     Object.keys(payload).forEach(function(k){if(Array.isArray(payload[k]))payload[k]=payload[k].join("، ");});
-    card.innerHTML='<h2 class="q">ثواني بس، بنسجّل إجاباتك...</h2>';
+    card.innerHTML='<h2 class="q">ثواني بس، بنحلل إجاباتك...</h2>';
     var fail=function(){card.innerHTML='<h2 class="q">حصلت مشكلة في الإرسال</h2><p>جرّب تاني بعد شوية، أو راسلنا واتساب على <span class="num">0119744949</span> وقول "تشخيص".</p><button class="btn primary" id="retry">جرّب تاني</button>';document.getElementById("retry").onclick=submit;};
     fetch(ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify(payload)})
-      .then(function(){thanks(payload)}).catch(fail);
+      .then(function(){thanks(payload,D)}).catch(fail);
+  }
+
+  // ===== v2 (founder 27 Nov): instant, precise diagnosis on the page + 3 PAID options (no free booklet) =====
+  // Prices: leave "" until the founder sets them. Empty = "السعر بنأكده ليك في واتساب".
+  var PRICE = {booklet:"", consult:""};
+  var BOOK = {freelancer:"دليل المحتوى الفيروسي", small:"دليل أصحاب المشاريع", medium:"كتيب النمو المستدام", classA:"كتيب النمو المستدام"};
+  function pick(id, arr){var k=idx(id); return k>-1? arr[k] : null;}
+  function has(id, s){return (A[id]||[]).indexOf ? String(A[id]||"").indexOf(s)>-1 : false;}
+  function money(n){n=Math.round(n); return n.toLocaleString("en-US")+"$";}
+  var C = {
+    leads:{c:"Leads – جلب العملاء", ar:"جلب العملاء"},
+    conversion:{c:"Conversion – تحويل الاهتمام لمبيعات", ar:"تحويل الاستفسارات لمبيعات"},
+    offer:{c:"Offer – التسعير والعرض", ar:"التسعير وقيمة العرض"},
+    start:{c:"Offer & Trust – العرض والثقة", ar:"عرض واضح وإثبات يجيب أول عملاء"},
+    delivery:{c:"Delivery – التشغيل والأنظمة", ar:"التشغيل والأنظمة"},
+    retention:{c:"Retention – رجوع العملاء", ar:"رجوع العملاء"},
+    profit:{c:"Profit – الربحية والقياس", ar:"الربحية"},
+    data:{c:"Systems – البيانات وقياس الأداء", ar:"البيانات وقياس الأداء"},
+    brand:{c:"Offer & Trust – البراند والثقة", ar:"البراند والثقة"}
+  };
+  var ACT = {
+    leads:["اختار قناة واحدة بس، الأقرب لعميلك، وركّز فيها 30 يوم بدل ما تتشتت في كل المنصات.",
+           "100 تواصل في الأسبوع: رسائل شخصية لناس محتملين، مش بوستات بس. الكمية أول، الجودة بتجي بعدها.",
+           "اعمل عرض صغير يجيب الناس ليك (عينة، مراجعة سريعة، أو نصيحة 10 دقايق)، وخليه هو الباب لعرضك الكبير."],
+    conversion:["رد على أي استفسار في أقل من 5 دقايق. التأخير هو أكبر سبب بيضيع البيعة.",
+           "اكتب سكربت رد واحد للكل: سؤال عن احتياجه، بعدها الحل، بعدها سؤال إغلاق («نبدأ الليلة ولا بكرة؟»).",
+           "أي زول سأل وما اشترى، تابعه 3 مرات في 7 أيام قبل ما تقفله. أغلب البيع بيحصل في المتابعة."],
+    offer:["حوّل شغلك من خدمة بالقطعة لباقة بنتيجة واضحة (مثلاً: «هوية كاملة في 7 أيام» بدل «تصميم لوقو»).",
+           "ارفع السعر 30% للعميل الجاي وشوف الرد. لو كل الناس بتوافق، سعرك لسه قليل.",
+           "اجمع 3 نتائج حقيقية لعملاء سابقين، واعرضها قبل ما تقول السعر."],
+    start:["اختار خدمة واحدة بس وعميل واحد محدد (مثلاً: «تصميم منيو للمطاعم»). الوضوح بيبيع.",
+           "اعمل 3 شغلات نموذجية، حتى لو بسعر رمزي لمعارفك، عشان يبقى عندك إثبات تعرضه.",
+           "كلّم 30 زول من معارفك الأسبوع ده، وقول ليهم بتعمل شنو بالضبط ولمنو."],
+    delivery:["اكتب الخطوات المتكررة في شغلك (الرد، الطلب، التسليم) في ورقة واحدة.",
+           "اختار أداة واحدة لمتابعة العملاء والطلبات. شيت بسيط يكفي في البداية.",
+           "سلّم مهمة واحدة متكررة لزول تاني الأسبوع ده، وفضّي وقتك للبيع."],
+    retention:["رسالة متابعة لكل عميل بعد 7 أيام من الشراء: «النتيجة كيف؟ محتاج حاجة؟»",
+           "عرض خاص للعملاء القدام بس (خصم رجوع، أو هدية مقابل ترشيح صاحبهم).",
+           "قايمة بكل عملائك وأرقامهم في مكان واحد، وراجعها أول كل شهر."],
+    profit:["احسب الربح الصافي لكل منتج أو خدمة لوحده، مش المبيعات الكلية.",
+           "ارفع سعر، أو وقّف، أضعف منتج في الهامش.",
+           "اعمل باقات أو إضافات بترفع متوسط الفاتورة لنفس العميل."],
+    data:["حدد 5 أرقام بس تتقاس كل أسبوع: الاستفسارات، نسبة البيع، متوسط الفاتورة، تكلفة جلب العميل، ورجوع العملاء.",
+          "من الليلة، أي استفسار يتسجل في مكان واحد (CRM أو شيت) مع مصدره.",
+          "ما تزيد صرف التسويق قبل ما تربط كل حملة بالمبيعات الجات منها."],
+    brand:["حدد رسالة واحدة واضحة: إنتو منو، لمنو، وبتحلوا شنو أحسن من غيركم.",
+           "انشر نتائج وقصص عملاء حقيقية كل أسبوع بدل المحتوى العام.",
+           "وحّد شكل وصوت البراند في كل القنوات (نفس الوعد، نفس الألوان، نفس النبرة)."]
+  };
+  function fromText(p){
+    if(/الأرباح|الهوامش/.test(p)) return "profit";
+    if(/ROI|قياس/.test(p)) return "data";
+    if(/البيع ضعيف|تحويل|المبيعات والموزعين/.test(p)) return "conversion";
+    if(/السعر قليل/.test(p)) return "offer";
+    if(/التسليم|وقت ولا نظام|بطء التنفيذ/.test(p)) return "delivery";
+    if(/ما بيرجعوا/.test(p)) return "retention";
+    if(/البراند|صورة|المحتوى/.test(p)) return "brand";
+    if(/بورتفوليو|ما عارف أبدأ/.test(p)) return "start";
+    return "leads";
+  }
+
+  function diagnose(){
+    var seg=A.segment, D={seg:seg, ev:[], tiles:[], second:null, insight:"", cost:""};
+    var stated = A.f_problem||A.s_problem||A.m_constraint||A.a_challenge||"";
+    D.stated = stated; var k = fromText(stated);
+
+    if(seg==="freelancer"){
+      var inc = pick("stage",[0,50,200,650,1200]), goal = pick("f_goal",[300,750,2000,3500]);
+      var price = pick("f_price",[15,35,100,200,null]), cl = pick("f_clients",[0,1.5,4,6]);
+      var src = A.f_from||[], warmOnly = src.length>0 && src.every(function(s){return /معارف|ما في مصدر/.test(s)});
+      var need = (price&&goal)? Math.ceil(goal/price) : null;
+      if(/ما عارف أبدأ/.test(stated) || (cl===0 && inc===0)) k="start";
+      else if(need && need>=20) k="offer";
+      else if(warmOnly || /ما ثابت/.test(stated)) k="leads";
+      D.tiles=[[inc===null?"-":money(inc),"دخلك الشهري هسي"],[goal?money(goal):"-","هدفك بعد 90 يوم"],[need?String(need):"-","شغلانة في الشهر بسعرك الحالي"]];
+      if(need) D.ev.push("عشان توصل "+money(goal)+" في الشهر بمتوسط "+money(price)+" للشغلانة، محتاج حوالي "+need+" شغلانة في الشهر، يعني قرابة "+Math.max(1,Math.round(need/26))+" كل يوم شغل.");
+      if(cl!==null) D.ev.push("عندك هسي "+(cl===0?"ولا عميل":A.f_clients+(cl<=1.5?" عميل":" عملاء"))+" في الشهر.");
+      if(warmOnly) D.ev.push("عملاءك جايين من "+src.join(" و")+" بس. ده مصدر ما بتتحكم فيهو، عشان كده الدخل بيطلع وينزل.");
+      if(A.f_hours==="أقل من ساعة") D.ev.push("بتدي جلب العملاء أقل من ساعة في اليوم. ده ما بيكفي يبني مصدر ثابت.");
+      var tried=A.f_tried||[]; if(tried.length===1 && /كورسات/.test(tried[0])) D.ev.push("جربت كورسات بس. المعلومة موجودة عندك، الناقص هو التنفيذ بكمية.");
+      if(k==="offer" && !/السعر/.test(stated)) D.insight="إنت شايف المشكلة في «"+stated+"»، لكن الحساب بيقول حاجة تانية: بسعرك الحالي محتاج "+need+" شغلانة في الشهر عشان توصل هدفك. ده صعب حتى لو العملاء كتار. المشكلة الحقيقية في التسعير وقيمة العرض، مش في عدد العملاء.";
+      if(goal!==null && inc!==null && goal>inc) D.cost="الفرق بين دخلك وهدفك قرابة "+money(goal-inc)+" في الشهر. كل شهر الوضع فيهو زي ما هو، المبلغ ده ما بيدخل جيبك.";
+      if(k!=="leads" && warmOnly) D.second="leads"; else if(k!=="offer" && price && price<=35) D.second="offer";
+    }
+    else if(seg==="small"){
+      var L = pick("s_customers",[10,60,300,700,null]), c = pick("s_close",[0.5,2.5,5,7.5,null]);
+      var R = pick("stage",[300,1250,3500,7500,12000]);
+      var sales = (L!==null&&c!==null)? L*c/10 : null, ticket = (sales&&R)? R/sales : null;
+      var soloReply = /أنا براي|ما في متابعة/.test(A.s_reply||"");
+      if(/الأرباح/.test(stated)) k="profit";
+      else if(c!==null && c<=2.5 && L!==null && L>=60) k="conversion";
+      else if(L===10) k="leads";
+      else if(c===null && L!==null && L>=60) k="conversion";
+      D.tiles=[[L===null?"ما معروف":"~"+L,"استفسار في الشهر"],[c===null?"ما بتنحسب":(c+" من 10"),"بيشتروا فعلاً"],[sales===null?"-":"~"+Math.round(L-sales),"زول سأل ومشى كل شهر"]];
+      if(L!==null&&c!==null) D.ev.push("بيجوك قرابة "+L+(L<=10?" استفسارات":" استفسار")+" في الشهر، وبيشتري منهم "+c+" من كل 10. يعني حوالي "+Math.round(L-sales)+" زول بيسأل ويمشي بدون ما يشتري.");
+      if(c===null) D.ev.push("ما بتحسبوا كم واحد بيشتري من اللي بيسألوا. أي حاجة ما بتتقاس ما بتتحسن.");
+      if(soloReply) D.ev.push("الرد والمتابعة "+(A.s_reply==="أنا براي"?"شايلهم إنت براك":"ما منظمة")+". ده أول مكان بتضيع فيهو البيعة.");
+      if(/نادراً|ما بنتابع/.test(A.s_repeat||"")) D.ev.push("العملاء "+(A.s_repeat==="نادراً"?"نادراً ما بيرجعوا":"ما بتتابعوا رجوعهم")+". يعني كل شهر بتبدأ من الصفر.");
+      var ch=A.s_channels||[]; if(ch.length===1) D.ev.push("بتبيع في قناة واحدة بس ("+ch[0]+"). أي مشكلة فيها بتوقف البيع كله.");
+      if(A.s_spend==="ما بصرف" && k==="leads") D.ev.push("ما بتصرف على التسويق. ما في حاجة بتجيب ليك عملاء جدد بانتظام.");
+      if(k==="conversion" && /عملاء جدد|المحتوى/.test(stated)) D.insight="إنت شايف المشكلة في «"+stated+"»، لكن أرقامك بتقول غير كده. الناس جاياك فعلاً"+(L?" (قرابة "+L+" في الشهر)":"")+"، المشكلة إنو أغلبهم بيسألوا وبيمشوا. لو جبت عملاء أكتر هسي، أغلبهم برضو حيضيعوا بنفس الطريقة. صلّح التحويل أول، وبعدها كبّر الجلب.";
+      if(k==="conversion" && ticket && c!==null && c<6){var up=Math.min(c+2,6), extra=L*(up-c)/10*ticket; D.cost="لو نسبة البيع زادت من "+c+" لـ "+up+" من 10 بنفس عدد الاستفسارات، ده تقريباً "+money(extra)+" زيادة في الشهر (تقدير من إجاباتك)."; }
+      else if(k==="leads" && ticket) D.cost="كل 10 استفسارات زيادة في الشهر = قرابة "+money(10*(c||2)/10*ticket)+" مبيعات زيادة بنسبة بيعك الحالية (تقدير من إجاباتك).";
+      if(k!=="conversion" && soloReply) D.second="conversion"; else if(/نادراً|ما بنتابع/.test(A.s_repeat||"") && k!=="retention") D.second="retention"; else if(k!=="leads" && L===10) D.second="leads";
+    }
+    else if(seg==="medium"){
+      var crmWeak = /واتساب وأوراق|ما محفوظة/.test(A.m_crm||""), cacNo = A.m_cac==="لا", leadsUnk = A.m_leads==="ما بنقيسه";
+      var weak = (crmWeak?1:0)+(cacNo?1:0)+(leadsUnk?1:0);
+      if(weak>=2 && /عملاء جدد|تحويل|الأرباح/.test(stated)) { D.insight="إنتو شايفين الاختناق في «"+stated+"»، لكن قبل كده في مشكلة أكبر: "+(crmWeak?"بيانات العملاء ما محفوظة في نظام، ":"")+(cacNo?"ما عارفين تكلفة جلب العميل، ":"")+(leadsUnk?"وعدد العملاء المحتملين ما بيتقاس. ":"")+"أي قرار تسويق هسي مبني على إحساس. أول خطوة إنكم تشوفوا الأرقام، بعدها نعرف بالضبط وين الخلل."; k="data"; }
+      D.tiles=[[A.m_leads||"-","عملاء محتملين في الشهر"],[A.m_budget||"-","ميزانية التسويق"],[crmWeak?"ما في نظام":(A.m_crm||"-"),"بيانات العملاء"]];
+      D.ev.push("الاختناق اللي حددتوه: «"+stated+"».");
+      if(crmWeak) D.ev.push("بيانات العملاء محفوظة في "+A.m_crm+". ده بيخلي المتابعة والتحليل شبه مستحيلين.");
+      if(cacNo) D.ev.push("ما عارفين تكلفة جلب العميل الواحد. ما ممكن تكبّروا الصرف بأمان وإنتو ما عارفين الرقم ده.");
+      var t=A.m_team||[]; if(t.indexOf("ما عندنا قسم تسويق")>-1) D.ev.push("ما عندكم قسم تسويق. النمو معتمد على مجهود أفراد مش على نظام.");
+      if(/نضاعف|سوق أو منتج جديد/.test(A.m_goal||"") && idx("m_budget")===0) D.ev.push("الهدف ("+A.m_goal+") أكبر بكتير من ميزانية أقل من 500$ في الشهر. يا الهدف يتراجع، يا الميزانية تتعدل، يا الصرف يبقى أذكى.");
+      D.cost="كل دولار تسويق بيتصرف بدون ما يتربط بمبيعات، ما بتعرفوا هو ربح ولا خسارة. ومع الهدف «"+(A.m_goal||"النمو")+"»، كل شهر تأخير بيقرّب المنافسين من عملائكم.";
+      if(k!=="data" && weak>=1) D.second="data"; else if(k==="data") D.second=fromText(stated);
+    }
+    else if(seg==="classA"){
+      var noKpi = has("a_kpi","ما في قياس واضح"), noStruct = A.a_setup==="ما في هيكل واضح";
+      if(noKpi && /ROI|الحصة/.test(stated)) k="data";
+      if(noStruct && /بطء|المبيعات/.test(stated)) k="delivery";
+      var mk=A.a_markets||[];
+      D.tiles=[[String(mk.length||"-"),"أسواق بتشتغلوا فيها"],[A.a_budget||"-","ميزانية التسويق"],[noKpi?"ما في قياس واضح":"في قياس","قياس أداء التسويق"]];
+      D.ev.push("المرحلة: «"+(A.a_moment||"-")+"»، والتحدي الأكبر: «"+stated+"».");
+      if(noKpi) D.ev.push("ما في قياس واضح لأداء التسويق. في مرحلة زي دي، ده معناه إنو الإدارة بتصرف بدون ما تشوف العائد.");
+      if(noStruct) D.ev.push("التسويق ما عندو هيكل واضح. التنفيذ بيبطأ وكل قسم بيشتغل براهو.");
+      if(mk.length>=3) D.ev.push("بتشتغلوا في "+mk.length+" أسواق ("+mk.join("، ")+"). كل سوق محتاج رسالة وقناة توزيع مختلفة، مش حملة واحدة للكل.");
+      if(A.a_setup==="وكالة فقط") D.ev.push("الاعتماد على وكالة براها بدون فريق داخلي بيخلي المعرفة والأرقام برة الشركة.");
+      if(k==="data" && !/ROI/.test(stated)) D.insight="التحدي اللي ذكرتوه «"+stated+"» ما بيتحل قبل ما يبقى في قياس واضح. بدون أرقام، كل قرار تسويق بيتاخد بالإحساس، وصعب تقنعوا الإدارة بأي ميزانية.";
+      D.cost="في مرحلة «"+(A.a_moment||"النمو")+"»، كل شهر بدون نظام واضح للقياس والتنفيذ معناه فرص بتمشي للمنافسين وميزانية ما معروف عائدها.";
+      D.second = noKpi && k!=="data" ? "data" : (noStruct && k!=="delivery" ? "delivery" : null);
+    }
+    D.key=k; D.c=C[k].c; D.ar=C[k].ar; D.actions=ACT[k];
+    if(D.second===k) D.second=null;
+    // headline
+    var who = {freelancer:"شغلك", small:"بزنسك", medium:"شركتكم", classA:"شركتكم"}[seg]||"بزنسك";
+    D.head = "أكبر حاجة واقفة قدام "+who+" هسي هي "+D.ar+".";
+    // recommendation (Hormozi: right next step for where they are)
+    var inv=idx("invest"), st=idx("start"), rec;
+    if(seg==="classA") rec = inv===3? "consult":"done";
+    else if(inv>=2) rec="booklet";
+    else if(inv===1) rec = seg==="freelancer"? "booklet":"consult";
+    else if(seg==="medium") rec = idx("m_budget")>=1? "done":"consult";
+    else if(seg==="small") rec = (idx("stage")>=2 && st<=1)? "done":"consult";
+    else rec = (idx("stage")>=2 && st<=1)? "done":"consult";
+    D.rec=rec; D.choice=A.next||"";
+    return D;
   }
 
   function wa(text){return "https://wa.me/"+WA+"?text="+encodeURIComponent(text);}
-  function thanks(p){
+  function opts(p,D){
+    var seg=p.segment, cls=seg==="classA";
+    return [
+      {k:"booklet", t:"الكتيب العملي: "+BOOK[seg], d: cls? "دليل مكتوب بخطوات عملية يطبقها فريقكم داخلياً." : "دليل مكتوب بخطوات عملية تبدأ بيها براك. مناسب لو داير تبدأ بنفسك وبأقل تكلفة.", price: PRICE.booklet? "السعر: "+PRICE.booklet : "السعر بنأكده ليك في واتساب", cta:"أطلب الكتيب",
+       msg:"السلام عليكم، أنا "+p.name+(p.business?" من "+p.business:"")+". عملت التشخيص وطلع إنو المشكلة في "+D.ar+". عايز أطلب «"+BOOK[seg]+"»."},
+      {k:"consult", t: cls? "جلسة استراتيجية مع أ. محمد مبارك" : "استشارة مدفوعة مع أ. محمد مبارك", d:"جلسة 45 دقيقة على "+(cls?"شركتكم":"بزنسك إنت")+" بالذات: نراجع الأرقام دي، ونطلع بخطة 90 يوم بالأولويات بالترتيب.", price: PRICE.consult? "السعر: "+PRICE.consult : "السعر بنأكده ليك في واتساب", cta:"أحجز الاستشارة",
+       msg:"السلام عليكم، أنا "+p.name+(p.business?" من "+p.business:"")+". عملت التشخيص وطلع إنو المشكلة في "+D.ar+". عايز أحجز الاستشارة مع أ. محمد مبارك."},
+      {k:"done", t: cls? "عرض مبدئي (Proposal) لنظام نمو" : seg==="freelancer"? "برنامج Mind Up للفريلانسرز، مع متابعة" : "فريق Mind Up ينفذ معاك", d: cls? "فريقنا يبني الخطة والقياس والتنفيذ معاكم، ونرفع ليكم عرض واضح للإدارة." : seg==="freelancer"? "نمشي معاك خطوة بخطوة لحدي ما تثبّت عملاء ودخل." : "نبني وننفذ النظام معاك، وإنت تركز على شغلك.", price:"حسب الخطة، بعد مكالمة قصيرة", cta: cls? "أطلب العرض":"عايز أشتغل معاكم",
+       msg:"السلام عليكم، أنا "+p.name+(p.business?" من "+p.business:"")+". عملت التشخيص وطلع إنو المشكلة في "+D.ar+". "+(cls?"عايزين عرض مبدئي من Mind Up لشركتنا.":"عايز أشتغل مع فريق Mind Up على الموضوع ده.")}
+    ];
+  }
+  function thanks(p, D){
     document.querySelectorAll(".stage").forEach(function(el){el.classList.add("on");el.querySelector("span").style.width="100%";});
-    var name=p.name||"", seg=p.segment_ar, prob=p.f_problem||p.s_problem||p.m_constraint||p.a_challenge||"", biz=p.business?(" من "+p.business):"";
-    var book=BOOKLET[p.segment];
-    var h='<div class="done" style="display:flex;flex-direction:column;gap:16px">';
-    h+='<h2>شكراً يا '+esc(name)+'، استلمنا كل التفاصيل ✅</h2>';
-    h+='<p>فريق Mind Up بيراجع إجاباتك هسي. خلال 12 إلى 24 ساعة بيوصلك في الإيميل <b class="num">'+esc(p.email||"")+'</b>:</p>';
-    h+='<ul class="steps"><li><b class="n">1</b><span><b>تقرير التشخيص:</b> وين الاختناق الحقيقي في بزنسك، وليه.</span></li>';
-    h+='<li><b class="n">2</b><span><b>خطة 30 يوم:</b> خطوات أسبوع بأسبوع تبدأ بيها حتى لو براك.</span></li>';
-    h+='<li><b class="n">3</b><span><b>الخطوة الجاية:</b> لو حبيت نمشي معاك أبعد.</span></li></ul>';
-    h+='<p>ما داير تنتظر؟ اختار من هنا والرسالة بتنكتب ليك جاهزة في واتساب:</p><div class="wa">';
-    if(book) h+='<a href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). عملت التشخيص المجاني، وعايز "+book+".")+'" target="_blank" rel="noopener">أبدأ بالكتيب: '+esc(book)+'<span>واتساب ←</span></a>';
-    h+='<a class="'+(book?'alt':'')+'" href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). مشكلتي: "+prob+". عايز أحجز جلسة التشخيص 45 دقيقة مع أ. محمد مبارك.")+'" target="_blank" rel="noopener">أحجز جلسة تشخيص 45 دقيقة<span>واتساب ←</span></a>';
-    h+='<a class="alt" href="'+wa("السلام عليكم، أنا "+name+biz+" ("+seg+"). عملت التشخيص و"+(p.segment==="classA"?"عايزين عرض مبدئي من Mind Up لشركتنا":p.segment==="freelancer"?"عايز أعرف برنامج Mind Up للفريلانسرز":"عايز أعرف باقات Mind Up المناسبة لي")+". التحدي الأساسي: "+prob+".")+'" target="_blank" rel="noopener">'+(p.segment==="classA"?"أطلب عرض مبدئي لشركتنا":p.segment==="freelancer"?"عايز برنامج فيه متابعة":"عايز فريق Mind Up ينفذ معاي")+'<span>واتساب ←</span></a>';
-    h+='</div><p class="hint">لو الزر ما فتح واتساب، راسلنا على <span class="num">0119744949</span> (من خارج السودان: <span class="num">+249 119 744 949</span>).</p></div>';
-    card.innerHTML=h;
+    var h='<div class="done dx">';
+    h+='<div class="dx-tag">نتيجة التشخيص · '+esc(p.name||"")+(p.business?' · '+esc(p.business):'')+'</div>';
+    h+='<h2>'+esc(D.head)+'</h2>';
+    if(D.insight) h+='<div class="dx-insight"><b>الحاجة اللي ممكن تكون ما واخد بالك منها</b><p>'+esc(D.insight)+'</p></div>';
+    h+='<div class="dx-tiles">'; D.tiles.forEach(function(t){h+='<div><b dir="auto">'+esc(t[0])+'</b><span>'+esc(t[1])+'</span></div>';}); h+='</div>';
+    if(D.ev.length){h+='<h3>ليه بنقول كده (من إجاباتك)</h3><ul class="dx-ev">'; D.ev.slice(0,4).forEach(function(e){h+='<li>'+esc(e)+'</li>';}); h+='</ul>';}
+    if(D.cost) h+='<div class="dx-cost"><b>التكلفة لو الوضع فضل زي ما هو</b><p>'+esc(D.cost)+'</p></div>';
+    h+='<h3>3 حاجات تعملها الأسبوع ده</h3><ol class="steps">'; D.actions.forEach(function(a,n){h+='<li><b class="n">'+(n+1)+'</b><span>'+esc(a)+'</span></li>';}); h+='</ol>';
+    if(D.second) h+='<p class="dx-second"><b>نقطة تانية تنتبه ليها:</b> '+esc(C[D.second].ar)+'. حلها بعد ما تثبّت الأولى.</p>';
+    h+='<h3>الخطوة الجاية: عندك 3 خيارات</h3><div class="dx-opts">';
+    opts(p,D).forEach(function(o){
+      var isRec=o.k===D.rec, isMine=o.k===D.choice;
+      var badge = isRec&&isMine? "الأنسب ليك" : isRec? "ترشيحنا ليك" : isMine? "اختيارك" : "";
+      h+='<div class="dx-opt'+(isRec?' rec':'')+'">'+(badge?'<em>'+badge+'</em>':'')+'<b>'+esc(o.t)+'</b><p>'+esc(o.d)+'</p><small>'+esc(o.price)+'</small><a href="'+wa(o.msg)+'" target="_blank" rel="noopener">'+esc(o.cta)+' <span>واتساب ←</span></a></div>';
+    });
+    h+='</div><p class="hint">نسخة من التشخيص دي مع خطة 30 يوم بتوصلك في الإيميل <b class="num">'+esc(p.email||"")+'</b>. لو الزر ما فتح واتساب، راسلنا على <span class="num">0119744949</span> (من خارج السودان: <span class="num">+249 119 744 949</span>).</p>';
+    h+='<button type="button" class="btn ghost" id="dxPrint">احفظ التشخيص (PDF)</button></div>';
+    card.innerHTML=h; window.scrollTo({top:card.offsetTop-10,behavior:"smooth"});
+    var pb=document.getElementById("dxPrint"); if(pb) pb.onclick=function(){window.print();};
   }
   render();
 })();
